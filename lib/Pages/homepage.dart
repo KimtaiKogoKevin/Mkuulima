@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/home_app_bar.dart';
+import 'package:mkuulima/widgets/itemswidget.dart';
 
 import '../widgets/categories_widget.dart';
 
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
         children: [
           const HomeAppBar(),
           Container(
-              height: 500,
+
               padding: const EdgeInsets.only(top: 15),
               decoration: const BoxDecoration(
                   color: Color(0xFFEDECF2),
@@ -23,6 +24,7 @@ class HomePage extends StatelessWidget {
                   )),
               child: Column(
                 children: [
+                  //search widget
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
                     padding: EdgeInsets.symmetric(horizontal: 15),
@@ -48,6 +50,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -61,6 +64,19 @@ class HomePage extends StatelessWidget {
                   ),
                   //Categories
                    CategoriesWidget(),
+
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    child: const Text(
+                      "Best Sellers",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF4C53A5)),
+                    ),
+                  ),
+                  ItemsWidget()
                 ],
               ))
         ],
