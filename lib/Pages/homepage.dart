@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/home_app_bar.dart';
 
+import '../widgets/categories_widget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -49,7 +51,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                    child: Text(
+                    child: const Text(
                       "Categories",
                       style: TextStyle(
                           fontSize: 25,
@@ -58,7 +60,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   //Categories
-                  // CategoriesWidget(),
+                   CategoriesWidget(),
                 ],
               ))
         ],
