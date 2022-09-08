@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/home_app_bar.dart';
 import 'package:mkuulima/widgets/itemswidget.dart';
@@ -80,6 +81,18 @@ class HomePage extends StatelessWidget {
                 ],
               ))
         ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        items: <Widget>[
+
+          Icon(Icons.home, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.shopping_bag_outlined, size: 30),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+        backgroundColor:Colors.transparent,
       ),
     );
   }

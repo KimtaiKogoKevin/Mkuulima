@@ -13,7 +13,7 @@ class HomeAppBar extends StatelessWidget {
         const Icon(
           Icons.sort,
           size: 30,
-          color: Color(0xFF4C53A5),
+          color:Color(0xFF4C53A5),
         ),
         const Padding(
           padding: EdgeInsets.only(left: 20),
@@ -24,17 +24,21 @@ class HomeAppBar extends StatelessWidget {
                   color: Color(0xFF4C53A5))),
         ),
         const Spacer(),
-        Badge(
-          badgeColor: Colors.red,
-          padding: EdgeInsets.all(7),
-          badgeContent: Text("3"),
-          child: InkWell(
-              onTap: () {},
-              child: const Icon(
-                Icons.shopping_bag_outlined,
-                size: 32,
-                color: Color(0xFF4C53A5),
-              )),
+      InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, "cartPage");
+          },
+          child: Badge(
+            badgeColor: Colors.red,
+            padding: const EdgeInsets.all(7),
+            badgeContent: const Text("3"),
+
+                child: const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 32,
+                  color: Color(0xFF4C53A5),
+                )),
+        ),
         )
       ]),
     );
