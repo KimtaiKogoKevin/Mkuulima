@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/cart_app_bar.dart';
+import '../widgets/cart_bottom_nav_bar.dart';
 import '../widgets/cartitems.dart';
 
 class CartPage extends StatelessWidget {
@@ -35,8 +36,21 @@ class CartPage extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child: Row(children: [
                     Container(decoration: BoxDecoration(
-                      color:Color
-                    ),)
+                      color:Color(0xFF4C53A5),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Icon(Icons.add,
+                      color:Colors.white,
+                    )),
+                    const Padding(padding:EdgeInsets.symmetric(horizontal: 10),
+                    child:Text(
+                      "Add Coupon Code",
+                      style:TextStyle(
+                        color:Color(0xFF4C53A5),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                      )
+                    ))
                   ],),
                 )
               ])
@@ -44,6 +58,7 @@ class CartPage extends StatelessWidget {
           )
         ]
       ),
+      bottomNavigationBar: CartBottomNavBar(),
     );
   }
 }

@@ -81,7 +81,7 @@ class CartItemSamples extends StatelessWidget {
                         size:18),),
                         Container(
                           margin:const EdgeInsets.symmetric(horizontal: 5),
-                          child:const Text( "01",
+                          child:const Text( "1",
                             style:TextStyle(fontSize: 16 , fontWeight: FontWeight.bold,color: Color(0xFF4C53A5)),
 
                           )

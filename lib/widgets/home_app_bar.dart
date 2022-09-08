@@ -28,6 +28,7 @@ class HomeAppBar extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(context, "cartPage");
           },
+
           child: Badge(
             badgeColor: Colors.red,
             padding: const EdgeInsets.all(7),
@@ -39,7 +40,7 @@ class HomeAppBar extends StatelessWidget {
                   color: Color(0xFF4C53A5),
                 )),
         ),
-        )
+
       ]),
     );
   }
