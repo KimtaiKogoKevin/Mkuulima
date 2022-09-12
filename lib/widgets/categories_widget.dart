@@ -22,10 +22,10 @@ class CategoriesWidget extends StatelessWidget {
                   width: 40,
                   height: 40,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Fertelizer",
+                    "Fertilizer",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mkuulima/Pages/homepage.dart';
 
+import 'Pages/ItemPage.dart';
 import 'Pages/cartPage.dart';
+import 'Pages/checkout.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/":(context) => const HomePage(),
         "cartPage":(context) => const CartPage(),
+        "itemPage":(context) => const ItemPage(),
+        "checkOut":(context) => const CheckOut(),
 
       },
     );
