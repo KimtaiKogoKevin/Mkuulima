@@ -9,6 +9,7 @@ class ItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFEDECF2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {},
@@ -17,9 +18,8 @@ class ItemPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
-          children: [
-
-            const Padding(
+          children: const [
+            Padding(
                 padding: EdgeInsets.only(left: 0),
                 child: Text('Product',
                     style: TextStyle(
@@ -27,46 +27,59 @@ class ItemPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF4C53A5)))),
             Spacer(),
-            const Icon(Icons.favorite, size: 30, color: Colors.red)
+            Icon(Icons.favorite, size: 30, color: Colors.red)
           ],
         ),
       ),
-      body: Column(
-        children: [
-          //ItemAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //ItemAppBar(),
 
-          Padding(
-            padding:EdgeInsets.all(16),
-            child: Image.asset("images/1.jpg", height:400),
-          ),
-       Arc(
-         edge: Edge.TOP,
-         arcType: ArcType.CONVEX,
-         height:30,
-         child:Expanded(
-           child: Container(
-             height: 60,
-             width:double.infinity,
-             color:Color(0xFFEDECF2),
-             child: const Padding(
-               padding: EdgeInsets.symmetric(horizontal:30),
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Image.asset("images/1.jpg", height: 400),
+            ),
+            Arc(
+                edge: Edge.TOP,
+                arcType: ArcType.CONVEY,
+                height: 30,
+                child: Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(children: [
+                        Padding(
+                            padding: EdgeInsets.only(
+                              top: 50,
+                              bottom: 20,
+                            ),
+                            child: Row(
+                              children: const [
+                                Text(
+                                  "Product Title",
+                                  style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF4C53A5)),
+                                )
+                              ],
+                            ))
+                      ]),
+                    ),
+                  ),
+                )),
+            Container()
 
-             ),
-           ),
-         )
-
-
-       ),
-          Container()
-
-          // // ListView(
-          // //   children: const [
-          // //   ],
-          // ),
-        ],
+            // // ListView(
+            // //   children: const [
+            // //   ],
+            // ),
+          ],
+        ),
       ),
-      );
-
-
+    );
   }
 }
