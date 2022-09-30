@@ -6,6 +6,13 @@ import '../widgets/cartitems.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+  static const String routeName = '/cartPage';
+
+  static Route route() {
+    return MaterialPageRoute(
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => CartPage());
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkuulima/Pages/homepage.dart';
-import 'package:bloc/bloc.dart';
-import 'Pages/ItemPage.dart';
+import 'package:mkuulima/repositories/checkout/checkout_repository.dart';
+import 'package:mkuulima/repositories/products/product_repository.dart';
+
 import 'Pages/cartPage.dart';
 import 'Pages/checkout.dart';
+import 'blocs/cart/cart_bloc.dart';
+import 'blocs/checkout/checkout_bloc.dart';
+import 'blocs/product/product_bloc.dart';
+import 'config/app_router.dart';
 
-void main() => runApp(const MyApp());
+
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //  // options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  runApp(
+      const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -15,6 +29,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers:[
+        //BlocProvider(create:(_) => WishlistBloc()..add(StartWishlist())),
+        BlocProvider(create:(_) => CartBloc()..add((LoadCart()))),
+       // BlocProvider(create:(_) => CategoryBloc(categoryRepository: CategoryRepository())..add((LoadCategories()))),
+        BlocProvider(create:(_) => ProductBloc(productRepository: ProductRepository())..add((LoadProducts()))),
+        BlocProvider(
+          create: (context) => CheckoutBloc(
+            cartBloc: context.read<CartBloc>(),
+            // paymentBloc: context.read<PaymentBloc>(),
+            checkoutRepository: CheckoutRepository(),
+          ),
+        ),
+
 
       ],
       child: MaterialApp(
@@ -22,11 +48,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
         ),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        initialRoute:HomePage.routeName,
         routes: {
           "/":(context) => const HomePage(),
           "cartPage":(context) => const CartPage(),
-          "itemPage":(context) => const ItemPage(),
-          "checkOut":(context) => const CheckOut(),
+         // "itemPage":(context) => const ItemPage(product: ),
+          "checkOut":(context) =>  CheckOutPage(),
 
         },
       ),

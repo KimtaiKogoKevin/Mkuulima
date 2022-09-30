@@ -2,11 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import '../models/Product.dart';
 import '../widgets/Item_app_bar.dart';
 import '../widgets/itemBottomNavBar.dart';
 
 class ItemPage extends StatefulWidget {
-  const ItemPage({Key? key}) : super(key: key);
+  const ItemPage({Key? key, required Product product , }) : super(key: key);
+  static const String routeName = '/itemPage';
+
+  static Route route({required Product product}) {
+    return MaterialPageRoute(
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => ItemPage(product:product));
+  }
 
   @override
   State<ItemPage> createState() => _ItemPageState();
