@@ -15,7 +15,7 @@ class AppRouter {
 
     switch (settings.name) {
       case '/':
-        return HomePage.route();
+        return HomePage.route(product: settings.arguments as Product);
       // case LoginPage.routeName:
       //   return LoginPage.route();
       case CartPage.routeName:

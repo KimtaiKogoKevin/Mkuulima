@@ -4,20 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkuulima/Pages/homepage.dart';
 import 'package:mkuulima/repositories/checkout/checkout_repository.dart';
 import 'package:mkuulima/repositories/products/product_repository.dart';
-
+import 'firebase_options.dart';
 import 'Pages/cartPage.dart';
 import 'Pages/checkout.dart';
 import 'blocs/cart/cart_bloc.dart';
 import 'blocs/checkout/checkout_bloc.dart';
 import 'blocs/product/product_bloc.dart';
 import 'config/app_router.dart';
+import 'models/Product.dart';
 
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //  // options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+   options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
       const MyApp());
 }
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute:HomePage.routeName,
         routes: {
-          "/":(context) => const HomePage(),
+          "/":(context) =>  HomePage(),
           "cartPage":(context) => const CartPage(),
          // "itemPage":(context) => const ItemPage(product: ),
           "checkOut":(context) =>  CheckOutPage(),

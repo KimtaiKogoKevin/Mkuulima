@@ -8,15 +8,25 @@ class ItemsWidget extends StatelessWidget {
   final List <Product> products;
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      childAspectRatio: 0.68,
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        childAspectRatio: 0.68,
+          maxCrossAxisExtent: 200,
+         // childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20
+
+
+
+      ),
+      itemCount: products.length,
       physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
       shrinkWrap: true,
-      children: [
-        for (int i = 0 ; i < 10; i++)
-        ItemCard(product: products[i],)
-      ],
+      itemBuilder: (BuildContext context, index){
+        return ItemCard(product: products[index]);
+
+      }
+
     );
   }
 }

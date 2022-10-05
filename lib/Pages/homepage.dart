@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/home_app_bar.dart';
 import 'package:mkuulima/widgets/itemswidget.dart';
 
+import '../models/Product.dart';
 import '../widgets/categories_widget.dart';
 import '../widgets/search_widget.dart';
+import 'homeBody.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String routeName = '/';
 
-  static Route route() {
+  static Route route({ required Product product}) {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
         builder: (_) => HomePage());
@@ -59,60 +61,7 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      // Container(
-                      //     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                      //     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-                      //     child: const HomeAppBar()),
-                      Container(
-                          padding: const EdgeInsets.only(top: 15),
-                          decoration: const BoxDecoration(
-                              color: Color(0xFFEDECF2),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(35),
-                                topRight: Radius.circular(35),
-                              )),
-                          child: Column(
-                            children: [
-                              //search widget
-                              SearchBar(),
-
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 20),
-                                child: const Text(
-                                  "Categories",
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF4C53A5)),
-                                ),
-                              ),
-                              //Categories
-                              CategoriesWidget(),
-
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 20),
-                                child: const Text(
-                                  "Best Sellers",
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF4C53A5)),
-                                ),
-                              ),
-                              ItemsWidget(products: [],)
-                            ],
-                          ))
-                    ],
-                  ),
-                ),
+                HomeBody(products: [],),
               ],
             ),
           ),
@@ -138,3 +87,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

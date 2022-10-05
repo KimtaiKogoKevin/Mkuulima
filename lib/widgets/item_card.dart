@@ -11,7 +11,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, 'itemPage');
+        Navigator.pushNamed(context, 'itemPage', arguments: product);
       },
       child: Container(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -48,16 +48,16 @@ class ItemCard extends StatelessWidget {
               },
               child: Container(
                 margin: const EdgeInsets.all(10),
-                height: 120,
-                width: 120,
+                height: 110,
+                width: 100,
                 child: Image.network(product.imageUrls![0]),
               ),
             ),
             Container(
               padding: const EdgeInsets.only(bottom: 8),
               alignment: Alignment.center,
-              child: const Text(
-                "Fertilizer product",
+              child:  Text(
+                  product.brandName.toString(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -66,15 +66,15 @@ class ItemCard extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.topLeft,
-              child: const Text("Write description here"),
+              child:  Text(product.productDescription.toString()),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children:  [
                   Text(
-                    "\$66",
+                    '\KSH ${product.regularPrice}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
