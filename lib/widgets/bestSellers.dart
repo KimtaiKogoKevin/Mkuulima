@@ -8,10 +8,9 @@ import 'itemswidget.dart';
 class BestSellers extends StatelessWidget {
   const BestSellers({
     Key? key,
-    required this.products,
+
   }) : super(key: key);
 
-  final List<Product> products;
 
   @override
   Widget build(BuildContext context) {

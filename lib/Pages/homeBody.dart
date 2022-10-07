@@ -49,9 +49,9 @@ class HomeBody extends StatelessWidget {
                   //Categories
                   CategoriesWidget(),
 
-                  BestSellers(products: products),
-                  BestSellers(products: products),
-                  BestSellers(products: products),
+                  BestSellers(),
+                  BestSellers(),
+                  BestSellers(),
 
                 ],
               )
