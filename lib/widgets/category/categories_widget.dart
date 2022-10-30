@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkuulima/models/Category.dart';
 import 'package:flutterfire_ui/firestore.dart';
 
-import '../blocs/category/category_bloc.dart';
+import '../../blocs/category/category_bloc.dart';
 
 class CategoriesWidget extends StatelessWidget {
   final Category category;

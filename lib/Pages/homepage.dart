@@ -4,7 +4,8 @@ import 'package:mkuulima/widgets/home_app_bar.dart';
 import 'package:mkuulima/widgets/itemswidget.dart';
 
 import '../models/Product.dart';
-import '../widgets/categories_widget.dart';
+import '../widgets/category/categories_widget.dart';
+import '../widgets/category/category_screen.dart';
 import '../widgets/search_widget.dart';
 import 'homeBody.dart';
 
@@ -65,9 +66,13 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          const Center(
-            child: Text("It's cloudy here"),
-          ),
+
+         Container(
+           margin:EdgeInsets.only(top:20),
+           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+
+           child:  CategoryScreen(),
+         ),
           Center(
             child: Text("It's rainy here"),
           ),

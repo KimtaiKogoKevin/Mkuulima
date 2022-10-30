@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mkuulima/models/Product.dart';
 
 import '../widgets/bestSellers.dart';
-import '../widgets/categories_widget.dart';
-import '../widgets/category_carousel.dart';
+import '../widgets/category/categories_widget.dart';
+import '../widgets/category/category_carousel.dart';
 import '../widgets/itemswidget.dart';
 import '../widgets/search_widget.dart';
 class HomeBody extends StatelessWidget {

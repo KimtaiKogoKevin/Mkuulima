@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/Product.dart';
-import '../models/Category.dart';
+import '../../../models/Product.dart';
+import '../../models/Category.dart';
 
 
 class CategoryCarouselCard extends StatelessWidget {
