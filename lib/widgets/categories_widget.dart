@@ -1,48 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkuulima/models/Category.dart';
 import 'package:flutterfire_ui/firestore.dart';
 
+import '../blocs/category/category_bloc.dart';
+
 class CategoriesWidget extends StatelessWidget {
-  const CategoriesWidget({Key? key}) : super(key: key);
+  final Category category;
+   CategoriesWidget({Key? key, required this.category}) : super(key: key);
+
+  String? selectedCategory;
 
   @override
   Widget build(BuildContext context) {
-    return FirestoreListView<Category>(
-      query: categoriesCollection,
-      itemBuilder: (context,snapshot){
-        Category category = snapshot.data();
-        return       Row(children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(20)),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "images/1.jpg",
-                  width: 40,
-                  height: 40,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Fertilizer",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: Color(0xFF4C53A5),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ]);
+    return Container(
+    margin: const EdgeInsets.all(8),
+    child: BlocBuilder<CategoryBloc,CategoryState>(
+        builder:(context,state){
 
-      },
-      scrollDirection: Axis.horizontal,
+          if(state is CategoryLoading){
+            return const Center(child: CircularProgressIndicator(),);
+          }
+          if (state is CategoryLoaded){
+            return  Card(
+              shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            image: DecorationImage(
+                              image: AssetImage(category.image.toString()),
+                              fit: BoxFit.fitWidth,
+                            )),
+                      ),
+                      // Positioned(
+                      //     right: 20,
+                      //     top: 15,
+                      //     child: Container(
+                      //       padding: const EdgeInsets.all(8),
+                      //       decoration: BoxDecoration(
+                      //           color: Colors.white.withOpacity(0.9),
+                      //           shape: BoxShape.circle),
+                      //       child: const Icon(
+                      //         Icons.favorite,
+                      //         color: Colors.red,
+                      //         size: 15,
+                      //       ),
+                      //     ))
+                    ],
+                  ),
+                  Text(
+                    category.catName.toString(),
+                    style:
+                    const TextStyle(fontWeight: FontWeight.bold, height: 9.5),
+                  ),
+
+
+                ],
+              ),
+            );
+          }
+          else {
+            return const Text('Something Went Wrong');
+          }
+        })
+
     );
   }
 }
