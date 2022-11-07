@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/cart_app_bar.dart';
-import '../widgets/cart_bottom_nav_bar.dart';
-import '../widgets/cartitems.dart';
+import '../blocs/cart/cart_bloc.dart';
+import '../models/Product.dart';
+import '../widgets/cart/cart_app_bar.dart';
+import '../widgets/cart/cart_bottom_nav_bar.dart';
+import '../widgets/cart/cartitems.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -16,55 +19,38 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Product product;
     return Scaffold(
-      body: ListView(
-        children:[
-          const CartAppBar(),
-          Container(
-            height:700,
-            padding:const EdgeInsets.only(top:15),
-            decoration:const BoxDecoration(
-              color:Color(0xFFEDECF2),
-            borderRadius: BorderRadius.only(
-              topLeft:Radius.circular(35),
-              topRight:Radius.circular(35),
+      appBar:  const CartAppBar(),
 
-            ),
+      body: BlocBuilder<CartBloc,CartState>(builder:(context,state) {
+        if( state is CartLoading){
+          return const Center  ( child:CircularProgressIndicator());
+        }
+        else if (state is CartLoaded){
+          return ListView.builder(
+            itemCount:state.cart.productQuantity(state.cart.products).keys.length,
+              itemBuilder: (context,index){
+              return  CartItemSamples(
+                  product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
+                  quantity:  state.cart.productQuantity(state.cart.products).values.elementAt(index)
+              );
+
+              },
 
 
-            ),
-              child:Column(children: [
-                const CartItemSamples(),
-                Container(
-                  //decoration:BoxDecoration(
-                  // borderRadius:BorderRadius.circular(10),
-                //),
-                  margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                  padding: EdgeInsets.all(10),
-                  child: Row(children: [
-                    Container(decoration: BoxDecoration(
-                      color:Color(0xFF4C53A5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Icon(Icons.add,
-                      color:Colors.white,
-                    )),
-                    const Padding(padding:EdgeInsets.symmetric(horizontal: 10),
-                    child:Text(
-                      "Add Coupon Code",
-                      style:TextStyle(
-                        color:Color(0xFF4C53A5),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
-                      )
-                    ))
-                  ],),
-                )
-              ])
+          );
+        }
+        else {
+          return const Text('Something Went Wrong');
+        }
+      }),
 
-          )
-        ]
-      ),
+
+
+
+
+
       bottomNavigationBar: CartBottomNavBar(),
     );
   }

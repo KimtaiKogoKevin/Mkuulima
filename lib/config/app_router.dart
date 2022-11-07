@@ -5,6 +5,7 @@ import 'package:mkuulima/Pages/ItemPage.dart';
 import 'package:mkuulima/Pages/cartPage.dart';
 import 'package:mkuulima/Pages/checkout.dart';
 
+import '../Pages/Wishlist.dart';
 import '../Pages/homepage.dart';
 import '../models/Product.dart';
 
@@ -22,8 +23,8 @@ class AppRouter {
         return CartPage.route();
       case ItemPage.routeName:
         return ItemPage.route(product: settings.arguments as Product);
-      // case WishlistScreen.routeName:
-      //   return WishlistScreen.route();
+      case WishlistScreen.routeName:
+        return WishlistScreen.route();
       case CheckOutPage.routeName:
         return CheckOutPage.route();
 

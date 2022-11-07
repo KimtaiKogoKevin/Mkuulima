@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/product/product_bloc.dart';
-import '../models/Product.dart';
-import 'itemswidget.dart';
+import '../../blocs/product/product_bloc.dart';
+import '../../models/Product.dart';
+import '../itemswidget.dart';
 
 class BestSellers extends StatelessWidget {
   const BestSellers({
     Key? key,
-
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {

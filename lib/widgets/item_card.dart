@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../models/Product.dart';
 class ItemCard extends StatelessWidget {
@@ -11,40 +13,43 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, 'itemPage', arguments: product);
+        Navigator.pushNamed(context, '/itemPage', arguments: product);
       },
       child: Container(
+
         padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
 
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF4C54A5),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Text("50%",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
-                const Icon(
-                  Icons.favorite_border,
-                  color: Colors.red,
-                ),
-              ],
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF4C54A5),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Text("50%",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                  const Icon(
+                    Icons.favorite_border,
+                    color: Colors.red,
+                  ),
+                ],
+              ),
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context,'itemsPage');
+                Navigator.pushNamed(context, '/itemPage', arguments: product);
               },
               child: Container(
                 margin: const EdgeInsets.all(10),
@@ -84,7 +89,32 @@ class ItemCard extends StatelessWidget {
                   Icon(Icons.shopping_cart_checkout)
                 ],
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RatingBar.builder(
+                    initialRating: 4,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    itemCount: 5,
+                    itemSize: 20,
+                    itemPadding:
+                    const EdgeInsets.symmetric(horizontal: 4),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Color(0xFF4C53A5),
+                    ),
+                    onRatingUpdate: (index) {},
+                  ),
+
+                ],
+              ),
+            ),
+
+
           ],
         ),
       ),
