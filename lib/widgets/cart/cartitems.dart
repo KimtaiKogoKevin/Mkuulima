@@ -18,8 +18,8 @@ class CartItemSamples extends StatelessWidget {
       children: [
         Container(
           height: 120,
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.only(top: 30),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),

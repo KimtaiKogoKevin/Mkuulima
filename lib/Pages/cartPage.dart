@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkuulima/widgets/custom_app_bar.dart';
 
 import '../blocs/cart/cart_bloc.dart';
 import '../models/Product.dart';
-import '../widgets/cart/cart_app_bar.dart';
 import '../widgets/cart/cart_bottom_nav_bar.dart';
 import '../widgets/cart/cartitems.dart';
 
@@ -21,7 +21,7 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Product product;
     return Scaffold(
-      appBar:  const CartAppBar(),
+      appBar:  const HomeAppBar(title: 'Cart'),
 
       body: BlocBuilder<CartBloc,CartState>(builder:(context,state) {
         if( state is CartLoading){

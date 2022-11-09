@@ -83,6 +83,23 @@ class OrderSummary extends StatelessWidget {
                       ),
                     ),
                   ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/checkout');
+                    },
+                    child: Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      width: double.infinity,
+                      decoration: BoxDecoration(color: const Color(0xFF4C53A5),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: const Text("Check Out", style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),),
+                    ),
+                  )
+
                 ],
               ),
             ],

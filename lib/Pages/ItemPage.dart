@@ -10,7 +10,7 @@ import 'package:mkuulima/widgets/categories/categoryCarouselItem.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
-import '../widgets/Item_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/itemBottomNavBar.dart';
 import '../widgets/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,13 +28,12 @@ class ItemPage extends StatelessWidget {
   }
 
   final Product product;
-  int quantity = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar: ItemAppBar(quantity: quantity),
+      appBar: HomeAppBar(title: 'Product'),
       body: ListView(children: [
         // CarouselSlider(
         //   options: CarouselOptions(

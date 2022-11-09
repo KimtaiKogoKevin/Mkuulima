@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mkuulima/widgets/home/home_app_bar.dart';
+import 'package:mkuulima/widgets/custom_app_bar.dart';
 import 'package:mkuulima/widgets/itemswidget.dart';
 import 'package:badges/badges.dart';
 import '../models/Product.dart';
@@ -24,51 +24,7 @@ class HomePage extends StatelessWidget {
       initialIndex: 0,
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Row(
-            children: [
-              const Text('MkuuLima',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xFF4C53A5))),
-              const Spacer(),
-
-              InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'cartPage');
-                  },
-
-                  child:Badge(
-                      badgeColor: Colors.red,
-                      padding: const EdgeInsets.all(7),
-                      badgeContent: const Text("3",style: TextStyle(color: Colors.black),),
-                      child: const Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 32,
-                        color: Color(0xFF4C53A5),
-                      )),),
-
-
-              IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert, size: 32,
-                color: Color(0xFF4C53A5),))
-            ],
-          ),
-          bottom: const TabBar(
-            indicatorColor: Color(0xFF4C53A5),
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.home, size: 30, color: Color(0xFF4C53A5)),
-              ),
-              Tab(
-                icon: Icon(Icons.list, size: 30, color: Color(0xFF4C53A5)),
-              ),
-              Tab(
-                icon: Icon(Icons.person, size: 30, color: Color(0xFF4C53A5)),
-              ),
-            ],
-          ),
-        ),
+        appBar: const HomeAppBar(title: "Mukuu-Lima"),
         body: TabBarView(children: [
           Container(
             margin: EdgeInsets.only(top: 20),

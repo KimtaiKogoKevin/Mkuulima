@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/checkout/checkout_bloc.dart';
 import '../widgets/custom_text_formfield.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/ordersummary.dart';
 
 class CheckOutPage extends StatelessWidget {
@@ -20,37 +21,7 @@ class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child:
-              const Icon(Icons.arrow_back, size: 30, color: Color(0xFF4C53A5)),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          children: [
-            Padding(
-                padding: EdgeInsets.only(left: 0),
-                child: Text('Checkout',
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF4C53A5)))),
-            Spacer(),
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/wishlist',
-                  );
-                },
-                child: Icon(Icons.favorite, size: 30, color: Colors.red))
-          ],
-        ),
-      ),
+      appBar: const HomeAppBar(title:"CheckOut"),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -62,7 +33,7 @@ class CheckOutPage extends StatelessWidget {
               children: [
                 Column(children: [
                   Container(
-                    padding: EdgeInsets.only(top: 50),
+                    padding: const EdgeInsets.only(top: 50),
                     child: Text("Customer Information",
                         style: Theme.of(context).textTheme.headline5),
                   ),
@@ -82,7 +53,7 @@ class CheckOutPage extends StatelessWidget {
                           .add(UpdateCheckout(fullName: value));
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'DELIVERY INFORMATION',
                     style: Theme.of(context).textTheme.headline5,
@@ -125,7 +96,7 @@ class CheckOutPage extends StatelessWidget {
                     Container(
                       height: 60,
                       alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(color: Colors.black),
+                      decoration: const BoxDecoration(color: Colors.black),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -161,7 +132,7 @@ class CheckOutPage extends StatelessWidget {
                       'ORDER SUMMARY',
                       style: Theme.of(context).textTheme.headline5,
                     ),
-                    OrderSummary()
+                    const OrderSummary()
                   ],
                 )
               ],

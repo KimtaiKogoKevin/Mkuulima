@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/ProductCard.dart';
-import '../widgets/home/home_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 
 class WishlistScreen extends StatelessWidget {
   static const String routeName = '/wishlist';
@@ -20,37 +20,7 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back,
-                size: 30, color: Color(0xFF4C53A5)),
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Row(
-            children: [
-              const Padding(
-                  padding: EdgeInsets.only(left: 0),
-                  child: Text('WishList',
-                      style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF4C53A5)))),
-              Spacer(),
-              InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/wishlist',
-                    );
-                  },
-                  child: Icon(Icons.favorite, size: 30, color: Colors.red))
-            ],
-          ),
-        ),
+        appBar: HomeAppBar(title:"WishList"),
         body:
             BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
           if (state is WishlistLoading) {
