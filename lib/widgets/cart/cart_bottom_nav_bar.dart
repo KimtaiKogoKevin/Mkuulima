@@ -20,36 +20,36 @@ class CartBottomNavBar extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                    children: [
-                      const Text("Delivery Fee",
-                          style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF4C53A5))),
-                      Text(
-                        state.cart.deliveryFeeString,
-                        style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF4C53A5)),
-                      ),
-
-                    ]
-                ),
+                // Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //
+                //     children: [
+                //       const Text("Delivery Fee",
+                //           style: TextStyle(
+                //               fontSize: 22,
+                //               fontWeight: FontWeight.bold,
+                //               color: Color(0xFF4C53A5))),
+                //       Text(
+                //         state.cart.deliveryFeeString,
+                //         style: const TextStyle(
+                //             fontSize: 22,
+                //             fontWeight: FontWeight.bold,
+                //             color: Color(0xFF4C53A5)),
+                //       ),
+                //
+                //     ]
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
-                    const Text("Total",
+                    const Text("Sub Total",
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF4C53A5))),
                     Text(
-                      state.cart.totalString,
+                      state.cart.subtotal.toString(),
                       style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,

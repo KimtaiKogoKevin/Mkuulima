@@ -1,9 +1,11 @@
+import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mkuulima/blocs/product/product_bloc.dart';
 import 'package:mkuulima/widgets/categories/categoryCarouselItem.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
@@ -11,9 +13,10 @@ import '../models/Product.dart';
 import '../widgets/Item_app_bar.dart';
 import '../widgets/itemBottomNavBar.dart';
 import '../widgets/item_card.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ItemPage extends StatelessWidget {
-  const ItemPage({Key? key, required this.product}) : super(key: key);
+   ItemPage({Key? key, required this.product}) : super(key: key);
   static const String routeName = '/itemPage';
 
   static Route route({required Product product}) {
@@ -25,117 +28,121 @@ class ItemPage extends StatelessWidget {
   }
 
   final Product product;
+  int quantity = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-
-          },
-          child:
-              const Icon(Icons.arrow_back, size: 30, color: Color(0xFF4C53A5)),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          children: const [
-            Padding(
-                padding: EdgeInsets.only(left: 0),
-                child: Text('Product',
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF4C53A5)))),
-            Spacer(),
-            Icon(Icons.favorite, size: 30, color: Colors.red)
-          ],
-        ),
-      ),
+      appBar: ItemAppBar(quantity: quantity),
       body: ListView(children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            aspectRatio: 1.5,
-            viewportFraction: 0.9,
-            enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.height,
+        // CarouselSlider(
+        //   options: CarouselOptions(
+        //     aspectRatio: 1.5,
+        //     viewportFraction: 0.9,
+        //     enlargeCenterPage: true,
+        //     enlargeStrategy: CenterPageEnlargeStrategy.height,
+        //   ),
+        //   items: [CategoryCarouselCard(product2: product)],
+        // ),
+        Container(
+            height: MediaQuery.of(context).size.height * .35,
+            padding: const EdgeInsets.only(bottom: 30),
+            width: double.infinity,
+            child: CategoryCarouselCard(product2: product)),
+        Stack(children: [
+          Container(
+          padding: const EdgeInsets.only(top: 40, right: 14, left: 14),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
           ),
-          items: [CategoryCarouselCard(product2: product)],
-        ),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Stack(children: [
-              Container(
-                  margin: const EdgeInsets.all(5.0),
-                  width: MediaQuery.of(context).size.width - 10,
-                  height: 50,
-                  //color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all( 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            ' ${product.productName}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(color: const Color(0xFF4C53A5)),
-                          ),
-                        ),
-                        // const SizedBox(
-                        //   width: 10,
-                        // ),
-                        Expanded(
-                            child: Text(' KSH ${product.regularPrice} ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6!
-                                    .copyWith(color: const Color(0xFF4C53A5))))
-                      ],
+          child: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.mainCategory.toString(),
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      color: Colors.grey,
                     ),
-                  ))
-            ])),
-        ExpansionTile(
-          title: const Text(
-            'Product Description',
-            style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF4C53A5)),
-          ),
-          children: [
-            ListTile(
-              enabled: true
-              ,
-              title: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consectetur nisi, vel fringilla dui. Aenean gravida, risus id iaculis semper, arcu erat imperdiet tellus, nec vestibulum sapien nibh vel odio. Cras lobortis varius tortor, placerat laoreet orci rhoncus a. Proin id nulla dignissim eros commodo malesuada. Fusce in neque congue, imperdiet ipsum et, ultrices massa. Mauris sit amet interdum risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In venenatis, nisl et tempor fermentum, enim nunc semper neque, vitae euismod lorem lacus eget nunc. Aenean suscipit neque et erat semper gravida. Praesent quis nisi quis turpis ornare commodo. Curabitur mattis posuere turpis et mollis. Vivamus sed lectus sit amet eros mollis elementum. Cras in semper massa. Fusce nec ullamcorper tellus. Quisque consectetur dui vel tristique egestas.',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            )
-          ],
-        ),
-        ExpansionTile(
-          title: Text(
-            'Delivery Details',
-            style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF4C53A5)),
-          ),
-          children: [
-            ListTile(
-              title: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consectetur nisi, vel fringilla dui. Aenean gravida, risus id iaculis semper, arcu erat imperdiet tellus, nec vestibulum sapien nibh vel odio. Cras lobortis varius tortor, placerat laoreet orci rhoncus a. Proin id nulla dignissim eros commodo malesuada. Fusce in neque congue, imperdiet ipsum et, ultrices massa. Mauris sit amet interdum risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In venenatis, nisl et tempor fermentum, enim nunc semper neque, vitae euismod lorem lacus eget nunc. Aenean suscipit neque et erat semper gravida. Praesent quis nisi quis turpis ornare commodo. Curabitur mattis posuere turpis et mollis. Vivamus sed lectus sit amet eros mollis elementum. Cras in semper massa. Fusce nec ullamcorper tellus. Quisque consectetur dui vel tristique egestas.',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            )
-          ],
-        )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        product.productName.toString(),
+                        style: GoogleFonts.poppins(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        '\Sh ' + product.regularPrice.toString(),
+                        style: GoogleFonts.poppins(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    product.productDescription.toString(),
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  const SizedBox(height: 15),
+                  Text(
+                    'Similar To This',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  BlocBuilder<ProductBloc, ProductState>(
+                    builder: (context, state) {
+                      if (state is ProductLoading) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      if (state is ProductLoaded) {
+                        return SizedBox(
+                          height: 110,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.products.length,
+                            itemBuilder: (context, index) => Container(
+                              margin: const EdgeInsets.only(right: 24),
+                              width: 110,
+                              height: 110,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: Colors.black87)
+                              ),
+                              child: Center(
+                                child: Image.network(product.imageUrls![0],
+                                    fit: BoxFit.fitHeight, width: 120.0),
+                              ),
+                            ),
+                          ),
+                        );
+                      } else
+                        return (Text('Something Went Wrong'));
+                    },
+                  ),
+                ]),
+          ))
+        ])
       ]),
       bottomNavigationBar: BottomAppBar(
         //  color:  Color(0xFF4C53A5),
@@ -176,17 +183,16 @@ class ItemPage extends StatelessWidget {
             }),
             BlocBuilder<CartBloc, CartState>(builder: (context, state) {
               return ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
                 onPressed: () {
                   context.read<CartBloc>().add(AddProduct(product));
                   Navigator.pushNamed(context, '/cartPage');
                 },
-                child: const Text('Add To Cart',
+                child:  const Text('Add To Cart',
                     style: TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF4C53A5))),
+                        color: Colors.white)),
               );
             })
           ]),
