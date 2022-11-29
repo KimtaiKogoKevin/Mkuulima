@@ -4,21 +4,28 @@ import 'Product.dart';
 
 class Cart extends Equatable {
   final List<Product>products;
-  const Cart({this.products = const <Product>[]});
+   const Cart({this.products = const <Product>[]});
 
   @override
   // TODO: implement props
   List<Object?> get props => [products];
 
+
   Map productQuantity(products){
     var quantity = {};
+
 
     products.forEach((product){
       if(!quantity.containsKey(product)){
         quantity[product]=1;
       }
+      else if (quantity.isEmpty) {
+        quantity[product]=0;
+
+      }
       else {
         quantity[product] +=1;
+
       }
     });
     return quantity;

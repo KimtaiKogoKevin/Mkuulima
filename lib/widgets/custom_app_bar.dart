@@ -37,11 +37,14 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                 onTap: () {
                   Navigator.pushNamed(context, "cartPage");
                 },
-                child: Badge(
+                child:Badge(
+
+                     showBadge: state.cart.productQuantity(state.cart.products).isEmpty?false:true ,
                     badgeColor: Colors.red,
                     padding: const EdgeInsets.all(7),
                     badgeContent: Text(
-                      state.cart.productQuantity(state.cart.products).values.toString().replaceAll("(","").replaceAll(")","") ?? '0',
+
+                      state.cart.productQuantity(state.cart.products).values.toString().replaceAll("(","").replaceAll(")",""),
 
                       style: const TextStyle(color: Colors.black),
                     ) ,

@@ -29,7 +29,7 @@ class CartBottomNavBar extends StatelessWidget {
                     children: [
                       Text('SUBTOTAL',
                           style: Theme.of(context).textTheme.headline6),
-                      Text('\$${state.cart.subtotalString}',
+                      Text('Sh ${state.cart.subtotalString}',
                           style: Theme.of(context).textTheme.headline6),
                     ],
                   ),
@@ -42,7 +42,7 @@ class CartBottomNavBar extends StatelessWidget {
                     children: [
                       Text('DELIVERY FEE',
                           style: Theme.of(context).textTheme.headline6),
-                      Text('\$${state.cart.deliveryFeeString}',
+                      Text('Sh ${state.cart.deliveryFeeString}',
                           style: Theme.of(context).textTheme.headline6),
                     ],
                   ),
@@ -60,7 +60,7 @@ class CartBottomNavBar extends StatelessWidget {
                       width: MediaQuery.of(context).size.width - 10,
                       height: 50,
                       decoration: BoxDecoration(
-                        color:Colors.yellowAccent,
+                        color:Colors.transparent
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -76,7 +76,7 @@ class CartBottomNavBar extends StatelessWidget {
                                   .copyWith(color: Colors.black),
                             ),
                             Text(
-                              '\$${state.cart.totalString}',
+                              'Sh ${state.cart.totalString}',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
