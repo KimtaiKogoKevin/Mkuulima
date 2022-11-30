@@ -45,6 +45,8 @@ dependencies:
   flutterfire_ui: ^0.4.3+13
   carousel_slider: ^4.1.1
   google_fonts: ^3.0.1
+  firebase_auth: ^3.11.2
+  hexcolor: ^3.0.1
 
 dev_dependencies:
   flutter_test:
