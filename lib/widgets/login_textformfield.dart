@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoginFormField extends StatelessWidget {
-  const LoginFormField({Key? key, required this.controller, required this.title, required this.obscureText}) : super(key: key);
+  const LoginFormField({Key? key, required this.controller, required this.title, required this.obscureText, required this.textInputType}) : super(key: key);
   final TextEditingController controller;
   final String title;
   final bool obscureText;
+  final TextInputType textInputType;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +22,15 @@ class LoginFormField extends StatelessWidget {
           ],
         ),
         child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
           controller: controller,
           obscureText: obscureText,
+          keyboardType: textInputType,
           decoration:  InputDecoration(
               hintText: title, border: InputBorder.none ,contentPadding: EdgeInsets.all(0),hintStyle: TextStyle(height:1)),
         ));

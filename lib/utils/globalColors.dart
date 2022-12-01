@@ -1,6 +1,6 @@
 import 'package:hexcolor/hexcolor.dart';
 
 class GlobalColors {
-  static HexColor mainColor =HexColor('#8fce00');
+  static HexColor mainColor =HexColor('#4C53A5');
 
 }
