@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mkuulima/repositories/categories/category_repository.dart';
+import 'package:mkuulima/splashView.dart';
+import 'Pages/Authentication/login_page.dart';
 import 'blocs/category/category_bloc.dart';
 import 'blocs/wishlist/wishlist_bloc.dart';
 import 'firebase_options.dart';
@@ -54,9 +56,9 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute:HomePage.routeName,
+        initialRoute:LoginPage.routeName,
         routes: {
-          "/":(context) =>  HomePage(),
+          "/":(context) =>  const HomePage(),
           "cartPage":(context) => const CartPage(),
          // "itemPage":(context) => const ItemPage(product: ),
           "checkOut":(context) =>  CheckOutPage(),
