@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LoginFormField extends StatelessWidget {
-  const LoginFormField({Key? key, required this.controller, required this.title, required this.obscureText, required this.textInputType}) : super(key: key);
+  const LoginFormField({Key? key, required this.controller, required this.title, required this.obscureText, required this.textInputType,required this.visible}) : super(key: key);
   final TextEditingController controller;
   final String title;
   final bool obscureText;
   final TextInputType textInputType;
+  final bool visible;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +33,7 @@ class LoginFormField extends StatelessWidget {
           obscureText: obscureText,
           keyboardType: textInputType,
           decoration:  InputDecoration(
+
               hintText: title, border: InputBorder.none ,contentPadding: EdgeInsets.all(0),hintStyle: TextStyle(height:1)),
         ));
   }

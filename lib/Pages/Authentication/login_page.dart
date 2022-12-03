@@ -50,9 +50,9 @@ class LoginPage extends StatelessWidget {
                    )
                ),
                SizedBox(height:35),
-               LoginFormField(controller: emailController,title: 'Email',obscureText: false,textInputType: TextInputType.emailAddress,),
+               LoginFormField(controller: emailController,title: 'Email',obscureText: false,textInputType: TextInputType.emailAddress, visible: true,),
                SizedBox(height:15),
-               LoginFormField(controller: passwordController,title: 'Password',obscureText: true,textInputType: TextInputType.visiblePassword,),
+               LoginFormField(controller: passwordController,title: 'Password',obscureText: true,textInputType: TextInputType.visiblePassword, visible: true,),
 
                SizedBox(height:15),
 
@@ -71,7 +71,9 @@ class LoginPage extends StatelessWidget {
                    ),),
                    const SizedBox(width:5),
                    InkWell(
-                     onTap: (){},
+                     onTap: (){
+                       Navigator.pushNamed(context,'/register');
+                     },
                      child: Text('click here to register ',style:TextStyle(
                        color:GlobalColors.mainColor,
                        fontSize:15,

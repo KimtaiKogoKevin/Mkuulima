@@ -7,6 +7,7 @@ import 'package:mkuulima/Pages/checkout.dart';
 import 'package:mkuulima/splashView.dart';
 
 import '../Pages/Authentication/login_page.dart';
+import '../Pages/Authentication/register_page.dart';
 import '../Pages/Wishlist.dart';
 import '../Pages/homepage.dart';
 import '../models/Product.dart';
@@ -33,6 +34,8 @@ class AppRouter {
         return SplashView.route();
       case LoginPage.routeName:
         return LoginPage.route();
+      case RegisterPage.routeName:
+        return RegisterPage.route();
 
       default:
         return _errorRoute();
