@@ -50,9 +50,9 @@ class LoginPage extends StatelessWidget {
                    )
                ),
                SizedBox(height:35),
-               LoginFormField(controller: emailController,title: 'Email',obscureText: false,textInputType: TextInputType.emailAddress, visible: true,),
+               LoginFormField(controller: emailController,title: 'Email',obscureText: false,textInputType: TextInputType.emailAddress,),
                SizedBox(height:15),
-               LoginFormField(controller: passwordController,title: 'Password',obscureText: true,textInputType: TextInputType.visiblePassword, visible: true,),
+               LoginFormField(controller: passwordController,title: 'Password',obscureText: true,textInputType: TextInputType.visiblePassword),
 
                SizedBox(height:15),
 
