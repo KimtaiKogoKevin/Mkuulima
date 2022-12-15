@@ -1,13 +1,23 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/globalColors.dart';
 class CustomButton extends StatelessWidget {
-  const CustomButton({Key? key, required this.text}) : super(key: key);
+   CustomButton({Key? key, required this.text, required this.onPressed}) : super(key: key);
   final String text;
+  final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
+    final key = GlobalKey<FormState>();
+    bool isEmail(String input) => EmailValidator.validate(input);
+
+    bool isPhone(String input) =>
+        RegExp(r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')
+            .hasMatch(input);
+
     return InkWell(
-      onTap:(){},
+      key: key,
+      onTap:onPressed,
       child: Container(
         alignment:Alignment.center,
         height:55,

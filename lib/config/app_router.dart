@@ -10,9 +10,22 @@ import '../Pages/Authentication/login_page.dart';
 import '../Pages/Authentication/register_page.dart';
 import '../Pages/Wishlist.dart';
 import '../Pages/homepage.dart';
+import '../blocs/auth/auth_bloc.dart';
 import '../models/Product.dart';
 
+ List <Page> onGenerateAppViewPages(
+AuthStatus state,
+    List <Page<dynamic>> pages,
+){
+switch (state){
+case AuthStatus.authenticated:
+return [HomePage.page()];
+case AuthStatus.unauthenticated:
+return [LoginPage.page()];
+}
+}
 class AppRouter {
+
 
   static Route onGenerateRoute(RouteSettings settings) {
     print('This is route:${settings.name}');
@@ -47,4 +60,5 @@ class AppRouter {
         settings: const RouteSettings(name: '/error'),
         builder: (_) => Scaffold(appBar: AppBar(title: const Text('Error'))));
   }
+
 }

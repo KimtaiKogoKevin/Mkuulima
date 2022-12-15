@@ -1,11 +1,17 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkuulima/Pages/Authentication/widgets/register_form.dart';
 
+import '../../blocs/Authentication/authentication_bloc.dart';
+import '../../blocs/form-validation/form_bloc.dart';
+import '../../utils/error_dialog.dart';
 import '../../utils/globalColors.dart';
 import '../../widgets/customButton.dart';
 import '../../widgets/customEmailPhoneField.dart';
 import '../../widgets/custom_text_formfield.dart';
 import '../../widgets/login_textformfield.dart';
+import '../homepage.dart';
 import 'SocialLogin.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -26,123 +32,52 @@ class RegisterPage extends HookWidget {
 
 
 
-  final TextEditingController userController = TextEditingController();
 
-  final TextEditingController emailPhoneController = TextEditingController();
-
-
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-
-  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final key = GlobalKey<FormState>();
-    bool isEmail(String input) => EmailValidator.validate(input);
-
-    bool isPhone(String input) => RegExp(
-        r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
-    ).hasMatch(input);
 
 
-    return Scaffold(
-      body: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(35.0),
-              child:
-              Form(
-                key:key,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  const SizedBox(height: 50),
-                  Center(
-                    child: Text('Logo',
-                        style: TextStyle(
-                          color: GlobalColors.mainColor,
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  const SizedBox(height: 50),
-                  const Text('Welcome to  MukuLima',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  SizedBox(height: 15),
-                  LoginFormField(
-                      controller: userController,
-                      title: 'Username',
-                      obscureText: true,
-                      textInputType: TextInputType.text),
-                  SizedBox(height: 35),
-                  EmailPhone(controller:emailPhoneController,title: 'Email or Phone Number', obscureText: false,textInputType: TextInputType.text,),
-                  SizedBox(height: 35),
-                  LoginFormField(
-                      controller: passwordController,
-                      title: 'Password',
-                      obscureText: true,
-                      textInputType: TextInputType.phone),
-                  SizedBox(height: 35),
-
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (key.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                        }
-                      },
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.all(const EdgeInsets.all(0.0)),
-                          foregroundColor: MaterialStateProperty.all(Colors.white),
-                          backgroundColor:
-                          MaterialStateProperty.all(Color(0xFF0D47A1))),
-                      child: isEmail(emailPhoneController.text)?const Text('Verify Email', style: TextStyle(fontSize: 20)):Text('Verify Phone Number',style: TextStyle(fontSize: 20)),
-                    ),
-                  ),
-
-                  // CustomButton(
-                  //   text: 'Sign in',
-                  // ),
-                  SizedBox(height: 50),
-                  const SocialLogin(),
-                  SizedBox(height: 50),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Already have an account?',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-
-                      ),
-                      const SizedBox(width: 5),
-                       Text(
-                        'Log in',
-                        style: TextStyle(
-                          color: GlobalColors.mainColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-
-                      ),
-                    ],
-                  ),
-                ]),
+    return      MultiBlocListener(
+      listeners: [
+        BlocListener<FormBloc, FormsValidate>(
+          listener: (context, state) {
+            if (state.errorMessage.isNotEmpty) {
+              showDialog(
+                  context: context,
+                  builder: (context) =>
+                      ErrorDialog(errorMessage: state.errorMessage));
+            } else if (state.isFormValid && !state.isLoading) {
+              context.read<AuthenticationBloc>().add(AuthenticationStarted());
+              context.read<FormBloc>().add(const FormSucceeded());
+            } else if (state.isFormValidateFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Error submitting form , try again')));
+            }
+          },
+        ),
+        BlocListener<AuthenticationBloc, AuthenticationState>(
+          listener: (context, state) {
+            if (state is AuthenticationSuccess) {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                      (Route<dynamic> route) => false);
+            }
+          },
+        ),
+      ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+            child:SafeArea(
+              child: Container(
+                  width: double.infinity,
+                  padding:const EdgeInsets.all(35.0),
+                  child: RegisterForm(),
               ),
-            ),
-          )),
+            )
+        ),
+      ),
     );
+
   }
 }

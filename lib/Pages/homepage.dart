@@ -12,6 +12,7 @@ import 'homeBody.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String routeName = '/';
+  static Page<void> page() => const MaterialPage<void>(child: HomePage());
 
   static Route route({ required Product product}) {
     return MaterialPageRoute(
