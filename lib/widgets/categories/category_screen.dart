@@ -32,8 +32,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
         iconTheme: const IconThemeData(color: Colors.black54),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
         ],
       ),
       body: Row(

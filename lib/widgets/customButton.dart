@@ -2,10 +2,16 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/globalColors.dart';
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
    CustomButton({Key? key, required this.text, required this.onPressed}) : super(key: key);
   final String text;
   final VoidCallback? onPressed;
+
+  @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     final key = GlobalKey<FormState>();
@@ -17,7 +23,7 @@ class CustomButton extends StatelessWidget {
 
     return InkWell(
       key: key,
-      onTap:onPressed,
+      onTap:widget.onPressed,
       child: Container(
         alignment:Alignment.center,
         height:55,
@@ -31,7 +37,7 @@ class CustomButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Text(text,style:const TextStyle(
+        child: Text(widget.text,style:const TextStyle(
           color:Colors.white,fontWeight:FontWeight.w600
         )),
       ),

@@ -29,8 +29,10 @@ class HomeBody extends StatelessWidget {
               )),
           child: Column(
             children: [
+
               //search widget
               SearchBar(),
+
 
               Container(
                 alignment: Alignment.centerLeft,
@@ -50,10 +52,6 @@ class HomeBody extends StatelessWidget {
             ],
           )
 
-          // Container(
-          //     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          //     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-          //     child: const HomeAppBar()),
 
           ),
     ]));

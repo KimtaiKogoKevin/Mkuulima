@@ -12,17 +12,19 @@ import 'homeBody.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String routeName = '/';
+
   static Page<void> page() => const MaterialPage<void>(child: HomePage());
 
-  static Route route({ required Product product}) {
+  static Route route({required Product product}) {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
         builder: (_) => HomePage());
   }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 0,
+      initialIndex: 1,
       length: 3,
       child: Scaffold(
         appBar: const HomeAppBar(title: "Mukuu-Lima"),
@@ -32,17 +34,17 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
-                HomeBody(products: [],),
+                HomeBody(
+                  products: [],
+                ),
               ],
             ),
           ),
-
-         Container(
-           margin:EdgeInsets.only(top:20),
-           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-
-           child:  CategoryScreen(),
-         ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+            child: CategoryScreen(),
+          ),
           Center(
             child: Text("It's rainy here"),
           ),
@@ -62,4 +64,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

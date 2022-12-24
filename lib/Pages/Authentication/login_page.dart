@@ -42,8 +42,15 @@ class LoginPage extends StatelessWidget {
           } else if (state.isFormValid && !state.isLoading) {
             context.read<AuthenticationBloc>().add(AuthenticationStarted());
           } else if (state.isFormValidateFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                 const SnackBar(content: Text('Error submitting form , try again')));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.red[300],
+              content: Row(
+                children: const [
+                  Icon(Icons.error),
+                  Text('Error! Try again',style:TextStyle(color: Colors.white))
+                ],
+              ),
+            ));
           }
         },
       ),

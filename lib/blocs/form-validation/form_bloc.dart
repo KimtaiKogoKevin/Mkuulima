@@ -18,10 +18,7 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
       email: "example@gmail.com",
       password: "",
       isEmailValid: true,
-      isEmail:true,
 
-      isPhone:true,
-      customButtonText:"Verify",
 
       isPasswordValid: true,
       isFormValid: false,
@@ -30,7 +27,7 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
 
      // age: 0,
       isAgeValid: true,
-      isFormValidateFailed: false, phone: '')) {
+      isFormValidateFailed: false,)) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<NameChanged>(_onNameChanged);
@@ -75,23 +72,13 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
   }
 
   _onEmailChanged(EmailChanged event, Emitter<FormsValidate> emit) {
-    String customButtonText;
-    if(isEmail(state.email)){
-       state.customButtonText="Verify Email";
-    }
-    else if (isPhone(state.email)){
-      state.customButtonText = "Verify Phone";
-    }
-    else{
-      state.customButtonText = "Verify";
-    }
+
     emit(state.copyWith(
       isFormSuccessful: false,
       isFormValid: false,
       isFormValidateFailed: false,
       errorMessage: "",
       email: event.email,
-      customButtonText: "verify",
       isEmailValid: _isEmailValid(event.email),
     ));
   }

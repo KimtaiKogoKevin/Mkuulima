@@ -6,7 +6,7 @@ import '../blocs/form-validation/form_bloc.dart';
 OutlineInputBorder border = OutlineInputBorder(
     borderSide: BorderSide(color: Colors.black12, width: 3.0));
 
-class LoginFormField extends HookWidget {
+class LoginFormField extends StatefulWidget {
   const LoginFormField({
     Key? key,
     required this.controller,
@@ -31,6 +31,11 @@ class LoginFormField extends HookWidget {
   final void Function(String?) onChanged;
 
   @override
+  State<LoginFormField> createState() => _LoginFormFieldState();
+}
+
+class _LoginFormFieldState extends State<LoginFormField> {
+  @override
   Widget build(BuildContext context) {
     return Container(
         height: 100,
@@ -45,21 +50,28 @@ class LoginFormField extends HookWidget {
             ),
           ],
         ),
-        child: TextFormField(
+        child: InkWell(
+          onTap: (){
+            setState(() {
 
-            onChanged: onChanged,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              labelText: labelText,
-              errorMaxLines:4,
-              helperMaxLines:4,
-              helperText: helperText,
-              errorText: errorText,
-              hintText: hintText,
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-              border: border,
-            )));
+            });
+          },
+          child: TextFormField(
+
+              onChanged: widget.onChanged,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: widget.labelText,
+                errorMaxLines:4,
+                helperMaxLines:4,
+                helperText: widget.helperText,
+                errorText: widget.errorText,
+                hintText: widget.hintText,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                border: border,
+              )),
+        ));
 
     // TextFormField(
     //   onChanged:(string)=>{controller.text},

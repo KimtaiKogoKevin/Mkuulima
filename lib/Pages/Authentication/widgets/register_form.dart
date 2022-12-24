@@ -29,8 +29,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+
     bool isEmail(String input) => EmailValidator.validate(input);
-    final String text;
     bool isPhone(String input) =>
         RegExp(r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')
             .hasMatch(input);
@@ -59,7 +59,7 @@ class _RegisterFormState extends State<RegisterForm> {
             controller: emailController,
             title: 'Email',
             obscureText: false,
-            textInputType: TextInputType.emailAddress,
+            textInputType: TextInputType.text,
             onChanged: (value) {
               context.read<FormBloc>().add(NameChanged(value!));
             },
@@ -78,8 +78,10 @@ class _RegisterFormState extends State<RegisterForm> {
                 title: 'Email',
                 obscureText: false,
                 textInputType: TextInputType.emailAddress,
+
                 onChanged: (value) {
                   context.read<FormBloc>().add(EmailChanged(value!));
+
                 },
                 errorText: !state.isEmailValid
                     ? 'Please ensure the email entered is valid'
@@ -122,12 +124,14 @@ class _RegisterFormState extends State<RegisterForm> {
           return state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : CustomButton(
-                  text: state.customButtonText,
+                  text: 'Verify',
+
                   onPressed: !state.isFormValid
                       ? () => context
                           .read<FormBloc>()
                           .add(const FormSubmitted(value: Status.signUp))
                       : null,
+
                 );
         })),
 
