@@ -30,9 +30,9 @@ class CategoryRepository extends BaseCategoryRepository {
       return snapshot.docs.map((doc) => LevelTwoCategory.fromSnapshot(doc)).toList();
     });
   }
-  Stream<List<LevelTwoCategory>> getMainCategories() {
+  Stream<List<LevelTwoCategory>> getSubCategories() {
     // TODO: implement getMainCategories
-    return _firebaseFirestore.collection('mainCategories').where('approved',isEqualTo: true).snapshots().map((
+    return _firebaseFirestore.collection('subCategories').where('active',isEqualTo: true).snapshots().map((
         snapshot) {
       return snapshot.docs.map((doc) => LevelTwoCategory.fromSnapshot(doc)).toList();
     });

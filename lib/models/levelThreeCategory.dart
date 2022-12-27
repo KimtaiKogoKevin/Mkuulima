@@ -5,22 +5,22 @@ import 'package:equatable/equatable.dart';
 class LevelThreeCategory extends Equatable {
   final String mainCategory;
   final String image;
-  final String subCategory;
+  final String subCatName;
 
 
   const LevelThreeCategory({
     required this.mainCategory,
-    required this.subCategory,
+    required this.subCatName,
     required this.image
   });
 
   @override
   // TODO: implement props
-  List<Object?> get props => [mainCategory, image,subCategory];
+  List<Object?> get props => [mainCategory, image,subCatName];
 
   static LevelThreeCategory fromSnapshot(DocumentSnapshot snap){
-    LevelThreeCategory level2Category  = LevelThreeCategory( mainCategory: snap ['mainCategory'] ,  subCategory: snap['subCategory'],image: snap['image']);
-    return level2Category;
+    LevelThreeCategory level3Category  = LevelThreeCategory( mainCategory: snap ['mainCategory'] ,  subCatName: snap['subCategory'],image: snap['image']);
+    return level3Category;
   }
 // static List<Category> categories = [
 //   const Category(catName: 'category1',
