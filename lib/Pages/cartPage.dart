@@ -6,6 +6,7 @@ import '../blocs/cart/cart_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/cart/cart_bottom_nav_bar.dart';
 import '../widgets/cart/cartitems.dart';
+import '../widgets/homeappbar.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);

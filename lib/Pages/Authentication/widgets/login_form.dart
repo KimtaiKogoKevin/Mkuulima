@@ -84,27 +84,30 @@ class LoginForm extends StatelessWidget {
             const SocialLogin(),
             SizedBox(height:50),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:  [
-                const Text('Don\'t Have an Account?',style:TextStyle(
-                  color:Colors.black,
-                  fontSize:15,
-                  fontWeight:FontWeight.w500,
-                ),),
-                const SizedBox(width:5),
-                InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context,'/register');
-                  },
-                  child: Text('click here to register ',style:TextStyle(
-                    color:GlobalColors.mainColor,
-                    fontSize:15,
+            Container(
+              width:MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:  [
+                  const Text('Don\'t Have an Account?',style:TextStyle(
+                    color:Colors.black,
+                    fontSize:10,
                     fontWeight:FontWeight.w500,
                   ),),
-                ),
+                  const SizedBox(width:5),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context,'/register');
+                    },
+                    child: Text('click here to register ',style:TextStyle(
+                      color:GlobalColors.mainColor,
+                      fontSize:15,
+                      fontWeight:FontWeight.w500,
+                    ),),
+                  ),
 
-              ],
+                ],
+              ),
             ),
 
 

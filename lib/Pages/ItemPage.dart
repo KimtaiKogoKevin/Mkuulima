@@ -33,7 +33,7 @@ class ItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar: HomeAppBar(title: 'Product'),
+      appBar: CustomAppBar(title: 'Product'),
       body: ListView(children: [
         // CarouselSlider(
         //   options: CarouselOptions(

@@ -1,12 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/cart/cart_bloc.dart';
-
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title}) : super(key: key);
+class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
+  const HomeAppBar({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -40,8 +38,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   },
                   child: Badge(
                       showBadge: state.cart
-                              .productQuantity(state.cart.products)
-                              .isEmpty
+                          .productQuantity(state.cart.products)
+                          .isEmpty
                           ? false
                           : true,
                       badgeColor: Colors.red,
@@ -70,46 +68,6 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     )),
               ],
             ),
-            bottom: TabBar(
-              indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 5.0),
-                  insets: EdgeInsets.symmetric(horizontal:16.0)
-              ),
-              isScrollable: true,
-              indicatorColor: Color(0xFF4C53A5),
-              labelColor: Color(0xFF4C53A5),
-              labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
-
-              tabs: [
-                Center(
-                  child: Container(
-                    width:MediaQuery.of(context).size.width/3,
-                    child: Tab(
-                      text: "Home",
-                      icon: Icon(Icons.home_filled, color: Color(0xFF4C53A5)),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    // width:MediaQuery.of(context).size.width,
-
-                    child: Tab(
-                        text: "Categories",
-                        icon: Icon(Icons.list, color: Color(0xFF4C53A5))),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width/3,
-                    child: Tab(
-                      text: "Account",
-                      icon: Icon(Icons.person, color: Color(0xFF4C53A5)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           );
         } else if (state is CartLoading) {
           return const Center(
@@ -121,8 +79,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       },
     );
   }
-
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(140);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

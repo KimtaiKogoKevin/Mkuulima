@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/checkout/checkout_bloc.dart';
 import '../widgets/custom_text_formfield.dart';
-import '../widgets/custom_app_bar.dart';
+import '../widgets/homeappbar.dart';
 import '../widgets/ordersummary.dart';
 
 class CheckOutPage extends StatelessWidget {

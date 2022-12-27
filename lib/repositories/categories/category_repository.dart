@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/Category.dart';
 // import '../../models/SubCategory.dart';
 // import 'base_category_repository.dart';
+import '../../models/levelTwoCategory.dart';
 import 'category_base_repository.dart';
 
 class CategoryRepository extends BaseCategoryRepository {
@@ -17,9 +18,23 @@ class CategoryRepository extends BaseCategoryRepository {
   @override
   Stream<List<Category>> getAllCategories() {
     // TODO: implement getAllCategories
-    return _firebaseFirestore.collection('categories').snapshots().map((
+    return _firebaseFirestore.collection('categories').where('active',isEqualTo: true).snapshots().map((
         snapshot) {
       return snapshot.docs.map((doc) => Category.fromSnapshot(doc)).toList();
+    });
+  }
+  Stream<List<LevelTwoCategory>> getMainCategories() {
+    // TODO: implement getMainCategories
+    return _firebaseFirestore.collection('mainCategories').where('approved',isEqualTo: true).snapshots().map((
+        snapshot) {
+      return snapshot.docs.map((doc) => LevelTwoCategory.fromSnapshot(doc)).toList();
+    });
+  }
+  Stream<List<LevelTwoCategory>> getMainCategories() {
+    // TODO: implement getMainCategories
+    return _firebaseFirestore.collection('mainCategories').where('approved',isEqualTo: true).snapshots().map((
+        snapshot) {
+      return snapshot.docs.map((doc) => LevelTwoCategory.fromSnapshot(doc)).toList();
     });
   }
 

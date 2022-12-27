@@ -38,7 +38,7 @@ class HomeBody extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: const Text(
-                  "Categories",
+                  "Shop By Categories",
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,

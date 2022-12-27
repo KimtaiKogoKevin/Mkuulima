@@ -144,7 +144,8 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
             uid: authUser!.user!.uid, isVerified: authUser.user!.emailVerified);
         await _databaseRepository.saveUserData(updatedUser);
         if (updatedUser.isVerified!) {
-          emit(state.copyWith(isLoading: false, errorMessage: ""));
+
+          emit(state.copyWith(isLoading: true, errorMessage: ""));
         } else {
           emit(state.copyWith(isFormValid: false,errorMessage: "Please Verify your email, by clicking the link sent to you by mail.",isLoading: false));
         }
@@ -169,7 +170,7 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
         UserCredential? authUser = await _authenticationRepository.signIn(user);
         UserModel updatedUser = user.copyWith(isVerified: authUser!.user!.emailVerified);
         if (updatedUser.isVerified!) {
-          emit(state.copyWith(isLoading: false, errorMessage: ""));
+          emit(state.copyWith(isLoading: true, errorMessage: ""));
         } else {
           emit(state.copyWith(isFormValid: false,errorMessage: "Please Verify your email, by clicking the link sent to you by mail.",isLoading: false));
         }
@@ -179,7 +180,8 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
       }
     } else {
       emit(state.copyWith(
-          isLoading: false, isFormValid: false, isFormValidateFailed: true));
+          isLoading: false
+          , isFormValid: false, isFormValidateFailed: true));
     }
   }
 

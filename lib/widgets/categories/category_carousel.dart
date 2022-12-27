@@ -13,7 +13,6 @@ class CategoryCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Category category;
 
     return Container(
       child: BlocBuilder<CategoryBloc,CategoryState>(

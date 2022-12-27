@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       initialIndex: 1,
       length: 3,
       child: Scaffold(
-        appBar: const HomeAppBar(title: "Mukuu-Lima"),
+        appBar: const CustomAppBar(title: "Mukuu-Lima"),
         body: TabBarView(children: [
           Container(
             margin: EdgeInsets.only(top: 20),
