@@ -12,6 +12,7 @@ import '../Pages/Wishlist.dart';
 import '../Pages/homepage.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../models/Product.dart';
+import '../widgets/categories/category_screen.dart';
 
  List <Page> onGenerateAppViewPages(
 AuthStatus state,
@@ -49,6 +50,8 @@ class AppRouter {
         return LoginPage.route();
       case RegisterPage.routeName:
         return RegisterPage.route();
+      case CategoryScreen.routeName:
+        return CategoryScreen.route();
 
       default:
         return _errorRoute();

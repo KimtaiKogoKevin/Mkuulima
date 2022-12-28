@@ -11,6 +11,7 @@ import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/custom_app_bar.dart';
+import '../widgets/homeappbar.dart';
 import '../widgets/itemBottomNavBar.dart';
 import '../widgets/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,7 @@ class ItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar: CustomAppBar(title: 'Product'),
+      appBar: const HomeAppBar(title: 'Product'),
       body: ListView(children: [
         // CarouselSlider(
         //   options: CarouselOptions(

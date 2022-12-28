@@ -12,12 +12,21 @@ class CategoryScreen extends StatefulWidget {
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
+
+  static const String routeName = '/categories-screen';
+
+  static Route route() {
+    return MaterialPageRoute(
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => const CategoryScreen(
+          
+        ));
+  }
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
   String title = 'Categories';
   String? selectedCategory;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,6 +4,8 @@ import 'package:mkuulima/repositories/authentication/authentication_repository.d
 import 'package:mkuulima/repositories/categories/category_repository.dart';
 import 'package:mkuulima/repositories/database/database_repository.dart';
 import 'package:mkuulima/splashView.dart';
+import 'package:mkuulima/widgets/categories/categories_widget.dart';
+import 'package:mkuulima/widgets/categories/category_screen.dart';
 import 'Pages/Authentication/login_page.dart';
 import 'package:flow_builder/flow_builder.dart';
 
@@ -101,8 +103,12 @@ class AppView extends StatelessWidget {
 
         //"/":(context) =>  const HomePage(),
         "cartPage":(context) => const CartPage(),
-        // "itemPage":(context) => const ItemPage(product: ),
+        //"itemPage":(context) => const ItemPage(product: ),
         "checkOut":(context) =>  CheckOutPage(),
+        "/categories-screen":(context) =>  const CategoryScreen(),
+
+
+
 
       },
     );

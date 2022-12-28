@@ -5,10 +5,15 @@ import 'package:flutterfire_ui/firestore.dart';
 
 import '../../blocs/category/category_bloc.dart';
 
-class CategoriesWidget extends StatelessWidget {
+class CategoriesWidget extends StatefulWidget {
   final Category category;
-   CategoriesWidget({Key? key, required this.category}) : super(key: key);
+   const CategoriesWidget({Key? key, required this.category}) : super(key: key);
 
+  @override
+  State<CategoriesWidget> createState() => _CategoriesWidgetState();
+}
+
+class _CategoriesWidgetState extends State<CategoriesWidget> {
   String? selectedCategory;
 
   @override
@@ -22,48 +27,57 @@ class CategoriesWidget extends StatelessWidget {
             return const Center(child: CircularProgressIndicator(),);
           }
           if (state is CategoryLoaded){
-            return  Card(
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(13),
-                            image: DecorationImage(
-                              image: AssetImage(category.image.toString()),
-                              fit: BoxFit.fitWidth,
-                            )),
-                      ),
-                      // Positioned(
-                      //     right: 20,
-                      //     top: 15,
-                      //     child: Container(
-                      //       padding: const EdgeInsets.all(8),
-                      //       decoration: BoxDecoration(
-                      //           color: Colors.white.withOpacity(0.9),
-                      //           shape: BoxShape.circle),
-                      //       child: const Icon(
-                      //         Icons.favorite,
-                      //         color: Colors.red,
-                      //         size: 15,
-                      //       ),
-                      //     ))
-                    ],
-                  ),
-                  Text(
-                    category.catName.toString(),
-                    style:
-                    const TextStyle(fontWeight: FontWeight.bold, height: 9.5),
-                  ),
+            return  InkWell(
+              onTap:(){
+                setState(() {
+                  selectedCategory = widget.category.catName;
+                });
+                Navigator.pushNamed(context, '/categories-screen');
+
+              },
+              child: Card(
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              image: DecorationImage(
+                                image: AssetImage(widget.category.image.toString()),
+                                fit: BoxFit.fitWidth,
+                              )),
+                        ),
+                        // Positioned(
+                        //     right: 20,
+                        //     top: 15,
+                        //     child: Container(
+                        //       padding: const EdgeInsets.all(8),
+                        //       decoration: BoxDecoration(
+                        //           color: Colors.white.withOpacity(0.9),
+                        //           shape: BoxShape.circle),
+                        //       child: const Icon(
+                        //         Icons.favorite,
+                        //         color: Colors.red,
+                        //         size: 15,
+                        //       ),
+                        //     ))
+                      ],
+                    ),
+                    Text(
+                      widget.category.catName.toString(),
+                      style:
+                      const TextStyle(fontWeight: FontWeight.bold, height: 9.5),
+                    ),
 
 
-                ],
+                  ],
+                ),
               ),
             );
           }
