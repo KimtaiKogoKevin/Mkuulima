@@ -17,7 +17,7 @@ import '../widgets/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ItemPage extends StatelessWidget {
-   ItemPage({Key? key, required this.product}) : super(key: key);
+   const ItemPage({Key? key, required this.product}) : super(key: key);
   static const String routeName = '/itemPage';
 
   static Route route({required Product product}) {

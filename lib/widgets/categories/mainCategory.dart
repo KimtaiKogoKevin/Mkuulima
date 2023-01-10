@@ -5,39 +5,31 @@ import '../../../../models/Product.dart';
 import '../../models/mainCategoryDepracated.dart';
 import 'SubCategory.dart';
 
-class MainCategoryWidget extends StatefulWidget {
+class MainCategoryWidget extends StatelessWidget {
   final String? selectedCat;
 
 
-  const MainCategoryWidget({  required this.selectedCat,Key? key}) : super(key: key);
+  const MainCategoryWidget({   this.selectedCat,Key? key}) : super(key: key);
 
-  @override
-  State<MainCategoryWidget> createState() => _MainCategoryWidgetState();
-}
 
-class _MainCategoryWidgetState extends State<MainCategoryWidget> {
-  //  final List<String> _categoryLabel = <String> [
-  //   'Home Furniture',
-  //   'Office Furniture',
-  //   'Kitchen Appliances',
-  //   'Make up and watches'
-  // ];
-  // int _index = 0;
-
+   // final List<String> _categoryLabel = <String> [
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: FirestoreListView<MainCategoryDeprecated>(
-          query: mainCategoriesCollection(widget.selectedCat),
-          itemBuilder: (context, snapshot) {
-            MainCategoryDeprecated mainCategory = snapshot.data();
-            return ExpansionTile(
-                title: Text(mainCategory.mainCategory!) ,
-                children: [SubCategoryWidget(selectedSubCat: mainCategory.mainCategory)]
+        child: Material(
+          child: FirestoreListView<MainCategoryDeprecated>(
+            query: mainCategoriesCollection(selectedCat),
+
+            itemBuilder: (context, snapshot) {
+              MainCategoryDeprecated mainCategory = snapshot.data();
+              return ExpansionTile(
+                  title: Text(mainCategory.mainCategory!) ,
+                  children: [SubCategoryWidget(selectedSubCat: mainCategory.mainCategory)]
 
 
-            );
-          },
+              );
+            },
+          ),
         ));
   }
 }

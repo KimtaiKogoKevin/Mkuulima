@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mkuulima/Pages/ItemPage.dart';
 import 'package:mkuulima/Pages/cartPage.dart';
 import 'package:mkuulima/Pages/checkout.dart';
+import 'package:mkuulima/models/mainCategoryDepracated.dart';
 import 'package:mkuulima/splashView.dart';
 
 import '../Pages/Authentication/login_page.dart';
@@ -11,8 +12,10 @@ import '../Pages/Authentication/register_page.dart';
 import '../Pages/Wishlist.dart';
 import '../Pages/homepage.dart';
 import '../blocs/auth/auth_bloc.dart';
+import '../models/Category.dart';
 import '../models/Product.dart';
 import '../widgets/categories/category_screen.dart';
+import '../widgets/categories/mainCategory.dart';
 
  List <Page> onGenerateAppViewPages(
 AuthStatus state,
@@ -50,8 +53,7 @@ class AppRouter {
         return LoginPage.route();
       case RegisterPage.routeName:
         return RegisterPage.route();
-      case CategoryScreen.routeName:
-        return CategoryScreen.route();
+
 
       default:
         return _errorRoute();

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../models/Product.dart';
 import '../../models/Category.dart';
-
+import 'category_screen.dart';
+import 'mainCategory.dart';
+import 'dart:developer' as dev;
 
 class CategoryCarouselCard extends StatefulWidget {
   const CategoryCarouselCard({
@@ -12,6 +14,7 @@ class CategoryCarouselCard extends StatefulWidget {
   }) : super(key: key);
   final Category? category2;
   final Product ?product2;
+
 
   @override
   State<CategoryCarouselCard> createState() => _CategoryCarouselCardState();
@@ -27,13 +30,17 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
         setState(() {
           selectedCategory = widget.category2?.catName;
         });
-        Navigator.pushNamed(context, '/categories-screen');
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {return const CategoryScreen();}),
+        );
 
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 5.0),
         child: ClipRRect(
-            borderRadius: const BorderRadius.all(const Radius.circular(5.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(5.0)),
             child: Stack(
               children: <Widget>[
 
@@ -49,8 +56,8 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          const Color.fromARGB(200, 0, 0, 0),
-                          const Color.fromARGB(0, 0, 0, 0)
+                          Color.fromARGB(200, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0)
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -59,7 +66,7 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
                     padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     child: Text(
-                        widget.product2 == null ? widget.category2!.catName : '',
+                        widget.product2 == null ? widget.category2!.catName : 'hkkjj',
                         style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.white)
                     ),
                   ),

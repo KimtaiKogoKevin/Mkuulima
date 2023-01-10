@@ -5,6 +5,7 @@ import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/ProductCard.dart';
 import '../widgets/custom_app_bar.dart';
+import '../widgets/homeappbar.dart';
 
 class WishlistScreen extends StatelessWidget {
   static const String routeName = '/wishlist';
@@ -20,7 +21,7 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title:"WishList"),
+        appBar: HomeAppBar(title:"WishList"),
         body:
             BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
           if (state is WishlistLoading) {
