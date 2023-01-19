@@ -3,6 +3,7 @@ import 'package:mkuulima/repositories/authentication/auth_repository.dart';
 import 'package:mkuulima/repositories/authentication/authentication_repository.dart';
 import 'package:mkuulima/repositories/categories/category_repository.dart';
 import 'package:mkuulima/repositories/database/database_repository.dart';
+import 'package:mkuulima/repositories/products/product_subcat.repository.dart';
 import 'package:mkuulima/splashView.dart';
 import 'package:mkuulima/widgets/categories/categories_widget.dart';
 import 'package:mkuulima/widgets/categories/category_screen.dart';
@@ -17,6 +18,7 @@ import 'blocs/auth/auth_bloc.dart';
 import 'blocs/category/category_bloc.dart';
 import 'blocs/database/database_bloc.dart';
 import 'blocs/form-validation/form_bloc.dart';
+import 'blocs/product/subCatProducts/subcat_product_bloc.dart';
 import 'blocs/wishlist/wishlist_bloc.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +59,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create:(_) => CategoryBloc(categoryRepository: CategoryRepository())..add((LoadCategories()))),
 
         BlocProvider(create:(_) => ProductBloc(productRepository: ProductRepository())..add((LoadProducts()))),
+        BlocProvider(create:(_) => ProductSubCatBloc(productSubCatRepository: ProductSubCatRepository())..add((LoadSubCatProducts()))),
+
         BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),

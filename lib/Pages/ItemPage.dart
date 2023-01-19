@@ -12,8 +12,8 @@ import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/homeappbar.dart';
-import '../widgets/itemBottomNavBar.dart';
-import '../widgets/item_card.dart';
+import '../widgets/Products/itemBottomNavBar.dart';
+import '../widgets/Products/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ItemPage extends StatelessWidget {

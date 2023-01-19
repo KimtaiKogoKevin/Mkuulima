@@ -20,6 +20,7 @@ class ProductLoaded extends ProductState {
   @override
   List<Object> get props => [products];
 }
+
 class ProductError extends ProductState {
   @override
   List<Object> get props => [];

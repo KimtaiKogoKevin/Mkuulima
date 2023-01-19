@@ -4,27 +4,42 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
+import 'package:mkuulima/widgets/categories/subcat_details.dart';
 
 import '../../models/Product.dart';
 import '../../models/subCategoryDepracated.dart';
 
-
-class SubCategoryWidget extends StatelessWidget {
-  final String? selectedSubCat;
+class SubCategoryWidget extends StatefulWidget {
+   String? selectedSubCat='';
   final Product? product;
-  const SubCategoryWidget({  this.product,this.selectedSubCat, Key? key}) : super(key: key);
+
+   SubCategoryWidget({this.product, this.selectedSubCat, Key? key})
+      : super(key: key);
+
+  @override
+  State<SubCategoryWidget> createState() => _SubCategoryWidgetState();
+}
+
+class _SubCategoryWidgetState extends State<SubCategoryWidget> {
+  void _pushScreen({required BuildContext context, required Widget screen}) {
+    ThemeData themeData = Theme.of(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => Theme(data: themeData, child: screen),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 80,
-
       child: Column(children: <Widget>[
-
         Expanded(
-
             child: FirestoreQueryBuilder<SubCategoryDeprecated>(
-                query: subCategoriesCollection(subCatSelected: selectedSubCat),
+                query: subCategoriesCollection(
+                    subCatSelected: widget.selectedSubCat),
                 builder: (context, snapshot, _) {
                   if (snapshot.isFetching) {
                     // print(selectedSubCat);
@@ -39,12 +54,11 @@ class SubCategoryWidget extends StatelessWidget {
                     print('empty');
                   }
 
-
                   return GridView.builder(
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
-                        childAspectRatio: snapshot.docs.isEmpty ? 1/.1 : 1 / 1.1),
+                        childAspectRatio:
+                            snapshot.docs.isEmpty ? 1 / .1 : 1 / 1.1),
                     shrinkWrap: true,
                     itemCount: snapshot.docs.length,
                     itemBuilder: (context, index) {
@@ -60,24 +74,41 @@ class SubCategoryWidget extends StatelessWidget {
                       }
 
                       return Column(children: [
-                        SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: CachedNetworkImage(
-                              imageUrl:subCat.image!,
-                              placeholder: (context , _){
-                                return Container(
-                                  height:60,
-                                  width:60,
-                                  color: Colors.grey.shade300,
-                                );
-                              },
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                               widget.selectedSubCat= widget.selectedSubCat;
+                            });
+                            _pushScreen(
+                                context: context,
+                                screen: SubCatDetails(
+                                  subCategory: subCat,
+                                 // selectedSubCat:widget.selectedSubCat,
+                                ));
+                          },
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: CachedNetworkImage(
+                                imageUrl: subCat.image!,
+                                placeholder: (context, _) {
+                                  return Container(
+                                    height: 60,
+                                    width: 60,
+                                    color: Colors.grey.shade300,
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
-                        Text(subCat.subCatName! , style: const TextStyle(fontSize: 12 ) , textAlign: TextAlign.center,)
+                        Text(
+                          subCat.subCatName!,
+                          style: const TextStyle(fontSize: 12),
+                          textAlign: TextAlign.center,
+                        )
                       ]);
                     },
                   );

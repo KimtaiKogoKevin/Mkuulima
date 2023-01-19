@@ -4,7 +4,7 @@ import 'package:mkuulima/models/Product.dart';
 import '../widgets/home/bestSellers.dart';
 
 import '../widgets/categories/category_carousel.dart';
-import '../widgets/itemswidget.dart';
+import '../widgets/Products/itemswidget.dart';
 import '../widgets/search_widget.dart';
 
 class HomeBody extends StatelessWidget {

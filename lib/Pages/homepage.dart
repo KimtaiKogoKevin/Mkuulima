@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/custom_app_bar.dart';
-import 'package:mkuulima/widgets/itemswidget.dart';
+import 'package:mkuulima/widgets/Products/itemswidget.dart';
 import 'package:badges/badges.dart';
 import '../models/Product.dart';
 import '../widgets/categories/categories_widget.dart';

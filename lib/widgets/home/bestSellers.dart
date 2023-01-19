@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/product/product_bloc.dart';
 import '../../models/Product.dart';
-import '../itemswidget.dart';
+import '../Products/itemswidget.dart';
 
 class BestSellers extends StatelessWidget {
   const BestSellers({

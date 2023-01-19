@@ -33,4 +33,15 @@ class FirebaseService {
       return snapshot.docs.map((doc) => Product.fromSnapshot(doc)).toList();
     });
   }
+  // Stream<List<Product>> getAllSubCatProducts() {
+  //   return _firebaseFirestore
+  //       .collection('Products').where('subCategory',isEqualTo: 'subCategory')
+  //       .snapshots()
+  //       .map((snapshot) {
+  //     // print(snapshot);
+  //
+  //     return snapshot.docs.map((doc) => Product.fromSnapshot(doc)).toList();
+  //   });
+  // }
+
 }

@@ -9,6 +9,8 @@ abstract class ProductEvent extends Equatable {
 
 class LoadProducts extends ProductEvent {}
 
+
+
 class UpdateProducts extends ProductEvent {
   final List<Product> products;
 

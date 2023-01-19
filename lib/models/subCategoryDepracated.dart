@@ -10,14 +10,14 @@ class SubCategoryDeprecated {
     image: json['image']! as String,
     mainCategory: json['mainCategory']! as String,
 
-    subCatName: json['subCatName']! as String,
+    subCatName: json['subCatName'] as String,
 
 
   );
 
   final String? image;
   final String? mainCategory;
-  final String? subCatName;
+  final String subCatName;
 
 
   Map<String, Object?> toJson() {

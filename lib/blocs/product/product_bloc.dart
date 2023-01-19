@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkuulima/models/subCategoryDepracated.dart';
 import '../../models/Product.dart';
 import '../../repositories/products/product_repository.dart';
 
@@ -12,11 +13,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final ProductRepository _productRepository;
   StreamSubscription? _productSubscription;
 
-  ProductBloc({required ProductRepository productRepository})
+
+
+  ProductBloc(  {  required ProductRepository productRepository})
       : _productRepository = productRepository,
         super(ProductLoading()) {
     on<LoadProducts>(_onLoadProducts);
     on<UpdateProducts>(_onUpdateProducts);
+
   }
 
   void _onLoadProducts(
@@ -31,10 +35,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     );
   }
 
+
   void _onUpdateProducts(
       UpdateProducts event,
       Emitter<ProductState> emit,
       ) {
     emit(ProductLoaded(products: event.products));
   }
+
+
+
 }
