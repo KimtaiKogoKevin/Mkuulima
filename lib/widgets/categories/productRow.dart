@@ -5,10 +5,10 @@ import '../Products/productTile.dart';
 
 class ProductRow extends StatelessWidget {
   const ProductRow(
-      {required this.products, required this.productSubCat, Key? key})
+      { this.products, required this.productSubCat, Key? key})
       : super(key: key);
   final String productSubCat;
-  final List <Product> products;
+  final List <Product>? products;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,9 @@ class ProductRow extends StatelessWidget {
           height: 205,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 18),
-            itemCount: products.length,
+            itemCount: products?.length ?? 0 ,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, index) {return ProductTile(product:products[index]);},
+            itemBuilder: (BuildContext context, index) {return ProductTile(product:products![index]);},
             separatorBuilder: (_, index) => const SizedBox(
               width: 24,
             ),

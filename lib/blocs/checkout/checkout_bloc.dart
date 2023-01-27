@@ -44,10 +44,11 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
     _cartSubscription = _cartBloc.stream.listen(
           (state) {
-        if (state is CartLoaded)
+        if (state is CartLoaded) {
           add(
             UpdateCheckout(cart: state.cart),
           );
+        }
       },
     );
 
@@ -64,7 +65,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       UpdateCheckout event,
       Emitter<CheckoutState> emit,
       ) {
-    if (this.state is CheckoutLoaded) {
+    if (state is CheckoutLoaded) {
       final state = this.state as CheckoutLoaded;
       emit(
         CheckoutLoaded(

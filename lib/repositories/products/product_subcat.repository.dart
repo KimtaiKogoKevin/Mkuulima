@@ -8,10 +8,10 @@ class ProductSubCatRepository extends BaseSubCatProductRepository {
   ProductSubCatRepository( {FirebaseFirestore? firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
   @override
-  Stream<List<Product>> getAllSubCatProducts( ) {
+  Stream<List<Product>> getAllSubCatProducts(subCatSelected ) {
 
     return _firebaseFirestore
-        .collection('Products').where('subCategory',isEqualTo: 'Nike Jordans')
+        .collection('Products').where('subCategory',isEqualTo: subCatSelected)
         .snapshots()
         .map((snapshot) {
 

@@ -3,17 +3,21 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:mkuulima/widgets/categories/subcat_details.dart';
 
+import '../../blocs/product/subCatProducts/subcat_product_bloc.dart';
 import '../../models/Product.dart';
 import '../../models/subCategoryDepracated.dart';
 
 class SubCategoryWidget extends StatefulWidget {
-   String? selectedSubCat='';
+   String? selectedSubCat;
   final Product? product;
+   final List<Product>? products;
 
-   SubCategoryWidget({this.product, this.selectedSubCat, Key? key})
+
+   SubCategoryWidget({this.product, this.selectedSubCat, Key? key,  this.products})
       : super(key: key);
 
   @override
@@ -76,15 +80,16 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                       return Column(children: [
                         InkWell(
                           onTap: () {
-                            setState(() {
-                               widget.selectedSubCat= widget.selectedSubCat;
-                            });
+
                             _pushScreen(
                                 context: context,
                                 screen: SubCatDetails(
                                   subCategory: subCat,
-                                 // selectedSubCat:widget.selectedSubCat,
+                                  subCatSelected: subCat.subCatName,
+
                                 ));
+                            BlocProvider.of<ProductSubCatBloc>(context).add(SubCatSelected(subCat.subCatName));
+                            print((subCat.subCatName));
                           },
                           child: SizedBox(
                             height: 40,
@@ -105,7 +110,7 @@ class _SubCategoryWidgetState extends State<SubCategoryWidget> {
                           ),
                         ),
                         Text(
-                          subCat.subCatName!,
+                          subCat.subCatName,
                           style: const TextStyle(fontSize: 12),
                           textAlign: TextAlign.center,
                         )

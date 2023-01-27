@@ -65,7 +65,8 @@ class Product extends Equatable {
         productName,
         regularPrice,
         isPopular,
-        isRecommended
+        isRecommended,
+        subCategory
       ];
 
   static Product fromSnapshot(DocumentSnapshot snap) {
@@ -80,10 +81,4 @@ class Product extends Equatable {
         subCategory: snap['subCategory']);
     return product;
   }
-}
-
-FirebaseService _service = FirebaseService();
-productWithSubCatCollection( productSubCatSelected) {
-  return _service.Products.where('active', isEqualTo: true).where(
-      'subCategory', isEqualTo: productSubCatSelected).snapshots();
 }

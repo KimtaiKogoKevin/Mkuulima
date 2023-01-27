@@ -2,13 +2,18 @@ import 'package:mkuulima/models/subCategoryDepracated.dart';
 import 'package:flutter/material.dart';
 import 'package:mkuulima/widgets/categories/productRow.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterfire_ui/firestore.dart';
 
 import '../../blocs/product/product_bloc.dart';
 import '../../blocs/product/subCatProducts/subcat_product_bloc.dart';
 import '../../models/Product.dart';
+import '../../models/ProductDepracated.dart';
+import '../homeappbar.dart';
 class SubCatDetails extends StatefulWidget {
-  const SubCatDetails({required this.subCategory, Key? key,}) : super(key: key);
+  const SubCatDetails({required this.subCategory, Key? key, required this.subCatSelected}) : super(key: key);
   final SubCategoryDeprecated subCategory;
+  final String subCatSelected;
+
 
 
   @override
@@ -21,8 +26,7 @@ class _SubCatDetailsState extends State<SubCatDetails> {
   SubCategoryDeprecated get subCategory => widget.subCategory;
   Filters filterValue = Filters.popular;
   String? selection;
-
-  // List<Product> _products;
+   late List<Product> _products;
 
   @override
   void initState() {
@@ -42,16 +46,11 @@ class _SubCatDetailsState extends State<SubCatDetails> {
     // ))
     //     .toList();
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(subCategory.subCatName),
-        actions: const [
-        //  CartAppBarAction(),
-        ],
-      ),
+      appBar:HomeAppBar(title:subCategory.subCatName),
       body: BlocBuilder<ProductSubCatBloc,ProductSubCatState>(
+
         builder: (context,state) {
-          if(state is ProductSubCatLoading){
+          if (state is ProductSubCatLoading){
             return const Center(child: CircularProgressIndicator());
           }
           if(state is ProductSubCatLoaded){
@@ -59,8 +58,8 @@ class _SubCatDetailsState extends State<SubCatDetails> {
               padding: const EdgeInsets.symmetric(vertical: 18),
               itemCount: state.products.length,
 
-              itemBuilder: (BuildContext context, index) {
-                return ProductRow(products: state.products, productSubCat: '', );
+              itemBuilder: (  context, index) {
+                return ProductRow(products:state.products, productSubCat: widget.subCatSelected, );
               },
               separatorBuilder: (_, index) => const SizedBox(
                 height: 18,
@@ -69,10 +68,15 @@ class _SubCatDetailsState extends State<SubCatDetails> {
 
           }
           else {
-            return (const Text('Something went wrongs '));
+            return const Text('Something Went Wrong');
+
           }
         }
-      ),
-    );
+      ));
+
+
+
+        }
+
+
   }
-}

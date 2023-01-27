@@ -60,7 +60,6 @@ class MyApp extends StatelessWidget {
 
         BlocProvider(create:(_) => ProductBloc(productRepository: ProductRepository())..add((LoadProducts()))),
         BlocProvider(create:(_) => ProductSubCatBloc(productSubCatRepository: ProductSubCatRepository())..add((LoadSubCatProducts()))),
-
         BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),

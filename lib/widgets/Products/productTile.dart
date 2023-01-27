@@ -38,7 +38,7 @@ class ProductTile extends StatelessWidget {
               height: 8,
             ),
             Text(
-              product.productName!,
+              product.productName,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.subtitle2,

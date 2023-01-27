@@ -15,14 +15,18 @@ class ProductSubCatLoading extends ProductSubCatState {
 
 class ProductSubCatLoaded extends ProductSubCatState {
   final List<Product> products;
-
-  const ProductSubCatLoaded({this.products = const <Product>[]});
+  const ProductSubCatLoaded( {this.products = const <Product>[]});
 
   @override
   List<Object> get props => [products];
 }
 
 class ProductError extends ProductSubCatState {
-  @override
-  List<Object> get props => [];
+   final String error ;
+   const ProductError( {this.error="Error"});
+
+
+   @override
+  List<Object> get props => [error];
+
 }
