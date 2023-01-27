@@ -9,7 +9,7 @@ class ItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         childAspectRatio: 0.68,
           maxCrossAxisExtent: 200,
          // childAspectRatio: 3 / 2,

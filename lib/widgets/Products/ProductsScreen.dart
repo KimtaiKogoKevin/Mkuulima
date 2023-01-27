@@ -1,6 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/wishlist/wishlist_bloc.dart';
 import '../../models/Product.dart';
 import 'package:flutter/material.dart';
 import'../../utils/globalColors.dart';
+import '../homeappbar.dart';
 class ProductScreen extends StatefulWidget {
   const ProductScreen({required this.product, Key? key}) : super(key: key);
   final Product product;
@@ -98,11 +102,7 @@ class _ProductScreenState extends State<ProductScreen> {
     //     [];
 
     return Scaffold(
-      appBar: AppBar(
-        actions: const [
-          //CartAppBarAction(),
-        ],
-      ),
+    //  appBar: HomeAppBar(title:product.productName),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -136,7 +136,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.productName!,
+                    product.productName,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   const SizedBox(
@@ -171,7 +171,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   //   ),
                   // ],
                   const Spacer(),
-                  Center(
+                  const Center(
                     // child: CallToActionButton(
                     //   onPressed: () => cart.add(
                     //     OrderItem(
@@ -188,6 +188,7 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
         ],
       ),
+
     );
   }
 }

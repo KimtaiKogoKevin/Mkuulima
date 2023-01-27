@@ -13,7 +13,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, '/itemPage', arguments: product);
+        Navigator.pushNamed(context, '/productScreen', arguments: product);
       },
       child: Container(
 

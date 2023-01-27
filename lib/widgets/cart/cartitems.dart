@@ -32,12 +32,14 @@ class CartItemSamples extends StatelessWidget {
                 activeColor: const Color(0xFF4C53A5),
                 onChanged: (index) {},
               ),
-              Container(
-                height: 100,
-                width: 100,
-                margin: const EdgeInsets.only(right: 15),
-                child: Image.network(product.imageUrls![0],
-                    width: 100, height: 80, fit: BoxFit.cover),
+              Expanded(
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  margin: const EdgeInsets.only(right: 15),
+                  child: Image.network(product.imageUrls![0],
+                      width: 100, height: 80, fit: BoxFit.cover),
+                ),
               ),
               Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/cart/cart_bloc.dart';
+
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   const HomeAppBar({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -38,8 +39,8 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                   },
                   child: Badge(
                       showBadge: state.cart
-                          .productQuantity(state.cart.products)
-                          .isEmpty
+                              .productQuantity(state.cart.products)
+                              .isEmpty
                           ? false
                           : true,
                       badgeColor: Colors.red,
@@ -47,7 +48,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                       badgeContent: Text(
                         state.cart
                             .productQuantity(state.cart.products)
-                            .values
+                            .length
                             .toString()
                             .replaceAll("(", "")
                             .replaceAll(")", ""),
@@ -79,6 +80,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
       },
     );
   }
+
   @override
   // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

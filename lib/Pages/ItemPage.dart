@@ -10,6 +10,7 @@ import 'package:mkuulima/widgets/categories/categoryCarouselItem.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
 import '../models/Product.dart';
+import '../widgets/Products/ProductsScreen.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/homeappbar.dart';
 import '../widgets/Products/itemBottomNavBar.dart';
@@ -34,116 +35,118 @@ class ItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar: const HomeAppBar(title: 'Product'),
-      body: ListView(children: [
-        // CarouselSlider(
-        //   options: CarouselOptions(
-        //     aspectRatio: 1.5,
-        //     viewportFraction: 0.9,
-        //     enlargeCenterPage: true,
-        //     enlargeStrategy: CenterPageEnlargeStrategy.height,
-        //   ),
-        //   items: [CategoryCarouselCard(product2: product)],
-        // ),
-        Container(
-            height: MediaQuery.of(context).size.height * .35,
-            padding: const EdgeInsets.only(bottom: 30),
-            width: double.infinity,
-            child: CategoryCarouselCard(product2: product)),
-        Stack(children: [
-          Container(
-          padding: const EdgeInsets.only(top: 40, right: 14, left: 14),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.mainCategory.toString(),
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.productName.toString(),
-                        style: GoogleFonts.poppins(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        '\Sh ' + product.regularPrice.toString(),
-                        style: GoogleFonts.poppins(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    product.productDescription.toString(),
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  const SizedBox(height: 15),
-                  Text(
-                    'Similar To This',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  BlocBuilder<ProductBloc, ProductState>(
-                    builder: (context, state) {
-                      if (state is ProductLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      if (state is ProductLoaded) {
-                        return SizedBox(
-                          height: 110,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: state.products.length,
-                            itemBuilder: (context, index) => Container(
-                              margin: const EdgeInsets.only(right: 24),
-                              width: 110,
-                              height: 110,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: Colors.black87)
-                              ),
-                              child: Center(
-                                child: Image.network(product.imageUrls![0],
-                                    fit: BoxFit.fitHeight, width: 120.0),
-                              ),
-                            ),
-                          ),
-                        );
-                      } else
-                        return (Text('Something Went Wrong'));
-                    },
-                  ),
-                ]),
-          ))
-        ])
-      ]),
+      appBar:  HomeAppBar(title: product.productName),
+      body: ProductScreen(product: product,),
+      // ListView(children: [
+      //   // CarouselSlider(
+      //   //   options: CarouselOptions(
+      //   //     aspectRatio: 1.5,
+      //   //     viewportFraction: 0.9,
+      //   //     enlargeCenterPage: true,
+      //   //     enlargeStrategy: CenterPageEnlargeStrategy.height,
+      //   //   ),
+      //   //   items: [CategoryCarouselCard(product2: product)],
+      //   // ),
+      //   Container(
+      //       height: MediaQuery.of(context).size.height * .35,
+      //       padding: const EdgeInsets.only(bottom: 30),
+      //       width: double.infinity,
+      //       child: CategoryCarouselCard(product2: product)),
+      //   Stack(children: [
+      //     Container(
+      //     padding: const EdgeInsets.only(top: 40, right: 14, left: 14),
+      //     decoration: const BoxDecoration(
+      //       color: Colors.white,
+      //       borderRadius: BorderRadius.only(
+      //         topLeft: Radius.circular(30),
+      //         topRight: Radius.circular(30),
+      //       ),
+      //     ),
+      //     child: SingleChildScrollView(
+      //       child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             Text(
+      //               product.mainCategory.toString(),
+      //               style: GoogleFonts.poppins(
+      //                 fontSize: 15,
+      //                 color: Colors.grey,
+      //               ),
+      //             ),
+      //             Row(
+      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //               children: [
+      //                 Text(
+      //                   product.productName.toString(),
+      //                   style: GoogleFonts.poppins(
+      //                     fontSize: 22,
+      //                     fontWeight: FontWeight.w600,
+      //                   ),
+      //                 ),
+      //                 Text(
+      //                   '\Sh ' + product.regularPrice.toString(),
+      //                   style: GoogleFonts.poppins(
+      //                     fontSize: 22,
+      //                     fontWeight: FontWeight.w600,
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //             const SizedBox(height: 15),
+      //             Text(
+      //               product.productDescription.toString(),
+      //               style: GoogleFonts.poppins(
+      //                 fontSize: 15,
+      //                 color: Colors.grey,
+      //                 fontWeight: FontWeight.w900,
+      //               ),
+      //             ),
+      //             const SizedBox(height: 15),
+      //             const SizedBox(height: 15),
+      //             Text(
+      //               'Similar To This',
+      //               style: GoogleFonts.poppins(
+      //                 fontSize: 16,
+      //                 fontWeight: FontWeight.w600,
+      //               ),
+      //             ),
+      //             const SizedBox(height: 10),
+      //             BlocBuilder<ProductBloc, ProductState>(
+      //               builder: (context, state) {
+      //                 if (state is ProductLoading) {
+      //                   return Center(child: CircularProgressIndicator());
+      //                 }
+      //                 if (state is ProductLoaded) {
+      //                   return SizedBox(
+      //                     height: 110,
+      //                     child: ListView.builder(
+      //                       scrollDirection: Axis.horizontal,
+      //                       itemCount: state.products.length,
+      //                       itemBuilder: (context, index) => Container(
+      //                         margin: const EdgeInsets.only(right: 24),
+      //                         width: 110,
+      //                         height: 110,
+      //                         decoration: BoxDecoration(
+      //                           color: Colors.white,
+      //                           borderRadius: BorderRadius.circular(20),
+      //                           border: Border.all(color: Colors.black87)
+      //                         ),
+      //                         child: Center(
+      //                           child: Image.network(product.imageUrls![0],
+      //                               fit: BoxFit.fitHeight, width: 120.0),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   );
+      //                 } else {
+      //                   return (const Text('Something Went Wrong'));
+      //                 }
+      //               },
+      //             ),
+      //           ]),
+      //     ))
+      //   ])
+      // ]),
       bottomNavigationBar: BottomAppBar(
         //  color:  Color(0xFF4C53A5),
         child: Container(

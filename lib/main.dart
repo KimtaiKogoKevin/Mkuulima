@@ -128,8 +128,11 @@ class BlocNavigate extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthenticationSuccess) {
           return const HomePage();
-        } else {
-          return  LoginPage();
+        }  else if (state is AuthenticationFailure){
+          return LoginPage();
+        }
+        else {
+          return  const SplashView();
         }
       },
     );
