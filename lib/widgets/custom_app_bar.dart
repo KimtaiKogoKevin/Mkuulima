@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           return AppBar(
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.maybePop(context);
               },
               child: const Icon(Icons.arrow_back,
                   size: 30, color: Color(0xFF4C53A5)),
