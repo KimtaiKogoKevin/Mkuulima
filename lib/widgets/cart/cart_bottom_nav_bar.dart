@@ -20,7 +20,7 @@ class CartBottomNavBar extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Divider(thickness: 2),
+                const Divider(thickness: 2),
                 Padding(
                   padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
@@ -59,7 +59,7 @@ class CartBottomNavBar extends StatelessWidget {
                       margin: EdgeInsets.all(5.0),
                       width: MediaQuery.of(context).size.width - 10,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color:Colors.transparent
                       ),
                       child: Padding(

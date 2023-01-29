@@ -2,16 +2,16 @@ part of 'checkout_bloc.dart';
 
 
 
-abstract class CheckoutState extends Equatable {
-  const CheckoutState();
+abstract class CheckoutStateDeprecated extends Equatable {
+  const CheckoutStateDeprecated();
 
   @override
   List<Object?> get props => [];
 }
 
-class CheckoutLoading extends CheckoutState {}
+class CheckoutLoading extends CheckoutStateDeprecated {}
 
-class CheckoutLoaded extends CheckoutState {
+class CheckoutLoaded extends CheckoutStateDeprecated {
   final String? fullName;
   final String? email;
   final String? address;

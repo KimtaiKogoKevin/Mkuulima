@@ -1,21 +1,167 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final String id;
+ // final String id;
   final String? email;
   final String? name;
   final String? photoUrl;
 
-  const User ({required this.id, this.email,this.name,this.photoUrl});
+  const User ({ this.email,this.name,this.photoUrl, required this.personalInfo,
+    required this.billingAddress,
+    required this.payment,});
 
-  static const empty = User (id:'');
+ // static const empty = User (id:'');
 
   bool get isEmpty => this == User.empty;
   bool get isNotEmpty => this != User.empty;
 
+  final PersonalInfo personalInfo;
+  final BillingAddress billingAddress;
+  final Payment payment;
+
+  factory User.empty() {
+    return User(
+      personalInfo: PersonalInfo.empty(),
+      billingAddress: BillingAddress.empty(),
+      payment: Payment.empty(),
+    );
+  }
+
+  User copyWith({
+    PersonalInfo? personalInfo,
+    BillingAddress? billingAddress,
+    Payment? payment,
+  }) {
+    return User(
+      personalInfo: personalInfo ?? this.personalInfo,
+      billingAddress: billingAddress ?? this.billingAddress,
+      payment: payment ?? this.payment,
+    );
+  }
+
+  @override
+  List<Object?> get props => [personalInfo, billingAddress, payment];
+}
+
+class PersonalInfo extends Equatable {
+  const PersonalInfo({
+    required this.name,
+    required this.email,
+    required this.phoneNumber,
+  });
+
+  final String name;
+  final String email;
+  final String phoneNumber;
+
+  factory PersonalInfo.empty() {
+    return const PersonalInfo(
+      name: '',
+      email: '',
+      phoneNumber: '',
+    );
+  }
+
+  PersonalInfo copyWith({
+    String? name,
+    String? email,
+    String? phoneNumber,
+  }) {
+    return PersonalInfo(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+    );
+  }
+
+  @override
+  List<Object?> get props => [name, email, phoneNumber];
+}
+
+class BillingAddress extends Equatable {
+  const BillingAddress({
+    required this.street,
+    required this.apartment,
+    required this.city,
+    required this.country,
+    required this.postcode,
+  });
+
+  final String street;
+  final String apartment;
+  final String city;
+  final String country;
+  final String postcode;
+
+  factory BillingAddress.empty() {
+    return const BillingAddress(
+      street: '',
+      apartment: '',
+      city: '',
+      country: '',
+      postcode: '',
+    );
+  }
+
+  BillingAddress copyWith({
+    String? street,
+    String? apartment,
+    String? city,
+    String? country,
+    String? postcode,
+  }) {
+    return BillingAddress(
+      street: street ?? this.street,
+      apartment: apartment ?? this.apartment,
+      city: city ?? this.city,
+      country: country ?? this.country,
+      postcode: postcode ?? this.postcode,
+    );
+  }
+
+  @override
+  List<Object?> get props => [street, apartment, city, country, postcode];
+}
+
+class Payment extends Equatable {
+  const Payment({
+    required this.cardName,
+    required this.cardNumber,
+    required this.expiryDate,
+    required this.cvvNumber,
+  });
+
+  final String cardName;
+  final String cardNumber;
+  final String expiryDate;
+  final String cvvNumber;
+
+  factory Payment.empty() {
+    return const Payment(
+      cardName: '',
+      cardNumber: '',
+      expiryDate: '',
+      cvvNumber: '',
+    );
+  }
+
+  Payment copyWith({
+    String? cardName,
+    String? cardNumber,
+    String? expiryDate,
+    String? cvvNumber,
+  }) {
+    return Payment(
+      cardName: cardName ?? this.cardName,
+      cardNumber: cardNumber ?? this.cardNumber,
+      expiryDate: expiryDate ?? this.expiryDate,
+      cvvNumber: cvvNumber ?? this.cvvNumber,
+    );
+  }
+
   @override
   // TODO: implement props
-  List<Object?> get props => [id,email,photoUrl,name];
+  List<Object?> get props => [cardName, cardNumber, expiryDate, cvvNumber];
 
 
 

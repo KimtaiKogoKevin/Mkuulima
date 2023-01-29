@@ -15,7 +15,7 @@ class CartPage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
-        builder: (_) => CartPage());
+        builder: (_) => const CartPage());
   }
 
   @override
@@ -52,7 +52,7 @@ class CartPage extends StatelessWidget {
 
 
 
-      bottomNavigationBar: CartBottomNavBar(),
+      bottomNavigationBar: const CartBottomNavBar(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkuulima/Pages/Authentication/widgets/login_form.dart';
-import 'package:mkuulima/repositories/authentication/auth_repository.dart';
 
 import '../../blocs/Authentication/authentication_bloc.dart';
 import '../../blocs/form-validation/form_bloc.dart';
@@ -11,7 +10,6 @@ import '../../widgets/customButton.dart';
 import '../../widgets/custom_text_formfield.dart';
 import '../../widgets/login_textformfield.dart';
 import '../homepage.dart';
-import 'Cubit/logincubit/login_cubit.dart';
 import 'SocialLogin.dart';
 
 class LoginPage extends StatelessWidget {

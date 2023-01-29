@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mkuulima/repositories/authentication/auth_repository.dart';
 import 'package:mkuulima/repositories/authentication/authentication_repository.dart';
 import 'package:mkuulima/repositories/categories/category_repository.dart';
 import 'package:mkuulima/repositories/database/database_repository.dart';
@@ -14,7 +13,6 @@ import 'package:flow_builder/flow_builder.dart';
 
 import 'blocs/Authentication/authentication_bloc.dart';
 import 'blocs/appBlocObserver.dart';
-import 'blocs/auth/auth_bloc.dart';
 import 'blocs/category/category_bloc.dart';
 import 'blocs/database/database_bloc.dart';
 import 'blocs/form-validation/form_bloc.dart';
@@ -108,7 +106,7 @@ class AppView extends StatelessWidget {
         //"/":(context) =>  const HomePage(),
         "cartPage":(context) => const CartPage(),
         //"itemPage":(context) => const ItemPage(product: ),
-        "checkOut":(context) =>  CheckOutPage(),
+        "checkOut":(context) =>  CheckOutPageDeprecated(),
         "/categories-screen":(context) =>  const CategoryScreen(),
 
 

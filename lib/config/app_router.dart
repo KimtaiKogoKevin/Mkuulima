@@ -10,24 +10,14 @@ import 'package:mkuulima/splashView.dart';
 import '../Pages/Authentication/login_page.dart';
 import '../Pages/Authentication/register_page.dart';
 import '../Pages/Wishlist.dart';
+import '../Pages/checkout/CheckoutPage.dart';
 import '../Pages/homepage.dart';
-import '../blocs/auth/auth_bloc.dart';
 import '../models/Category.dart';
 import '../models/Product.dart';
 import '../widgets/categories/category_screen.dart';
 import '../widgets/categories/mainCategory.dart';
 
- List <Page> onGenerateAppViewPages(
-AuthStatus state,
-    List <Page<dynamic>> pages,
-){
-switch (state){
-case AuthStatus.authenticated:
-return [HomePage.page()];
-case AuthStatus.unauthenticated:
-return [LoginPage.page()];
-}
-}
+
 class AppRouter {
 
 
@@ -45,8 +35,8 @@ class AppRouter {
         return ItemPage.route(product: settings.arguments as Product);
       case WishlistScreen.routeName:
         return WishlistScreen.route();
-      case CheckOutPage.routeName:
-        return CheckOutPage.route();
+      case CheckoutPage.routeName:
+        return CheckoutPage.route();
       case SplashView.routeName:
         return SplashView.route();
       case LoginPage.routeName:

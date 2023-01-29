@@ -7,15 +7,15 @@ import '../widgets/custom_text_formfield.dart';
 import '../widgets/homeappbar.dart';
 import '../widgets/ordersummary.dart';
 
-class CheckOutPage extends StatelessWidget {
-  CheckOutPage({Key? key}) : super(key: key);
+class CheckOutPageDeprecated extends StatelessWidget {
+  CheckOutPageDeprecated({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   static const String routeName = '/checkout';
 
   static Route route() {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
-        builder: (_) => CheckOutPage());
+        builder: (_) => CheckOutPageDeprecated());
   }
 
   @override
