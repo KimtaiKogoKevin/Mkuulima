@@ -1,19 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
- // final String id;
-  final String? email;
-  final String? name;
-  final String? photoUrl;
-
-  const User ({ this.email,this.name,this.photoUrl, required this.personalInfo,
+  const User({
+    required this.personalInfo,
     required this.billingAddress,
-    required this.payment,});
-
- // static const empty = User (id:'');
-
-  bool get isEmpty => this == User.empty;
-  bool get isNotEmpty => this != User.empty;
+    required this.payment,
+  });
 
   final PersonalInfo personalInfo;
   final BillingAddress billingAddress;
@@ -160,10 +152,5 @@ class Payment extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [cardName, cardNumber, expiryDate, cvvNumber];
-
-
-
-
 }

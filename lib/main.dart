@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mkuulima/repositories/User/userRepository.dart';
 import 'package:mkuulima/repositories/authentication/authentication_repository.dart';
 import 'package:mkuulima/repositories/categories/category_repository.dart';
 import 'package:mkuulima/repositories/database/database_repository.dart';
@@ -55,7 +56,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create:(_) => WishlistBloc()..add(StartWishlist())),
         BlocProvider(create:(_) => CartBloc()..add((LoadCart()))),
         BlocProvider(create:(_) => CategoryBloc(categoryRepository: CategoryRepository())..add((LoadCategories()))),
-
         BlocProvider(create:(_) => ProductBloc(productRepository: ProductRepository())..add((LoadProducts()))),
         BlocProvider(create:(_) => ProductSubCatBloc(productSubCatRepository: ProductSubCatRepository())..add((LoadSubCatProducts()))),
         BlocProvider(
@@ -92,27 +92,30 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return RepositoryProvider<UserRepository>(
+      create:(_)=>UserRepository(),
+      child: MaterialApp(
 
 
-      home:const BlocNavigate(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        home:const BlocNavigate(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        routes: {
+
+          //"/":(context) =>  const HomePage(),
+          "cartPage":(context) => const CartPage(),
+          //"itemPage":(context) => const ItemPage(product: ),
+          "checkOut":(context) =>  CheckOutPageDeprecated(),
+          "/categories-screen":(context) =>  const CategoryScreen(),
+
+
+
+
+        },
       ),
-      onGenerateRoute: AppRouter.onGenerateRoute,
-      routes: {
-
-        //"/":(context) =>  const HomePage(),
-        "cartPage":(context) => const CartPage(),
-        //"itemPage":(context) => const ItemPage(product: ),
-        "checkOut":(context) =>  CheckOutPageDeprecated(),
-        "/categories-screen":(context) =>  const CategoryScreen(),
-
-
-
-
-      },
     );
   }
 }
