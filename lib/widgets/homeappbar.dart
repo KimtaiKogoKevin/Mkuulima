@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +37,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                   onTap: () {
                     Navigator.pushNamed(context, "cartPage");
                   },
-                  child: Badge(
+                  child: badges.Badge(
                       showBadge: state.cart
                               .productQuantity(state.cart.products)
                               .isEmpty

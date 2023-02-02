@@ -12,6 +12,7 @@ import 'package:flow_builder/flow_builder.dart';
 
 
 
+import 'Pages/checkout/CheckoutPage.dart';
 import 'blocs/Authentication/authentication_bloc.dart';
 import 'blocs/appBlocObserver.dart';
 import 'blocs/category/category_bloc.dart';
@@ -97,7 +98,7 @@ class AppView extends StatelessWidget {
       child: MaterialApp(
 
 
-        home:const BlocNavigate(),
+        home: const HomePage(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
@@ -122,18 +123,23 @@ class AppView extends StatelessWidget {
 
 class BlocNavigate extends StatelessWidget {
   const BlocNavigate({Key? key}) : super(key: key);
+  static const String routeName = '/blocNavigate';
+
+  static Route route() {
+    return MaterialPageRoute(
+        settings: const RouteSettings(name: routeName),
+        builder: (_) => const BlocNavigate());
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) {
         if (state is AuthenticationSuccess) {
-          return const HomePage();
-        }  else if (state is AuthenticationFailure){
+          return const CheckoutPage();
+        }  else {
           return LoginPage();
-        }
-        else {
-          return  const SplashView();
         }
       },
     );

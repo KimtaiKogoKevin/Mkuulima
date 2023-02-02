@@ -12,6 +12,7 @@ import '../Pages/Authentication/register_page.dart';
 import '../Pages/Wishlist.dart';
 import '../Pages/checkout/CheckoutPage.dart';
 import '../Pages/homepage.dart';
+import '../main.dart';
 import '../models/Category.dart';
 import '../models/Product.dart';
 import '../widgets/categories/category_screen.dart';
@@ -43,6 +44,8 @@ class AppRouter {
         return LoginPage.route();
       case RegisterPage.routeName:
         return RegisterPage.route();
+      case BlocNavigate.routeName:
+        return BlocNavigate.route();
 
 
       default:

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:badges/badges.dart' as badges;
 
 import '../blocs/cart/cart_bloc.dart';
 
@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   onTap: () {
                     Navigator.pushNamed(context, "cartPage");
                   },
-                  child: Badge(
+                  child: badges.Badge(
                       showBadge: state.cart
                               .productQuantity(state.cart.products)
                               .isEmpty
