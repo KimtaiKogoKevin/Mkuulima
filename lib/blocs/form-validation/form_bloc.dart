@@ -1,6 +1,9 @@
+
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../models/UserModel.dart';
 import '../../repositories/authentication/authentication_repository.dart';
@@ -143,12 +146,20 @@ class FormBloc extends Bloc<FormEvent, FormsValidate> {
         UserModel updatedUser = user.copyWith(
             uid: authUser!.user!.uid, isVerified: authUser.user!.emailVerified);
         await _databaseRepository.saveUserData(updatedUser);
-        if (updatedUser.isVerified!) {
-
-          emit(state.copyWith(isLoading: true, errorMessage: ""));
-        } else {
-          emit(state.copyWith(isFormValid: false,errorMessage: "Please Verify your email, by clicking the link sent to you by mail.",isLoading: false));
-        }
+        Fluttertoast.showToast(
+            msg: "Registration Complete !!",
+            toastLength: Toast.LENGTH_LONG,
+            fontSize: 20,
+            textColor: Colors.green
+        );
+        // if (updatedUser.isVerified!) {
+        //
+        //   emit(state.copyWith(isLoading: true, errorMessage: ""));
+        //
+        // } else {
+        //   emit(state.copyWith(isFormValid: false,errorMessage:
+        //       "Please Verify your email, by clicking the link sent to you ",isLoading: false));
+        // }
       } on FirebaseAuthException catch (e) {
         emit(state.copyWith(
             isLoading: false, errorMessage: e.message, isFormValid: false));

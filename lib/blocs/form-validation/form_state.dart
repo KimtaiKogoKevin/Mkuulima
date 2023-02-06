@@ -13,7 +13,7 @@ class FormInitial extends FormState {
 
 class FormsValidate extends FormState {
 
-   FormsValidate(
+   const FormsValidate(
       {
         required this.email,
         required this.password,

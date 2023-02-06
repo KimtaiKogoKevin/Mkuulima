@@ -6,7 +6,6 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Oops"),
       content: Text(errorMessage!),
       actions: [
         TextButton(

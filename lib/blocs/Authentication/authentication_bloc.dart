@@ -16,6 +16,7 @@ class AuthenticationBloc
       if (event is AuthenticationStarted) {
         UserModel user = await _authenticationRepository.getCurrentUser().first;
         if (user.uid != "uid") {
+          print(user.userName);
           String? displayName = await _authenticationRepository.retrieveUserName(user);
           emit(AuthenticationSuccess(displayName: displayName));
         } else {

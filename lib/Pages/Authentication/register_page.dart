@@ -47,9 +47,11 @@ class RegisterPage extends HookWidget {
                   context: context,
                   builder: (context) =>
                       ErrorDialog(errorMessage: state.errorMessage));
+
             } else if (state.isFormValid && !state.isLoading) {
               context.read<AuthenticationBloc>().add(AuthenticationStarted());
               context.read<FormBloc>().add(const FormSucceeded());
+           //  Navigator.pushNamed(context, '/');
             } else if (state.isFormValidateFailed) {
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Error submitting form , try again')));

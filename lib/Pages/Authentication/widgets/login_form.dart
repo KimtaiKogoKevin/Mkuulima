@@ -71,7 +71,7 @@ class LoginForm extends StatelessWidget {
               builder:(context,state){
                 return state.isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    :  CustomButton(text: 'Sign in', onPressed: !state.isFormValid
+                    :  CustomButton(text: 'Sign in', onPressed: state.isFormValid
                     ? () => context
                     .read<FormBloc>()
                     .add(const FormSubmitted(value: Status.signIn))

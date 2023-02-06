@@ -53,6 +53,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   flow_builder: ^0.0.9
   formz: ^0.4.1
+  fluttertoast: ^8.1.2
 
 dev_dependencies:
   flutter_test:

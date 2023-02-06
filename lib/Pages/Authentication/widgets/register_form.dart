@@ -8,6 +8,7 @@ import '../../../widgets/customButton.dart';
 import '../../../widgets/customEmailPhoneField.dart';
 import '../../../widgets/login_textformfield.dart';
 import '../SocialLogin.dart';
+import '../email_verification.dart';
 
 class RegisterForm extends StatefulWidget {
   RegisterForm({Key? key}) : super(key: key);
@@ -27,8 +28,10 @@ class _RegisterFormState extends State<RegisterForm> {
 
   final TextEditingController phoneController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
+
 
     bool isEmail(String input) => EmailValidator.validate(input);
     bool isPhone(String input) =>
@@ -36,7 +39,8 @@ class _RegisterFormState extends State<RegisterForm> {
             .hasMatch(input);
 
     return Form(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 50),
         Center(
           child: Text('Logo',
@@ -123,16 +127,52 @@ class _RegisterFormState extends State<RegisterForm> {
             BlocBuilder<FormBloc, FormsValidate>(builder: (context, state) {
           return state.isLoading
               ? const Center(child: CircularProgressIndicator())
-              : CustomButton(
-                  text: 'Verify',
+              : InkWell(
+            onTap:(){
+              if(!state.isFormValid ){
+                context.read<FormBloc>().add(const FormSubmitted(value:Status.signUp));
+              }
 
-                  onPressed: !state.isFormValid
-                      ? () => context
-                          .read<FormBloc>()
-                          .add(const FormSubmitted(value: Status.signUp))
-                      : null,
 
-                );
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const EmailVerificationScreen()),
+                      (Route<dynamic> route) => false);
+
+              // !state.isFormValid
+              //             ? () => context
+              //                 .read<FormBloc>()
+              //                 .add(const FormSubmitted(value: Status.signUp))
+              //             :  null;
+
+            },
+            child: Container(
+              alignment:Alignment.center,
+              height:55,
+              decoration:BoxDecoration(
+                color:GlobalColors.mainColor,
+                borderRadius:BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color:Colors.black.withOpacity(0.1),
+                      blurRadius:10
+                  ),
+                ],
+              ),
+              child: const Text('Sign up',style:TextStyle(
+                  color:Colors.white,fontWeight:FontWeight.w600
+              )),
+            ),
+          );
+          // CustomButton(
+          //         text: 'Verify',
+          //
+          //         onPressed: !state.isFormValid
+          //             ? () => context
+          //                 .read<FormBloc>()
+          //                 .add(const FormSubmitted(value: Status.signUp))
+          //             :  null,
+          //
+          //       );
         })),
 
         // ElevatedButton(
