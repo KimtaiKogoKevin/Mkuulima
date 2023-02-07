@@ -37,6 +37,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_bloc: ^8.1.1
   cached_network_image: ^3.2.2
+  flutter_native_splash: ^2.2.17
 
   equatable: ^2.0.5
   firebase_core: ^2.3.0
@@ -77,9 +78,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-    # To add assets to your application, add an assets section, like this:
+  # To add assets to your application, add an assets section, like this:
   assets:
-      - images/
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

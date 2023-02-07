@@ -188,6 +188,7 @@ class ItemPage extends StatelessWidget {
               return ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
                 onPressed: () {
+
                   context.read<CartBloc>().add(AddProduct(product));
                   Navigator.pushNamed(context, '/cartPage');
                 },

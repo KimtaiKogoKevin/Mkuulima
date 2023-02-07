@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:mkuulima/repositories/User/userRepository.dart';
 import 'package:mkuulima/repositories/authentication/authentication_repository.dart';
 import 'package:mkuulima/repositories/categories/category_repository.dart';
@@ -37,14 +38,21 @@ import 'models/Product.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+ FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(
    options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = AppBlocObserver();
   runApp(
-       const MyApp());
+       const MyApp(),
+
+  );
+  FlutterNativeSplash.remove();
+
+
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -83,7 +91,9 @@ class MyApp extends StatelessWidget {
 
       ],
       child:const AppView(),
+
     );
+
 
   }
 }
@@ -138,8 +148,11 @@ class BlocNavigate extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthenticationSuccess) {
           return const CheckoutPage();
-        }  else {
+        }  else if (state is AuthenticationInitial) {
           return LoginPage();
+        }
+        else {
+          return const CheckoutPage();
         }
       },
     );

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../homepage.dart';
 
@@ -16,10 +17,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
   bool isEmailVerified = false;
   Timer? timer;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     FirebaseAuth.instance.currentUser?.sendEmailVerification();
     timer =
         Timer.periodic(const Duration(seconds: 3), (_) => checkEmailVerified());
@@ -30,18 +33,26 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+
     });
 
     if (isEmailVerified) {
       // TODO: implement your code after email verification
+      Fluttertoast.showToast(
+          msg: "Email Successfully Verified",
+          toastLength: Toast.LENGTH_LONG,
+          fontSize: 20,
+          textColor: Colors.green
+      );
 
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Email Successfully Verified")));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text("Email Successfully Verified")));
 
       timer?.cancel();
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const HomePage()),
-              (Route<dynamic> route) => false);
+      //final navigator = Navigator.of(context);
+      if (context.mounted) {
+        Navigator.pushNamed(context, '/cartPage');
+      }
     }
   }
 

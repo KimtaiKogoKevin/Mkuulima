@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkuulima/Pages/homepage.dart';
 
 import '../../../blocs/form-validation/form_bloc.dart';
 import '../../../utils/globalColors.dart';
@@ -71,11 +72,51 @@ class LoginForm extends StatelessWidget {
               builder:(context,state){
                 return state.isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    :  CustomButton(text: 'Sign in', onPressed: state.isFormValid
-                    ? () => context
-                    .read<FormBloc>()
-                    .add(const FormSubmitted(value: Status.signIn))
-                    : null,) ;
+                    : InkWell(
+                  onTap:(){
+                    if(!state.isFormValid ){
+                      context.read<FormBloc>().add(const FormSubmitted(value:Status.signIn));
+                    }
+
+
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => const HomePage()),
+                            (Route<dynamic> route) => false);
+
+                    // !state.isFormValid
+                    //             ? () => context
+                    //                 .read<FormBloc>()
+                    //                 .add(const FormSubmitted(value: Status.signUp))
+                    //             :  null;
+
+                  },
+                  child: Container(
+                    alignment:Alignment.center,
+                    height:55,
+                    decoration:BoxDecoration(
+                      color:GlobalColors.mainColor,
+                      borderRadius:BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color:Colors.black.withOpacity(0.1),
+                            blurRadius:10
+                        ),
+                      ],
+                    ),
+                    child: const Text('Sign up',style:TextStyle(
+                        color:Colors.white,fontWeight:FontWeight.w600
+                    )),
+                  ),
+                );
+
+
+
+
+                // CustomButton(text: 'Sign in', onPressed: !state.isFormValid
+                //     ? () => context
+                //     .read<FormBloc>()
+                //     .add(const FormSubmitted(value: Status.signIn))
+                //     : null,) ;
 
             }
             ),

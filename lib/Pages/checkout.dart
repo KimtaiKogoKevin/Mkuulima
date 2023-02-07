@@ -10,7 +10,7 @@ import '../widgets/ordersummary.dart';
 class CheckOutPageDeprecated extends StatelessWidget {
   CheckOutPageDeprecated({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  static const String routeName = '/checkout';
+  static const String routeName = '/checkoutdeprecated';
 
   static Route route() {
     return MaterialPageRoute(
