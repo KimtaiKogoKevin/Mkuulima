@@ -5,11 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mkuulima/Database/database_services._base.dart';
 import 'package:mkuulima/blocs/product/product_bloc.dart';
+import 'package:mkuulima/models/Product_model_base.dart';
 import 'package:mkuulima/widgets/categories/categoryCarouselItem.dart';
+import 'package:provider/provider.dart';
+import '../SQFlite/CartProvider.dart';
+import '../SQFlite/DBHelper.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
+import '../models/CartDeprecated.dart';
 import '../models/Product.dart';
+import '../models/ProductDepracated.dart';
+import '../repositories/database/database_service.dart';
 import '../widgets/Products/ProductsScreen.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/homeappbar.dart';
@@ -17,11 +25,11 @@ import '../widgets/Products/itemBottomNavBar.dart';
 import '../widgets/Products/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ItemPage extends StatelessWidget {
-   const ItemPage({Key? key, required this.product}) : super(key: key);
+class ItemPage extends StatefulWidget {
+  const  ItemPage({Key? key, required this.product}) : super(key: key);
   static const String routeName = '/itemPage';
 
-  static Route route({required Product product}) {
+  static Route route({required Product product,}) {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
         builder: (_) => ItemPage(
@@ -31,12 +39,56 @@ class ItemPage extends StatelessWidget {
 
   final Product product;
 
+
+   @override
+  State<ItemPage> createState() => _ItemPageState();
+}
+
+class _ItemPageState extends State<ItemPage> {
+  DBHelper dbHelper = DBHelper();
+  DatabaseServices_base service = DatabaseServices_base();
+  Future<List<ProductBase>>? productList;
+  List<ProductBase>? retrievedProductList;
+
+
   @override
+  void initState() {
+    super.initState();
+    _initRetrieval();
+  }
+
+  Future<void> _initRetrieval() async {
+    productList = service.retrieveProducts();
+    retrievedProductList = await service.retrieveProducts();
+  }
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
+
+    void saveData(ProductBase productBase) {
+      dbHelper
+          .insert(
+        CartDeprecated(
+          id: productBase.productId!,
+          productId:productBase.productId! ,
+          productName: productBase.productName,
+          regularPrice: productBase.regularPrice,
+
+          quantity: ValueNotifier(1),
+          //unitTag: products[index].unit,
+          imageUrls:productBase.imageUrls[0],
+        ),
+      )
+          .then((value) {
+        cart.addTotalPrice(double.parse(widget.product.regularPrice as String));
+        cart.addCounter();
+        print('Product Added to cart');
+      }).onError((error, stackTrace) {
+        print(error.toString());
+      });}
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
-      appBar:  HomeAppBar(title: product.productName),
-      body: ProductScreen(product: product,),
+      appBar:  HomeAppBar(title: widget.product.productName),
+      //body: ProductScreen(product: widget.product,),
       // ListView(children: [
       //   // CarouselSlider(
       //   //   options: CarouselOptions(
@@ -176,7 +228,7 @@ class ItemPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     context
                         .read<WishlistBloc>()
-                        .add(AddWishlistProduct(product));
+                        .add(AddWishlistProduct(widget.product ));
                     Navigator.pushNamed(context, '/wishlist');
                   },
                   icon: const Icon(
@@ -185,12 +237,13 @@ class ItemPage extends StatelessWidget {
                   ));
             }),
             BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+
               return ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
                 onPressed: () {
-
-                  context.read<CartBloc>().add(AddProduct(product));
-                  Navigator.pushNamed(context, '/cartPage');
+                  //saveData(widget.productBase);
+                  context.read<CartBloc>().add(AddProduct(widget.product));
+                  Navigator.pushNamed(context, '/cartscreen');
                 },
                 child:  const Text('Add To Cart',
                     style: TextStyle(

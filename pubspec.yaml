@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  badges: ^2.0.3
+  badges: ^3.0.2
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
   clippy_flutter: ^2.0.0-nullsafety.1
@@ -55,6 +55,12 @@ dependencies:
   flow_builder: ^0.0.9
   formz: ^0.4.1
   fluttertoast: ^8.1.2
+  shared_preferences: ^2.0.17
+  path_provider: ^2.0.12
+  sqflite: ^2.2.4+1
+  provider: ^6.0.5
+  path: ^1.8.2
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

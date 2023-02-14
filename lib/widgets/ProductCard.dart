@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/cart/cart_bloc.dart';
 import '../models/Product.dart';
+import '../models/Product_model_base.dart';
 
 
 class ProductCard2 extends StatelessWidget {

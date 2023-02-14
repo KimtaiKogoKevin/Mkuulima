@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../models/Product.dart';
+import '../../models/Product_model_base.dart';
 
-class CartItemSamples extends StatelessWidget {
-  const CartItemSamples(
+class CartItemSamplesBloc extends StatelessWidget {
+  const CartItemSamplesBloc(
       {Key? key, required this.product, required this.quantity})
       : super(key: key);
   final Product product;
@@ -31,6 +32,7 @@ class CartItemSamples extends StatelessWidget {
                 groupValue: "",
                 activeColor: const Color(0xFF4C53A5),
                 onChanged: (index) {},
+
               ),
               Expanded(
                 child: Container(

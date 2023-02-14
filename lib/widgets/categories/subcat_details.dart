@@ -8,6 +8,7 @@ import '../../blocs/product/product_bloc.dart';
 import '../../blocs/product/subCatProducts/subcat_product_bloc.dart';
 import '../../models/Product.dart';
 import '../../models/ProductDepracated.dart';
+import '../../models/Product_model_base.dart';
 import '../homeappbar.dart';
 class SubCatDetails extends StatefulWidget {
   const SubCatDetails({required this.subCategory, Key? key, required this.subCatSelected}) : super(key: key);
@@ -31,8 +32,11 @@ class _SubCatDetailsState extends State<SubCatDetails> {
   @override
   void initState() {
    // selection = category.selections.first;
-  //  _products = products.where((p) => p.category == category).toList();
-    super.initState();
+   // _products = products.where((p) => p.category == category).toList();
+    super.initState(
+
+    )
+    ;
   }
 
   @override
@@ -55,11 +59,12 @@ class _SubCatDetailsState extends State<SubCatDetails> {
           }
           if(state is ProductSubCatLoaded){
             return ListView.separated(
+
               padding: const EdgeInsets.symmetric(vertical: 18),
               itemCount: state.products.length,
 
               itemBuilder: (  context, index) {
-                return ProductRow(products:state.products, productSubCat: widget.subCatSelected, );
+                return ProductRow(products:_products, productSubCat: widget.subCatSelected, );
               },
               separatorBuilder: (_, index) => const SizedBox(
                 height: 18,

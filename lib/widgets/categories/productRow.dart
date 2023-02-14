@@ -1,6 +1,7 @@
 import '../../models/Product.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/Product_model_base.dart';
 import '../Products/productTile.dart';
 
 class ProductRow extends StatelessWidget {

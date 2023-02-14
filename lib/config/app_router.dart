@@ -9,12 +9,15 @@ import 'package:mkuulima/splashView.dart';
 
 import '../Pages/Authentication/login_page.dart';
 import '../Pages/Authentication/register_page.dart';
+import '../Pages/ItemPage_base.dart';
 import '../Pages/Wishlist.dart';
+import '../Pages/cartPageDeprecated.dart';
 import '../Pages/checkout/CheckoutPage.dart';
 import '../Pages/homepage.dart';
 import '../main.dart';
 import '../models/Category.dart';
 import '../models/Product.dart';
+import '../models/Product_model_base.dart';
 import '../widgets/categories/category_screen.dart';
 import '../widgets/categories/mainCategory.dart';
 
@@ -34,10 +37,13 @@ class AppRouter {
         return CartPage.route();
       case ItemPage.routeName:
         return ItemPage.route(product: settings.arguments as Product);
+      // case ItemPage_Base.routeName:
+      //   return ItemPage_Base.route(product:settings.arguments as Product);
       case WishlistScreen.routeName:
         return WishlistScreen.route();
       case CheckoutPage.routeName:
         return CheckoutPage.route();
+
       case SplashView.routeName:
         return SplashView.route();
       case LoginPage.routeName:
@@ -46,6 +52,8 @@ class AppRouter {
         return RegisterPage.route();
       case BlocNavigate.routeName:
         return BlocNavigate.route();
+      case CartScreen.routeName:
+        return CartScreen.route();
 
 
       default:
@@ -60,5 +68,7 @@ class AppRouter {
   }
 
 }
+
+
 
 

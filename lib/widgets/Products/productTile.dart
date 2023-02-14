@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mkuulima/widgets/Products/productImage.dart';
 
 import '../../models/Product.dart';
+import '../../models/Product_model_base.dart';
 import 'ProductsScreen.dart';
 class ProductTile extends StatelessWidget {
   const ProductTile({required this.product, Key? key}) : super(key: key);

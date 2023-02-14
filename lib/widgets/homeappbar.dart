@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
+import '../SQFlite/CartProvider.dart';
 import '../blocs/cart/cart_bloc.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -14,13 +16,30 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
       builder: (context, state) {
         if (state is CartLoaded) {
           return AppBar(
-            leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Icon(Icons.arrow_back,
-                  size: 30, color: Color(0xFF4C53A5)),
-            ),
+            leading:badges.Badge(badgeContent: Consumer<CartProvider>(
+              builder: (context, value, child) {
+            return Text(
+              value.getCounter().toString(),
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            );
+          },
+        ),
+        position:  badges.BadgePosition.topEnd(top:30 ,end:30),
+        child: IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.shopping_cart),
+        ),
+
+        ),
+
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            //   child: const Icon(Icons.arrow_back,
+            //       size: 30, color: Color(0xFF4C53A5)),
+            // ),
             backgroundColor: Colors.white,
             elevation: 0,
             title: Row(
@@ -33,42 +52,47 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF4C53A5)))),
                 const Spacer(),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "cartPage");
-                  },
-                  child: badges.Badge(
-                      showBadge: state.cart
-                              .productQuantity(state.cart.products)
-                              .isEmpty
-                          ? false
-                          : true,
-                      badgeColor: Colors.red,
-                      padding: const EdgeInsets.all(7),
-                      badgeContent: Text(
-                        state.cart
-                            .productQuantity(state.cart.products)
-                            .length
-                            .toString()
-                            .replaceAll("(", "")
-                            .replaceAll(")", ""),
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                      child: const Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 32,
-                        color: Color(0xFF4C53A5),
-                      )),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert,
-                      size: 32,
-                      color: Color(0xFF4C53A5),
-                    )),
+
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.pushNamed(context, "cartPage");
+                //   },
+                //   child: badges.Badge(
+                //       showBadge: state.cart
+                //               .productQuantity(state.cart.products)
+                //               .isEmpty
+                //           ? false
+                //           : true,
+                //       badgeColor: Colors.red,
+                //       padding: const EdgeInsets.all(7),
+                //       badgeContent:
+                //       Text(
+                //         state.cart
+                //             .productQuantity(state.cart.products)
+                //             .length
+                //             .toString()
+                //             .replaceAll("(", "")
+                //             .replaceAll(")", ""),
+                //         style: const TextStyle(color: Colors.black),
+                //       ),
+                //       child: const Icon(
+                //         Icons.shopping_bag_outlined,
+                //         size: 32,
+                //         color: Color(0xFF4C53A5),
+                //       )),
+                // ),
+
+
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: const Icon(
+                //       Icons.more_vert,
+                //       size: 32,
+                //       color: Color(0xFF4C53A5),
+                //     )),
               ],
             ),
+
           );
         } else if (state is CartLoading) {
           return const Center(

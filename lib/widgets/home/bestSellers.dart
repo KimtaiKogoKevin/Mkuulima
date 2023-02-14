@@ -31,6 +31,7 @@ class BestSellers extends StatelessWidget {
           }
           if (state is ProductLoaded) {
             return ItemsWidget(
+              productBase: [],
                 products: state.products
                     .where((product) => product.isRecommended!)
                     .toList());

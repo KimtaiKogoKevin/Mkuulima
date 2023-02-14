@@ -5,7 +5,7 @@ import '../firebase_services.dart';
 class Product extends Equatable {
   final String productName;
   final String? productDescription;
-  final num? regularPrice;
+  final num regularPrice;
   final num? discountPrice;
   final String? category;
   final String? mainCategory;
@@ -21,8 +21,9 @@ class Product extends Equatable {
   final List? sizeList;
   final String? otherDetails;
   final String? selectedUnit;
-  final List imageUrls;
-  final bool? approved;
+ final List imageUrls;
+ //  final String imageUrls;
+  final bool approved;
   final bool? isRecommended;
   final bool? isPopular;
 
@@ -32,7 +33,7 @@ class Product extends Equatable {
   const Product({
     required this.productName,
     this.productDescription,
-    this.regularPrice,
+    required this.regularPrice,
     this.discountPrice,
     this.category,
     this.mainCategory,
@@ -50,7 +51,7 @@ class Product extends Equatable {
     this.selectedUnit,
     required this.imageUrls,
     this.seller,
-    this.approved,
+    required this.approved,
     this.productId,
     this.isRecommended,
     this.isPopular,
@@ -69,6 +70,34 @@ class Product extends Equatable {
         subCategory
       ];
 
+  Map<String, dynamic> toMap() {
+    return {
+      'productName': productName,
+      'productDescription': productDescription,
+      'regularPrice': regularPrice,
+      'dicountPrice': discountPrice,
+      'category': category,
+      'mainCategory': mainCategory,
+      'subCategory': subCategory,
+      'discountDateSchedule': discountDateSchedule,
+      'skuNumber': skuNumber,
+      'manageInventory': manageInventory,
+      'chargeShipping': chargeShipping,
+      'brandName': brandName,
+      'stockOnHand': stockOnHand,
+      'reorderLevel': reorderLevel,
+      // 'sizeList': sizeList,
+      'otherDetails': otherDetails,
+      'selectedUnit': selectedUnit,
+      'imageUrls': imageUrls,
+      'seller': seller,
+      'approved': approved,
+      'productId': productId,
+      'isRecommended': isRecommended,
+      'isPopular': isPopular,
+    };
+  }
+
   static Product fromSnapshot(DocumentSnapshot snap) {
     Product product = Product(
         category: snap['category'],
@@ -78,7 +107,9 @@ class Product extends Equatable {
         imageUrls: snap['imageUrls'],
         regularPrice: snap['regularPrice'],
         productName: snap['productName'],
-        subCategory: snap['subCategory']);
+        subCategory: snap['subCategory'],
+        approved:snap['approved']
+    );
     return product;
   }
 }

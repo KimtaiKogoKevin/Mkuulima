@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mkuulima/Pages/ItemPage_base.dart';
+import 'package:mkuulima/widgets/Products/ProductsScreen.dart';
 
 import '../../models/Product.dart';
+import '../../models/Product_model_base.dart';
 class ItemCard extends StatelessWidget {
   final Product product;
+  // final ProductBase productBase;
+// final int index;
   const ItemCard({
     Key? key, required this.product,
   }) : super(key: key);
@@ -13,7 +18,9 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, '/productScreen', arguments: product);
+       // Navigator.pushNamed(context, '/productScreen', arguments: product);
+        Navigator.push(context,MaterialPageRoute(builder:(context)=>ProductScreen(product: product)));
+
       },
       child: Container(
 
@@ -49,7 +56,9 @@ class ItemCard extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/itemPage', arguments: product);
+                Navigator.push(context,MaterialPageRoute(builder:(context)=>ItemPage_Base(product: product, )));
+
+              //  Navigator.pushNamed(context, '/itemPage_base', arguments: Product(productName: product.productName, subCategory: product.subCategory, imageUrls: product.imageUrls, regularPrice: product.regularPrice) , );
               },
               child: Container(
                 margin: const EdgeInsets.all(10),

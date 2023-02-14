@@ -95,6 +95,7 @@ class CartBottomNavBar extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: InkWell(
                     onTap: () {
+                    //  saveData(index);
                       Navigator.pushNamed(context, '/checkout');
                     },
                     child: Container(

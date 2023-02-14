@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/Product.dart';
+import '../../models/Product_model_base.dart';
 import '../../utils/globalColors.dart';
 class ProductImage extends StatelessWidget {
   const ProductImage({
@@ -22,7 +23,7 @@ class ProductImage extends StatelessWidget {
         ),
         clipBehavior: Clip.hardEdge,
         child: Image.network(
-          product.imageUrls.first,
+          product.imageUrls[0],
           loadingBuilder: (_, child, loadingProgress) => loadingProgress == null
               ? child
               : const Center(child: CircularProgressIndicator()),

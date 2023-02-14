@@ -6,9 +6,10 @@ import '../blocs/Authentication/authentication_bloc.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../models/Product.dart';
 import '../widgets/cart/cart_bottom_nav_bar.dart';
-import '../widgets/cart/cartitems.dart';
+import '../widgets/cart/cart_items_bloc.dart';
 import '../widgets/homeappbar.dart';
 import 'Authentication/login_page.dart';
+import 'cartPageDeprecated.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class CartPage extends StatelessWidget {
                 return ListView.builder(
                   itemCount:state.cart.productQuantity(state.cart.products).keys.length,
                   itemBuilder: (context,index){
-                    return  CartItemSamples(
+                    return  CartItemSamplesBloc(
                         product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
                         quantity:  state.cart.productQuantity(state.cart.products).values.elementAt(index)
                     );
@@ -44,6 +45,7 @@ class CartPage extends StatelessWidget {
 
 
                 );
+
               }
               else {
                 return const Text('Something Went Wrong');

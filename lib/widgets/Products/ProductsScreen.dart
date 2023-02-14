@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/wishlist/wishlist_bloc.dart';
 import '../../models/Product.dart';
 import 'package:flutter/material.dart';
+import '../../models/Product_model_base.dart';
 import'../../utils/globalColors.dart';
 import '../homeappbar.dart';
 class ProductScreen extends StatefulWidget {
   const ProductScreen({required this.product, Key? key}) : super(key: key);
   final Product product;
+
 
   @override
   _ProductScreenState createState() => _ProductScreenState();
@@ -20,7 +22,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   void initState() {
-    selectedImageUrl = product.imageUrls.first;
+    selectedImageUrl = product.imageUrls[0];
     //selectedSize = product.sizes?.first;
     super.initState();
   }

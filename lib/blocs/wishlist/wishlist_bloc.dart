@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/Product.dart';
+import '../../models/Product_model_base.dart';
 import '../../models/Wishlist.dart';
 
 
