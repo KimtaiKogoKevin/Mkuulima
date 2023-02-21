@@ -1,3 +1,4 @@
+import 'package:mkuulima/firebase_services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -5,7 +6,7 @@ import 'dart:io' as io;
 
 import '../models/CartDeprecated.dart';
 
-
+FirebaseService _service = FirebaseService();
 class DBHelper {
   static Database? _database;
 
@@ -28,7 +29,7 @@ class DBHelper {
 // creating database table
   _onCreate(Database db, int version) async {
     await db.execute(
-        'CREATE TABLE cart(id INTEGER PRIMARY KEY, productId INTEGER UNIQUE, productName TEXT, regularPrice INTEGER, quantity INTEGER, imageUrls TEXT)');
+        'CREATE TABLE cart(id VARCHAR PRIMARY KEY, userId VARCHAR  ,productId VARCHAR UNIQUE, productName TEXT, regularPrice INTEGER, quantity INTEGER, imageUrls TEXT)');
   }
 // inserting data into the table
   Future<CartDeprecated> insert(CartDeprecated cart) async {
@@ -42,7 +43,7 @@ class DBHelper {
 
     var dbClient = await database;
       final List<Map<String, Object?>> queryResult =
-      await dbClient!.query('cart');
+      await dbClient!.query('cart' ,where: "userId = ?",whereArgs: [_service.user?.uid]);
       return queryResult.map((result) => CartDeprecated.fromMap(result)).toList();
 
 

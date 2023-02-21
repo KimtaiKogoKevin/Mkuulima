@@ -18,6 +18,7 @@ import '../SQFlite/DBHelper.dart';
 import '../blocs/cart/cart_bloc.dart';
 import '../blocs/wishlist/wishlist_bloc.dart';
 import '../config/ScreenArguments.dart';
+import '../firebase_services.dart';
 import '../models/CartDeprecated.dart';
 import '../models/Product.dart';
 import '../models/ProductDepracated.dart';
@@ -29,9 +30,10 @@ import '../widgets/Products/itemBottomNavBar.dart';
 import '../widgets/Products/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:uuid/uuid.dart';
 
 class ItemPage_Base extends StatefulWidget {
-    const ItemPage_Base({Key? key, required this.product, }) : super(key: key);
+     ItemPage_Base({Key? key, required this.product, }) : super(key: key);
     static const String routeName = '/itemPage_base';
 
    // static Route route({ required Product product, }) {
@@ -46,10 +48,15 @@ class ItemPage_Base extends StatefulWidget {
   // }
 
   final Product product;
-   // ProductBase productBase;
+    // late int id ;
 
 
-  @override
+
+    // ProductBase productBase;
+
+
+
+    @override
   State<ItemPage_Base> createState() => _ItemPage_BaseState();
 }
 
@@ -58,12 +65,22 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
   DatabaseServices_base service = DatabaseServices_base();
   Future<List<ProductBase>>? productList;
   List<ProductBase>? retrievedProductList;
-
+  FirebaseService firebase = FirebaseService();
 
   @override
   void initState() {
     super.initState();
     _initRetrieval();
+
+
+
+  }
+  String uuid = Uuid().v4();
+
+  void _generateNewUuid() {
+    setState(() {
+      uuid = Uuid().v4(); // Generate a new random UUID
+    });
   }
 
   Future<void> _initRetrieval() async {
@@ -73,7 +90,6 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
    // final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-
     Uint8List convertStringToUint8List(String str) {
       final List<int> codeUnits = str.codeUnits;
       final Uint8List unit8List = Uint8List.fromList(codeUnits);
@@ -91,12 +107,15 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
    Future<void> saveData(Product productBase) async{
       // image =convertStringToUint8List(productBase.imageUrls[0].replaceAll("'",''));
        final image = await networkImageToBase64(productBase.imageUrls[0]);
+
+
       // final imgBase64Str = await networkImageToBase64('IMAGE_URL');
       dbHelper
           .insert(
         CartDeprecated(
-          id: 1,
-          productId: 1,
+          id: uuid,
+          userId: firebase.user?.uid,
+          productId: productBase.productId,
           productName: productBase.productName,
           regularPrice: productBase.regularPrice,
          // discountPrice: productBase.discountPrice?.toInt(),
@@ -108,10 +127,13 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
       )
           .then((value) {
         cart.addTotalPrice(widget.product.regularPrice.toDouble());
+        print(uuid);
+
         cart.addCounter();
         print('Product Added to cart');
       }).onError((error, stackTrace) {
         print("diddnt touch");
+        print(uuid);
         print(error.toString());
       });}
     return Scaffold(
@@ -270,9 +292,16 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
               return ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
                 onPressed: () async{
-                  await saveData(widget.product);
-                  //context.read<CartBloc>().add(AddProduct(widget.product));
-                  Navigator.pushNamed(context, '/cartscreen');
+
+                  if (firebase.user?.uid!=null) {
+                    await saveData(widget.product);
+                    //context.read<CartBloc>().add(AddProduct(widget.product));
+                    Navigator.pushNamed(context, '/cartscreen');
+                  }
+                  else {
+                    Navigator.pushNamed(context, '/register');
+
+                  }
                 },
                 child:  const Text('Add To Cart',
                     style: TextStyle(

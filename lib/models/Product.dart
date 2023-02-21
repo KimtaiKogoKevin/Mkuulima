@@ -28,7 +28,7 @@ class Product extends Equatable {
   final bool? isPopular;
 
   final Map? seller;
-  final String? productId;
+  final String productId;
 
   const Product({
     required this.productName,
@@ -52,7 +52,7 @@ class Product extends Equatable {
     required this.imageUrls,
     this.seller,
     required this.approved,
-    this.productId,
+    required this.productId,
     this.isRecommended,
     this.isPopular,
   });
@@ -100,6 +100,7 @@ class Product extends Equatable {
 
   static Product fromSnapshot(DocumentSnapshot snap) {
     Product product = Product(
+      productId: snap['productId'],
         category: snap['category'],
         isPopular: snap['isPopular'],
         brandName: snap['brandName'],

@@ -27,7 +27,7 @@ class _SubCatDetailsState extends State<SubCatDetails> {
   SubCategoryDeprecated get subCategory => widget.subCategory;
   Filters filterValue = Filters.popular;
   String? selection;
-   late List<Product> _products;
+   //late List<Product> _products;
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _SubCatDetailsState extends State<SubCatDetails> {
               itemCount: state.products.length,
 
               itemBuilder: (  context, index) {
-                return ProductRow(products:_products, productSubCat: widget.subCatSelected, );
+                return ProductRow(products:state.products, productSubCat: widget.subCatSelected, );
               },
               separatorBuilder: (_, index) => const SizedBox(
                 height: 18,

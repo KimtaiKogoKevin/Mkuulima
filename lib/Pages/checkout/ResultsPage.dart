@@ -13,13 +13,13 @@ class ResultPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Result Page - User Details'),
       ),
-      body: FutureBuilder<User?>(
+      body: FutureBuilder<Users?>(
         future: context.read<UserRepository>().getUser(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-          final User user = snapshot.data!;
+          final Users user = snapshot.data!;
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

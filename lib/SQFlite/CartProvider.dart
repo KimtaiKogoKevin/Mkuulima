@@ -17,6 +17,7 @@ class CartProvider with ChangeNotifier {
   double get totalPrice => _totalPrice;
 
   List<CartDeprecated> cart = [];
+   late CartDeprecated cartItems;
 
   Future<List<CartDeprecated>> getData() async {
     cart = await dbHelper.getCartList();
@@ -63,14 +64,14 @@ class CartProvider with ChangeNotifier {
     return _counter;
   }
 
-  void addQuantity(int id) {
+  void addQuantity(String id) {
     final index = cart.indexWhere((element) => element.id == id);
     cart[index].quantity!.value = cart[index].quantity!.value + 1;
     _setPrefsItems();
     notifyListeners();
   }
 
-  void deleteQuantity(int id) {
+  void deleteQuantity(String id) {
     final index = cart.indexWhere((element) => element.id == id);
     final currentQuantity = cart[index].quantity!.value;
     if (currentQuantity <= 1) {
@@ -82,7 +83,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItem(int id) {
+  void removeItem(String id) {
     final index = cart.indexWhere((element) => element.id == id);
     cart.removeAt(index);
     _setPrefsItems();

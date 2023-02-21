@@ -149,3 +149,90 @@ class CartItemSamplesBloc extends StatelessWidget {
     );
   }
 }
+// return Card(
+//   color: Colors.blueGrey.shade200,
+//   elevation: 5.0,
+//   child: Padding(
+//     padding: const EdgeInsets.all(4.0),
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       mainAxisSize: MainAxisSize.max,
+//       children: [
+//         Expanded(
+//             child:
+//             Image.memory(provider.cart[index].imageUrls! )),
+//            // Image.network(provider.cart[index].imageUrls![0])),
+//         // Image(
+//         //   height: 80,
+//         //   width: 80,
+//         //   image:
+//         //   AssetImage(provider.cart[index].imageUrls),
+//         // ),
+//
+//         SizedBox(
+//           width: 130,
+//           child: Column(
+//             crossAxisAlignment:
+//                 CrossAxisAlignment.start,
+//             children: [
+//               const SizedBox(
+//                 height: 5.0,
+//               ),
+//               RichText(
+//                 overflow: TextOverflow.ellipsis,
+//                 maxLines: 1,
+//                 text: TextSpan(
+//                     text: 'Name: ',
+//                     style: TextStyle(
+//                         color: Colors.blueGrey.shade800,
+//                         fontSize: 16.0),
+//                     children: [
+//                       TextSpan(
+//                           text:
+//                               '${provider.cart[index].productName!}\n',
+//                           style: const TextStyle(
+//                               fontWeight:
+//                                   FontWeight.bold)),
+//                     ]),
+//               ),
+//               // RichText(
+//               //   maxLines: 1,
+//               //   text: TextSpan(
+//               //       text: 'Unit: ',
+//               //       style: TextStyle(
+//               //           color: Colors.blueGrey.shade800,
+//               //           fontSize: 16.0),
+//               //       children: [
+//               //         TextSpan(
+//               //             text:
+//               //             '${provider.cart[index].unitTag!}\n',
+//               //             style: const TextStyle(
+//               //                 fontWeight:
+//               //                 FontWeight.bold)),
+//               //       ]),
+//               // ),
+//               RichText(
+//                 maxLines: 1,
+//                 text: TextSpan(
+//                     text: 'Price: ' r"$",
+//                     style: TextStyle(
+//                         color: Colors.blueGrey.shade800,
+//                         fontSize: 16.0),
+//                     children: [
+//                       TextSpan(
+//                           text:
+//                            '${provider.cart[index].regularPrice!}\n',
+//                           style: const TextStyle(
+//                               fontWeight:
+//                                   FontWeight.bold)),
+//                     ]),
+//               ),
+//             ],
+//           ),
+//         ),
+
+
+     // ],
+   // ),
+//   ),
+// );

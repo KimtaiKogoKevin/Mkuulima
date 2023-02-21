@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class User extends Equatable {
-  const User({
+class Users extends Equatable {
+  const Users({
     required this.personalInfo,
     required this.billingAddress,
     required this.payment,
@@ -11,20 +11,20 @@ class User extends Equatable {
   final BillingAddress billingAddress;
   final Payment payment;
 
-  factory User.empty() {
-    return User(
+  factory Users.empty() {
+    return Users(
       personalInfo: PersonalInfo.empty(),
       billingAddress: BillingAddress.empty(),
       payment: Payment.empty(),
     );
   }
 
-  User copyWith({
+  Users copyWith({
     PersonalInfo? personalInfo,
     BillingAddress? billingAddress,
     Payment? payment,
   }) {
-    return User(
+    return Users(
       personalInfo: personalInfo ?? this.personalInfo,
       billingAddress: billingAddress ?? this.billingAddress,
       payment: payment ?? this.payment,

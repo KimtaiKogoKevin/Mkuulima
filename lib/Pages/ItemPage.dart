@@ -26,7 +26,7 @@ import '../widgets/Products/item_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ItemPage extends StatefulWidget {
-  const  ItemPage({Key? key, required this.product}) : super(key: key);
+    ItemPage({Key? key, required this.product}) : super(key: key);
   static const String routeName = '/itemPage';
 
   static Route route({required Product product,}) {
@@ -38,9 +38,10 @@ class ItemPage extends StatefulWidget {
   }
 
   final Product product;
+  late int id;
 
 
-   @override
+  @override
   State<ItemPage> createState() => _ItemPageState();
 }
 
@@ -55,6 +56,9 @@ class _ItemPageState extends State<ItemPage> {
   void initState() {
     super.initState();
     _initRetrieval();
+    setState(() {
+       widget.id = 0;
+    });
   }
 
   Future<void> _initRetrieval() async {
@@ -63,12 +67,13 @@ class _ItemPageState extends State<ItemPage> {
   }
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
+    widget.id = ++widget.id;
 
     void saveData(ProductBase productBase) {
       dbHelper
           .insert(
         CartDeprecated(
-          id: productBase.productId!,
+          id: '',
           productId:productBase.productId! ,
           productName: productBase.productName,
           regularPrice: productBase.regularPrice,
@@ -242,6 +247,8 @@ class _ItemPageState extends State<ItemPage> {
                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
                 onPressed: () {
                   //saveData(widget.productBase);
+
+
                   context.read<CartBloc>().add(AddProduct(widget.product));
                   Navigator.pushNamed(context, '/cartscreen');
                 },

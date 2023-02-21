@@ -19,41 +19,43 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(shrinkWrap: true, children: [
-      Container(
-          padding: const EdgeInsets.only(top: 15),
-          decoration: const BoxDecoration(
-              color: Color(0xFFEDECF2),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(35),
-                topRight: Radius.circular(35),
-              )),
-          child: Column(
-            children: [
+      SingleChildScrollView(
+        child: Container(
+            padding: const EdgeInsets.only(top: 15),
+            decoration: const BoxDecoration(
+                color: Color(0xFFEDECF2),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35),
+                )),
+            child: Column(
+              children: [
 
-              //search widget
-              SearchBar(),
+                //search widget
+                SearchBar(),
 
 
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: const Text(
-                  "Shop By Categories",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF4C53A5)),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: const Text(
+                    "Shop By Categories",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF4C53A5)),
+                  ),
                 ),
-              ),
-              //Categories
-              CategoryCarousel(),
-              BestSellers(),
+                //Categories
+                CategoryCarousel(),
+                BestSellers(),
 
-            ],
-          )
+              ],
+            )
 
 
-          ),
+            ),
+      ),
     ]));
   }
 }

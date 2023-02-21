@@ -51,7 +51,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       timer?.cancel();
       //final navigator = Navigator.of(context);
       if (context.mounted) {
-        Navigator.pushNamed(context, '/cartPage');
+        Navigator.pushNamed(context, '/');
       }
     }
   }

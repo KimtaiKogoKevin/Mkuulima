@@ -108,7 +108,7 @@ class _RegisterFormState extends State<RegisterForm> {
               controller: passwordController,
               title: 'Password',
               obscureText: true,
-              textInputType: TextInputType.visiblePassword,
+              textInputType: TextInputType.text,
               onChanged: (value) {
                 context.read<FormBloc>().add(PasswordChanged(value!));
               },
@@ -215,12 +215,17 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
             ),
             const SizedBox(width: 5),
-            Text(
-              'Log in',
-              style: TextStyle(
-                color: GlobalColors.mainColor,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, 'login');
+              },
+              child: Text(
+                'Log in',
+                style: TextStyle(
+                  color: GlobalColors.mainColor,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],

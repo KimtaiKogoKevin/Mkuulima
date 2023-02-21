@@ -26,7 +26,7 @@ class ProductBase {
   final bool? isPopular;
 
   final Map? seller;
-  final int? productId;
+  final String? productId;
 
 
   ProductBase({

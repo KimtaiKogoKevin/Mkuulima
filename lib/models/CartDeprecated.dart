@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CartDeprecated {
-  late final int? id;
+  late final String? id;
   final String productName;
   //final String? productDescription;
   final num regularPrice;
@@ -21,7 +21,8 @@ class CartDeprecated {
   //final int? shippingCharge;
   //final String? brandName;
   //final int? stockOnHand;
-  final int productId;
+  final String productId;
+  final String? userId;
 
 
 //final int? reorderLevel;
@@ -44,6 +45,7 @@ class CartDeprecated {
     //this.mainCategory,
    // required this.subCategory,
     required this.quantity,
+     this.userId,
    // this.discountDateSchedule,
     //this.skuNumber,
     //this.manageInventory,
@@ -61,6 +63,7 @@ class CartDeprecated {
 
   CartDeprecated.fromMap(Map<dynamic, dynamic> data)
       : id = data['id'],
+        userId=data['userId'],
         productId = data['productId'] ,
         productName = data['productName'],
       //  productDescription = data['productDescription'],
@@ -108,6 +111,7 @@ class CartDeprecated {
      //  'otherDetails': otherDetails,
      //  'selectedUnit': selectedUnit,
       'imageUrls': imageUrls,
+      'userId':userId,
     //  'seller': seller,
       //'productId': productId,
      // 'isRecommended': isRecommended,

@@ -1,11 +1,11 @@
 import '../../models/User.dart';
 
 class UserRepository {
-  User? _user;
+  Users? _user;
 
-  Future<User?> getUser() async {
+  Future<Users?> getUser() async {
     await Future.delayed(const Duration(seconds: 1));
-    return _user ?? User.empty();
+    return _user ?? Users.empty();
   }
 
   Future<void> updatePersonalInfo({
@@ -13,7 +13,7 @@ class UserRepository {
     required String email,
     required String phoneNumber,
   }) async {
-    _user ??= User.empty();
+    _user ??= Users.empty();
     await Future.delayed(const Duration(seconds: 1));
     _user = _user?.copyWith(
       personalInfo:
@@ -28,7 +28,7 @@ class UserRepository {
     required String country,
     required String postcode,
   }) async {
-    _user ??= User.empty();
+    _user ??= Users.empty();
     await Future.delayed(const Duration(seconds: 1));
     _user = _user?.copyWith(
       billingAddress: BillingAddress(
@@ -47,7 +47,7 @@ class UserRepository {
     required String expiryDate,
     required String cvvNumber,
   }) async {
-    _user ??= User.empty();
+    _user ??= Users.empty();
     await Future.delayed(const Duration(seconds: 1));
     _user = _user?.copyWith(
       payment: Payment(
