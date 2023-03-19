@@ -116,7 +116,7 @@ class CartDeprecated {
       //'productId': productId,
      // 'isRecommended': isRecommended,
    //   'isPopular': isPopular,
-      'quantity': quantity?.value,
+      'quantity': quantity.value,
 
     };
 
@@ -125,7 +125,7 @@ class CartDeprecated {
   Map<String, dynamic> quantityMap() {
     return {
       'productId': productId,
-      'quantity': quantity!.value,
+      'quantity': quantity.value,
     };
   }
 

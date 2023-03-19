@@ -12,7 +12,7 @@ part 'checkout_event.dart';
 
 part 'checkout_state.dart';
 
-class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutStateDeprecated> {
+class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   final CartBloc _cartBloc;
 
   // final PaymentBloc _paymentBloc;
@@ -63,7 +63,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutStateDeprecated> {
 
   void _onUpdateCheckout(
       UpdateCheckout event,
-      Emitter<CheckoutStateDeprecated> emit,
+      Emitter<CheckoutState> emit,
       ) {
     if (state is CheckoutLoaded) {
       final state = this.state as CheckoutLoaded;
@@ -87,7 +87,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutStateDeprecated> {
 
   void _onConfirmCheckout(
       ConfirmCheckout event,
-      Emitter<CheckoutStateDeprecated> emit,
+      Emitter<CheckoutState> emit,
       ) async {
     _checkoutSubscription?.cancel();
     if (this.state is CheckoutLoaded) {

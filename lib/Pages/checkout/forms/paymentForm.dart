@@ -12,7 +12,7 @@ class PaymentForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PaymentBloc, PaymentState>(
+    return BlocListener<PaymentBloc2, PaymentState2>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
           ScaffoldMessenger.of(context)
@@ -50,13 +50,13 @@ class PaymentForm extends StatelessWidget {
 class _CardNameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentState>(
+    return BlocBuilder<PaymentBloc2, PaymentState2>(
       buildWhen: (previous, current) => previous.cardName != current.cardName,
       builder: (context, state) {
         return TextField(
           key: const Key('paymentForm_cardNameInput_textField'),
           onChanged: (cardName) =>
-              context.read<PaymentBloc>().add(CardNameChanged(cardName)),
+              context.read<PaymentBloc2>().add(CardNameChanged(cardName)),
           decoration: InputDecoration(
             labelText: 'Enter card name',
             errorText:
@@ -71,14 +71,14 @@ class _CardNameInput extends StatelessWidget {
 class _CardNumberInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentState>(
+    return BlocBuilder<PaymentBloc2, PaymentState2>(
       buildWhen: (previous, current) =>
       previous.cardNumber != current.cardNumber,
       builder: (context, state) {
         return TextField(
           key: const Key('paymentForm_cardNumberInput_textField'),
           onChanged: (cardNumber) =>
-              context.read<PaymentBloc>().add(CardNumberChanged(cardNumber)),
+              context.read<PaymentBloc2>().add(CardNumberChanged(cardNumber)),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: 'Enter card number',
@@ -95,14 +95,14 @@ class _CardNumberInput extends StatelessWidget {
 class _ExpiryDateInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentState>(
+    return BlocBuilder<PaymentBloc2, PaymentState2>(
       buildWhen: (previous, current) =>
       previous.expiryDate != current.expiryDate,
       builder: (context, state) {
         return TextField(
           key: const Key('paymentForm_expiryDateInput_textField'),
           onChanged: (expiryDate) =>
-              context.read<PaymentBloc>().add(ExpiryDateChanged(expiryDate)),
+              context.read<PaymentBloc2>().add(ExpiryDateChanged(expiryDate)),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: 'Expiry Date',
@@ -119,13 +119,13 @@ class _ExpiryDateInput extends StatelessWidget {
 class _CvvNumberInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentState>(
+    return BlocBuilder<PaymentBloc2, PaymentState2>(
       buildWhen: (previous, current) => previous.cvvNumber != current.cvvNumber,
       builder: (context, state) {
         return TextField(
           key: const Key('paymentForm_CvvNumberInput_textField'),
           onChanged: (cvvNumber) =>
-              context.read<PaymentBloc>().add(CvvNumberChanged(cvvNumber)),
+              context.read<PaymentBloc2>().add(CvvNumberChanged(cvvNumber)),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: 'CVV',
@@ -141,7 +141,7 @@ class _CvvNumberInput extends StatelessWidget {
 class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PaymentBloc, PaymentState>(
+    return BlocConsumer<PaymentBloc2, PaymentState2>(
       listener: (context, state) {
         if (state.status.isSubmissionSuccess) {
           Navigator.of(context).push(
@@ -158,7 +158,7 @@ class _SubmitButton extends StatelessWidget {
             key: const Key('paymentForm_submitButton_elevatedButton'),
             style: ElevatedButton.styleFrom(elevation: 0),
             onPressed: state.status.isValidated
-                ? () => context.read<PaymentBloc>().add(FormSubmitted())
+                ? () => context.read<PaymentBloc2>().add(FormSubmitted())
                 : null,
             child: const Text('SUBMIT'),
           );
@@ -171,7 +171,7 @@ class _SubmitButton extends StatelessWidget {
 class _CancelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentState>(
+    return BlocBuilder<PaymentBloc2, PaymentState2>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress

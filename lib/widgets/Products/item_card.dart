@@ -18,8 +18,8 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-       // Navigator.pushNamed(context, '/productScreen', arguments: product);
-        Navigator.push(context,MaterialPageRoute(builder:(context)=>ProductScreen(product: product)));
+        Navigator.pushNamed(context, '/itemPage', arguments: product);
+        //Navigator.push(context,MaterialPageRoute(builder:(context)=>ProductScreen(product: product)));
 
       },
       child: Container(
@@ -56,7 +56,8 @@ class ItemCard extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder:(context)=>ItemPage_Base(product: product, )));
+                Navigator.pushNamed(context,'/itemPage',arguments: product);
+               // Navigator.push(context,MaterialPageRoute(builder:(context)=>ItemPage_Base(product: product, )));
 
               //  Navigator.pushNamed(context, '/itemPage_base', arguments: Product(productName: product.productName, subCategory: product.subCategory, imageUrls: product.imageUrls, regularPrice: product.regularPrice) , );
               },

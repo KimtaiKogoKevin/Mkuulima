@@ -20,7 +20,7 @@ class PaymentPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12.0),
       child: BlocProvider(
-        create: (context) => PaymentBloc(
+        create: (context) => PaymentBloc2(
           userRepository: context.read<UserRepository>(),
         ),
         child: const PaymentForm(),

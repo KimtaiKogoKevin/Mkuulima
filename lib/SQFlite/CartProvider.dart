@@ -13,8 +13,8 @@ class CartProvider with ChangeNotifier {
   int get counter => _counter;
   int get quantity => _quantity;
 
-  double _totalPrice = 0.0;
-  double get totalPrice => _totalPrice;
+  double subTotal = 0.0;
+  double get totalPrice => subTotal;
 
   List<CartDeprecated> cart = [];
    late CartDeprecated cartItems;
@@ -36,7 +36,7 @@ class CartProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt('cart_items', _counter);
     prefs.setInt('item_quantity', _quantity);
-    prefs.setDouble('total_price', _totalPrice);
+    prefs.setDouble('total_price', subTotal);
     notifyListeners();
   }
 
@@ -44,7 +44,7 @@ class CartProvider with ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _counter = prefs.getInt('cart_items') ?? 0;
     _quantity = prefs.getInt('item_quantity') ?? 1;
-    _totalPrice = prefs.getDouble('total_price') ?? 0;
+    subTotal = prefs.getDouble('total_price') ?? 0;
   }
 
   void addCounter() {
@@ -95,20 +95,33 @@ class CartProvider with ChangeNotifier {
     return _quantity;
   }
 
-  void addTotalPrice(double productPrice) {
-    _totalPrice = _totalPrice + productPrice;
+  void addSubTotalPrice(double productPrice) {
+    subTotal = subTotal + productPrice;
     _setPrefsItems();
     notifyListeners();
   }
 
-  void removeTotalPrice(double productPrice) {
-    _totalPrice = _totalPrice - productPrice;
+  void removeSubTotalPrice(double productPrice) {
+    subTotal = subTotal - productPrice;
     _setPrefsItems();
     notifyListeners();
   }
 
-  double getTotalPrice() {
+
+  double deliveryFee(subtotal) {
+    if (subtotal >= 1.00 && subtotal <= 5000) {
+      return 150.0;
+    } else {
+      return 0.0;
+    }
+  }
+  String get deliveryFeeString => deliveryFee(subTotal).toStringAsFixed(2);
+
+  double total(subtotal , deliveryFee){
+    return subtotal + deliveryFee(subtotal);
+  }
+  double getSubTotalPrice() {
     _getPrefsItems();
-    return _totalPrice;
+    return subTotal;
   }
 }

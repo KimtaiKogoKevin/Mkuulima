@@ -12,8 +12,9 @@ class BestSellers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    return Column(  // gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+
+    children: [
         Container(
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -31,7 +32,7 @@ class BestSellers extends StatelessWidget {
           }
           if (state is ProductLoaded) {
             return ItemsWidget(
-              productBase: [],
+              crossAxisCount: 2,
                 products: state.products
                     .where((product) => product.isRecommended!)
                     .toList());

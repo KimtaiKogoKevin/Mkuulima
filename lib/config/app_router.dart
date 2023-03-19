@@ -43,6 +43,8 @@ class AppRouter {
         return WishlistScreen.route();
       case CheckoutPage.routeName:
         return CheckoutPage.route();
+      case CheckOutPageDeprecated.routeName:
+        return CheckOutPageDeprecated.route();
 
       case SplashView.routeName:
         return SplashView.route();

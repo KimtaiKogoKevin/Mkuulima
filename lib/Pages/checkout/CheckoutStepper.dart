@@ -11,7 +11,7 @@ class CheckoutStepper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CheckoutCubit, CheckoutState>(
+    return BlocBuilder<CheckoutCubit, CheckoutStateQubit>(
       builder: (context, state) {
         return Stepper(
           type: StepperType.horizontal,

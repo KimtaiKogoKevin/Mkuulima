@@ -126,7 +126,7 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
         ),
       )
           .then((value) {
-        cart.addTotalPrice(widget.product.regularPrice.toDouble());
+        cart.addSubTotalPrice(widget.product.regularPrice.toDouble());
         print(uuid);
 
         cart.addCounter();

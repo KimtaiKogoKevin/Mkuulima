@@ -28,9 +28,9 @@ class CartBottomNavBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('SUBTOTAL',
-                          style: Theme.of(context).textTheme.headline6),
+                          style: Theme.of(context).textTheme.titleLarge),
                       Text('Sh ${state.cart.subtotalString}',
-                          style: Theme.of(context).textTheme.headline6),
+                          style: Theme.of(context).textTheme.titleLarge),
                     ],
                   ),
                 ),
@@ -96,7 +96,7 @@ class CartBottomNavBar extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                     //  saveData(index);
-                      Navigator.pushNamed(context, '/checkout');
+                      Navigator.pushNamed(context, '/checkoutDeprecated');
                     },
                     child: Container(
                       height: 50,

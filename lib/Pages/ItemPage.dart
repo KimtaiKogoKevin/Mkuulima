@@ -38,7 +38,7 @@ class ItemPage extends StatefulWidget {
   }
 
   final Product product;
-  late int id;
+   int id=0;
 
 
   @override
@@ -84,7 +84,7 @@ class _ItemPageState extends State<ItemPage> {
         ),
       )
           .then((value) {
-        cart.addTotalPrice(double.parse(widget.product.regularPrice as String));
+        cart.addSubTotalPrice(double.parse(widget.product.regularPrice as String));
         cart.addCounter();
         print('Product Added to cart');
       }).onError((error, stackTrace) {
@@ -93,7 +93,7 @@ class _ItemPageState extends State<ItemPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       appBar:  HomeAppBar(title: widget.product.productName),
-      //body: ProductScreen(product: widget.product,),
+      body: ProductScreen(product: widget.product,),
       // ListView(children: [
       //   // CarouselSlider(
       //   //   options: CarouselOptions(
@@ -244,13 +244,13 @@ class _ItemPageState extends State<ItemPage> {
             BlocBuilder<CartBloc, CartState>(builder: (context, state) {
 
               return ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4C53A5)),
                 onPressed: () {
                   //saveData(widget.productBase);
 
 
                   context.read<CartBloc>().add(AddProduct(widget.product));
-                  Navigator.pushNamed(context, '/cartscreen');
+                  Navigator.pushNamed(context, '/cartPage');
                 },
                 child:  const Text('Add To Cart',
                     style: TextStyle(

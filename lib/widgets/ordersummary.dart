@@ -22,9 +22,9 @@ class OrderSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('SUBTOTAL',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.titleLarge),
                     Text('\$${state.cart.subtotalString}',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
               ),
@@ -35,13 +35,13 @@ class OrderSummary extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('DELIVERY FEE',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.titleLarge),
                     Text('\$${state.cart.deliveryFeeString}',
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Stack(
                 children: <Widget>[
                   Container(
@@ -53,11 +53,11 @@ class OrderSummary extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(5.0),
                     width: MediaQuery.of(context).size.width - 10,
                     height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF4C53A5),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -69,36 +69,37 @@ class OrderSummary extends StatelessWidget {
                             'TOTAL',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           ),
                           Text(
                             '\$${state.cart.totalString}',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/checkout');
-                    },
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      decoration: BoxDecoration(color: const Color(0xFF4C53A5),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: const Text("Check Out", style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),),
-                    ),
-                  )
+                  // InkWell(
+                  //   onTap: () {
+                  //     //Navigator.pushNamed(context, '/checkout');
+                  //   },
+                  //
+                  //   child: Container(
+                  //     height: 50,
+                  //     alignment: Alignment.center,
+                  //     width: double.infinity,
+                  //     decoration: BoxDecoration(color: const Color(0xFF4C53A5),
+                  //         borderRadius: BorderRadius.circular(5)),
+                  //     child: const Text("Order Now", style: TextStyle(
+                  //         fontSize: 22,
+                  //         fontWeight: FontWeight.bold,
+                  //         color: Colors.white),),
+                  //   ),
+                  // )
 
                 ],
               ),

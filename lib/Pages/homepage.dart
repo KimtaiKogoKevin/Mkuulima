@@ -6,6 +6,7 @@ import 'package:badges/badges.dart';
 import '../models/Product.dart';
 import '../widgets/categories/categories_widget.dart';
 import '../widgets/categories/category_screen.dart';
+import '../widgets/homeappbar.dart';
 import '../widgets/search_widget.dart';
 import 'homeBody.dart';
 
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
       initialIndex: 0,
       length: 3,
       child: Scaffold(
-        appBar: const CustomAppBar(title: "Mukuu-Lima"),
+        appBar: const HomeAppBar(title: "Mukuu-Lima"),
         body: TabBarView(children: [
           Container(
             margin: EdgeInsets.only(top: 20),

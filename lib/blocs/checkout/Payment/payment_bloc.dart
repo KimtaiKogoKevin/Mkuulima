@@ -13,9 +13,9 @@ import 'package:equatable/equatable.dart';
 part 'payment_event.dart';
 part 'payment_state.dart';
 
-class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
+class PaymentBloc2 extends Bloc<PaymentEvent2, PaymentState2> {
   final UserRepository userRepository;
-  PaymentBloc({required this.userRepository}) : super(const PaymentState()) {
+  PaymentBloc2({required this.userRepository}) : super(const PaymentState2()) {
     on<CardNameChanged>(_onCardNameChanged);
     on<CardNumberChanged>(_onCardNumberChanged);
     on<ExpiryDateChanged>(_onExpiryDateChanged);
@@ -25,7 +25,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   void _onCardNameChanged(
       CardNameChanged event,
-      Emitter<PaymentState> emit,
+      Emitter<PaymentState2> emit,
       ) {
     final cardName = CardName.dirty(event.cardName);
     emit(state.copyWith(
@@ -37,7 +37,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   void _onCardNumberChanged(
       CardNumberChanged event,
-      Emitter<PaymentState> emit,
+      Emitter<PaymentState2> emit,
       ) {
     final cardNumber = CardNumber.dirty(event.cardNumber);
     emit(state.copyWith(
@@ -49,7 +49,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   void _onExpiryDateChanged(
       ExpiryDateChanged event,
-      Emitter<PaymentState> emit,
+      Emitter<PaymentState2> emit,
       ) {
     final expiryDate = ExpiryDate.dirty(event.expiryDate);
     emit(state.copyWith(
@@ -61,7 +61,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   void _onCvvNumberChanged(
       CvvNumberChanged event,
-      Emitter<PaymentState> emit,
+      Emitter<PaymentState2> emit,
       ) {
     final cvvNumber = CvvNumber.dirty(event.cvvNumber);
     emit(state.copyWith(
@@ -73,7 +73,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
 
   void _onFormSubmitted(
       FormSubmitted event,
-      Emitter<PaymentState> emit,
+      Emitter<PaymentState2> emit,
       ) async {
     if (state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));

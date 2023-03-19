@@ -21,7 +21,7 @@ class CartItemSamplesProvider extends StatelessWidget {
       children: [
         Consumer<CartProvider>(
           builder:(BuildContext context, provider , widget){
-            return            ListView.builder(
+            return  ListView.builder(
               shrinkWrap:true,
               itemCount:provider.cart.length,
               itemBuilder:(context,index){

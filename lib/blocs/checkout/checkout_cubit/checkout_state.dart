@@ -1,14 +1,14 @@
 part of 'checkout_cubit.dart';
 
-class CheckoutState extends Equatable {
-  const CheckoutState({
+class CheckoutStateQubit extends Equatable {
+  const CheckoutStateQubit({
     this.activeStepperIndex = 0,
   });
 
   final int activeStepperIndex;
 
-  CheckoutState copyWith({int? activeStepperIndex}) {
-    return CheckoutState(
+  CheckoutStateQubit copyWith({int? activeStepperIndex}) {
+    return CheckoutStateQubit(
       activeStepperIndex: activeStepperIndex ?? this.activeStepperIndex,
     );
   }

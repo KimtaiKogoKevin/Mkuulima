@@ -39,7 +39,7 @@ class CartItemSamplesBloc extends StatelessWidget {
                   height: 100,
                   width: 100,
                   margin: const EdgeInsets.only(right: 15),
-                  child: Image.network(product.imageUrls![0],
+                  child: Image.network(product.imageUrls[0],
                       width: 100, height: 80, fit: BoxFit.cover),
                 ),
               ),
@@ -49,7 +49,7 @@ class CartItemSamplesBloc extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(product.productName!,
+                      Text(product.productName,
                           style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

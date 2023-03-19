@@ -7,6 +7,7 @@ import 'package:badges/badges.dart' as badges;
 import '../SQFlite/CartProvider.dart';
 import '../SQFlite/DBHelper.dart';
 import '../models/CartDeprecated.dart';
+import '../utils/ReusableWidget.dart';
 import '../widgets/homeappbar.dart';
 
 class CartScreen extends StatefulWidget {
@@ -103,7 +104,7 @@ class _CartScreenState extends State<CartScreen> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(provider.cart[index].productName!,
+                                          Text(provider.cart[index].productName,
                                               style: const TextStyle(
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold,
@@ -119,7 +120,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ValueListenableBuilder<int>(
 
                                       valueListenable:
-                                      provider.cart[index].quantity!,
+                                      provider.cart[index].quantity,
                                       builder: (context, val, child) {
                                         return PlusMinusButtons(
                                           addQuantity: () {
@@ -141,14 +142,14 @@ class _CartScreenState extends State<CartScreen> {
                                                 //     .cart[index].discountPrice,
                                                 quantity: ValueNotifier(
                                                     provider.cart[index]
-                                                        .quantity!.value),
+                                                        .quantity.value),
                                                 // unitTag: provider
                                                 //     .cart[index].unitTag,
                                                 imageUrls: provider
                                                     .cart[index].imageUrls))
                                                 .then((value) {
                                               setState(() {
-                                                cart.addTotalPrice(double.parse(
+                                                cart.addSubTotalPrice(double.parse(
                                                     provider
                                                         .cart[index].regularPrice
                                                         .toString()));
@@ -158,7 +159,7 @@ class _CartScreenState extends State<CartScreen> {
                                           deleteQuantity: () {
                                             cart.deleteQuantity(
                                                 provider.cart[index].id!);
-                                            cart.removeTotalPrice(double.parse(
+                                            cart.removeSubTotalPrice(double.parse(
                                                 provider.cart[index].regularPrice
                                                     .toString()));
                                           },
@@ -339,7 +340,7 @@ class _CartScreenState extends State<CartScreen> {
               final ValueNotifier<int?> totalPrice = ValueNotifier(null);
               for (var element in value.cart) {
                 totalPrice.value =
-                    ((element.regularPrice! * element.quantity!.value) +
+                    ((element.regularPrice* element.quantity.value) +
                         (totalPrice.value ?? 0)) as int?;
               }
               return Column(
@@ -359,12 +360,13 @@ class _CartScreenState extends State<CartScreen> {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Payment Successful'),
-              duration: Duration(seconds: 2),
-            ),
-          );
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(
+          //     content: Text('Payment Successful'),
+          //     duration: Duration(seconds: 2),
+          //   ),
+          // );
+          Navigator.pushNamed(context,'/checkoutDeprecated');
         },
         child: Container(
           color: Colors.yellow.shade600,
@@ -407,28 +409,3 @@ class PlusMinusButtons extends StatelessWidget {
   }
 }
 
-class ReusableWidget extends StatelessWidget {
-  final String title, value;
-
-  const ReusableWidget({Key? key, required this.title, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          Text(
-            value.toString(),
-            style: Theme.of(context).textTheme.subtitle2,
-          ),
-        ],
-      ),
-    );
-  }
-}
