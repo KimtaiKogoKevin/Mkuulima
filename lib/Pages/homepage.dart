@@ -28,13 +28,13 @@ class HomePage extends StatelessWidget {
       initialIndex: 0,
       length: 3,
       child: Scaffold(
-        appBar: const HomeAppBar(title: "Mukuu-Lima"),
+        appBar: const CustomAppBar(title: "Mukuu-Lima"),
         body: TabBarView(children: [
           Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Column(
-              children: [
+              children: const [
                 HomeBody(
                   products: [],
                 ),

@@ -31,14 +31,15 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
           selectedCategory = widget.category2?.catName;
         });
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) {return const CategoryScreen();}),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) {return const CategoryScreen();}),
+        // );
 
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 5.0),
+        width:MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5.0),
         child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(5.0)),
             child: Stack(
@@ -46,8 +47,10 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
 
                 // Image.network(product2==null ? category2!.image! : product2!.imageUrls.toString(),
                 //     fit: BoxFit.cover, width: 1000.0),
-                Image.network(widget.product2==null ? widget.category2!.image : widget.product2!.imageUrls![0],
-                    fit: BoxFit.cover, width: 1000.0),
+                Center(
+                  child: Image.network(widget.product2==null ? widget.category2!.image : widget.product2!.imageUrls![0],
+                      fit: BoxFit.contain, width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
+                ),
                 Positioned(
                   bottom: 0.0,
                   left: 0.0,
@@ -67,7 +70,7 @@ class _CategoryCarouselCardState extends State<CategoryCarouselCard> {
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     child: Text(
                         widget.product2 == null ? widget.category2!.catName : 'hkkjj',
-                        style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.white)
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white)
                     ),
                   ),
                 ),

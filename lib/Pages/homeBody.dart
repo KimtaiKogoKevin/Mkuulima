@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mkuulima/models/Product.dart';
+import 'package:mkuulima/responsive.dart';
 
 import '../widgets/home/bestSellers.dart';
 
@@ -32,12 +33,12 @@ class HomeBody extends StatelessWidget {
               children: [
 
                 //search widget
-                SearchBar(),
+                const ResponsiveWidget(mobile:SearchBar(), tab: SearchBar(), desktop: SearchBar(),),
 
 
                 Container(
                   alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   child: const Text(
                     "Shop By Categories",
                     style: TextStyle(
@@ -47,8 +48,8 @@ class HomeBody extends StatelessWidget {
                   ),
                 ),
                 //Categories
-                CategoryCarousel(),
-                BestSellers(),
+                const CategoryCarousel(),
+                const BestSellers(),
 
               ],
             )
