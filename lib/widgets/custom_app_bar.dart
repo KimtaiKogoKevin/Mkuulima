@@ -49,25 +49,26 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                       badgeStyle: badges.BadgeStyle(
                         badgeColor: Colors.red,
                       ),
-                      badgeContent: Consumer<CartProvider>(
-                        builder: (context, value, child) {
-                          return Text(
-                            value.getCounter().toString(),
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          );
-                        },
-                      ),
-                      // // Text(
-                      //    state.cart
-                      //        .productQuantity(state.cart.products)
-                      //        .values
-                      //        .toString()
-                      //        .replaceAll("(", "")
-                      //        .replaceAll(")", ""),
-                      //    style: const TextStyle(color: Colors.black),
-                      //  ),
+                      badgeContent:
+                      // Consumer<CartProvider>(
+                      //   builder: (context, value, child) {
+                      //     return Text(
+                      //       value.getCounter().toString(),
+                      //       style: const TextStyle(
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.bold),
+                      //     );
+                      //   },
+                      // ),
+                       Text(
+                         state.cart
+                             .productQuantity(state.cart.products)
+                             .values
+                             .toString()
+                             .replaceAll("(", "")
+                             .replaceAll(")", ""),
+                         style: const TextStyle(color: Colors.black),
+                       ),
                       child: const Icon(
                         Icons.shopping_bag_outlined,
                         size: 32,

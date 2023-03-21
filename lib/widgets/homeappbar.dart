@@ -200,44 +200,6 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
             //     ),
             //   ],
             // ),
-            bottom: TabBar(
-              indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 5.0),
-                  insets: EdgeInsets.symmetric(horizontal: 16.0)),
-              isScrollable: true,
-              indicatorColor: Color(0xFF4C53A5),
-              labelColor: Color(0xFF4C53A5),
-              labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
-              tabs: [
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    child: Tab(
-                      text: "Home",
-                      icon: Icon(Icons.home_filled, color: Color(0xFF4C53A5)),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    // width:MediaQuery.of(context).size.width,
-
-                    child: Tab(
-                        text: "Categories",
-                        icon: Icon(Icons.list, color: Color(0xFF4C53A5))),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    child: Tab(
-                      text: "Account",
-                      icon: Icon(Icons.person, color: Color(0xFF4C53A5)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
 
           );
         } else if (state is CartLoading) {
