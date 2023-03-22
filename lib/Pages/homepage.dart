@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
   static Route route({required Product product}) {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
-        builder: (_) => HomePage());
+        builder: (_) => const HomePage());
   }
 
   @override
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
       initialIndex: 0,
       length: 3,
       child: Scaffold(
-        appBar: const CustomAppBar(title: "Mukuu-Lima"),
+        appBar: const CustomAppBar(title: "MukuuLima"),
         body: TabBarView(children: [
           Container(
             margin: const EdgeInsets.only(top: 20),

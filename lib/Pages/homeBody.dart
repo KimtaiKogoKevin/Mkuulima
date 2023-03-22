@@ -24,7 +24,7 @@ class HomeBody extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.only(top: 15),
             decoration: const BoxDecoration(
-                color: Color(0xFFEDECF2),
+                color: Color(0xFFFFFFFF),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(35),
                   topRight: Radius.circular(35),
@@ -33,7 +33,7 @@ class HomeBody extends StatelessWidget {
               children: [
 
                 //search widget
-                const ResponsiveWidget(mobile:SearchBar(), tab: SearchBar(), desktop: SearchBar(),),
+              //  const ResponsiveWidget(mobile:SearchBar(), tab: SearchBar(), desktop: SearchBar(),),
 
 
                 Container(

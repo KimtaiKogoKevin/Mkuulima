@@ -4,6 +4,7 @@ import '../../blocs/wishlist/wishlist_bloc.dart';
 import '../../models/Product.dart';
 import 'package:flutter/material.dart';
 import '../../models/Product_model_base.dart';
+import '../../responsive.dart';
 import'../../utils/globalColors.dart';
 import '../homeappbar.dart';
 class ProductScreen extends StatefulWidget {
@@ -105,90 +106,155 @@ class _ProductScreenState extends State<ProductScreen> {
 
     return Scaffold(
     //  appBar: HomeAppBar(title:product.productName),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * .35,
-            color: GlobalColors.kGreyBackground,
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Image.network(
-                    selectedImageUrl!,
-                    fit: BoxFit.cover,
-                    color: GlobalColors.kGreyBackground,
-                    colorBlendMode: BlendMode.multiply,
-                  ),
-                ),
-                const SizedBox(height: 18),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: imagePreviews,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
+      body: ResponsiveWidget(
+        mobile: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * .35,
+              color: GlobalColors.kGreyBackground,
+              padding: const EdgeInsets.symmetric(vertical: 18),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    product.productName,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    "\$" + product.regularPrice.toString(),
-                    style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                      color: Theme.of(context).colorScheme.secondary,
+                  Expanded(
+                    child: Image.network(
+                      selectedImageUrl!,
+                      fit: BoxFit.cover,
+                      color: GlobalColors.kGreyBackground,
+                      colorBlendMode: BlendMode.multiply,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    product.productDescription ??
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis purus laoreet, efficitur libero vel, feugiat ante. Vestibulum tempor, ligula.",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2!
-                        .copyWith(height: 1.5),
+                  const SizedBox(height: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imagePreviews,
                   ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  // if (sizeSelectionWidgets.isNotEmpty) ...[
-                  //   Text(
-                  //     "Size",
-                  //     style: Theme.of(context).textTheme.subtitle2,
-                  //   ),
-                  //   const SizedBox(height: 8),
-                  //   Row(
-                  //     children: sizeSelectionWidgets,
-                  //   ),
-                  // ],
-                  const Spacer(),
-                  const Center(
-                    // child: CallToActionButton(
-                    //   onPressed: () => cart.add(
-                    //     OrderItem(
-                    //       product: product,
-                    //       selectedSize: selectedSize,
-                    //     ),
-                    //   ),
-                    //   labelText: "Add to Cart",
-                    // ),
-                  )
                 ],
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.productName,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "\$" + product.regularPrice.toString(),
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      product.productDescription ??
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis purus laoreet, efficitur libero vel, feugiat ante. Vestibulum tempor, ligula.",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(height: 1.5),
+                    ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    // if (sizeSelectionWidgets.isNotEmpty) ...[
+                    //   Text(
+                    //     "Size",
+                    //     style: Theme.of(context).textTheme.subtitle2,
+                    //   ),
+                    //   const SizedBox(height: 8),
+                    //   Row(
+                    //     children: sizeSelectionWidgets,
+                    //   ),
+                    // ],
+                    const Spacer(),
+                    const Center(
+                      // child: CallToActionButton(
+                      //   onPressed: () => cart.add(
+                      //     OrderItem(
+                      //       product: product,
+                      //       selectedSize: selectedSize,
+                      //     ),
+                      //   ),
+                      //   labelText: "Add to Cart",
+                      // ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        desktop:
+        Row(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * .65,
+              width: MediaQuery.of(context).size.height * .65,
+
+              color: GlobalColors.kGreyBackground,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      selectedImageUrl!,
+                      fit: BoxFit.cover,
+                      color: GlobalColors.kGreyBackground,
+                      colorBlendMode: BlendMode.multiply,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imagePreviews,
+                  ),
+                ],
+              ),
+            ),
+          ],
+
+        ),
+        tab:
+        Row(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * .65,
+              width: MediaQuery.of(context).size.height * .65,
+
+              color: GlobalColors.kGreyBackground,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      selectedImageUrl!,
+                      fit: BoxFit.cover,
+                      color: GlobalColors.kGreyBackground,
+                      colorBlendMode: BlendMode.multiply,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imagePreviews,
+                  ),
+                ],
+              ),
+            ),
+          ],
+
+        ),
+
       ),
 
     );

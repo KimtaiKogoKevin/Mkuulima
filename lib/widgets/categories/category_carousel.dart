@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkuulima/responsive.dart';
 
 
 
@@ -25,19 +26,51 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
             return const Center(child: CircularProgressIndicator());
           }
           if(state is CategoryLoaded){
-            return CarouselSlider(
+            return ResponsiveWidget(
+              tab: CarouselSlider(
 
-              options: CarouselOptions(
-                autoPlay: true,
-                aspectRatio: 1.5,
-                viewportFraction: 0.9,
-                enlargeCenterPage: true,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                enableInfiniteScroll: false,
-              ),
-              items: state.categories
-                  .map((category) => CategoryCarouselCard(category2: category))
-                  .toList(),
+
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height*0.50,
+                  autoPlay: true,
+                  aspectRatio: 1.5,
+                  viewportFraction: 0.9,
+                  enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  enableInfiniteScroll: false,
+                ),
+                items: state.categories
+                    .map((category) => CategoryCarouselCard(category2: category))
+                    .toList(),
+              ), mobile: CarouselSlider(
+
+
+          options: CarouselOptions(
+          height: MediaQuery.of(context).size.height,
+          autoPlay: true,
+          aspectRatio: 1.5,
+          viewportFraction: 0.9,
+          enlargeCenterPage: true,
+          enlargeStrategy: CenterPageEnlargeStrategy.height,
+          enableInfiniteScroll: false,
+          ),
+          items: state.categories
+              .map((category) => CategoryCarouselCard(category2: category))
+              .toList(),), desktop: CarouselSlider(
+
+
+          options: CarouselOptions(
+          height: MediaQuery.of(context).size.height*0.50,
+          autoPlay: true,
+          aspectRatio: 1.5,
+          viewportFraction: 0.9,
+          enlargeCenterPage: true,
+          enlargeStrategy: CenterPageEnlargeStrategy.height,
+          enableInfiniteScroll: false,
+          ),
+          items: state.categories
+              .map((category) => CategoryCarouselCard(category2: category))
+              .toList()),
             );
 
           }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   final Widget mobile;
-  final Widget tab;
+   final Widget tab;
   final Widget desktop;
-  const ResponsiveWidget({Key? key,required this.mobile,required this.tab,required this.desktop}) : super(key: key);
+  const ResponsiveWidget({Key? key,required this.mobile, required this.desktop, required this.tab}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
