@@ -228,6 +228,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
           children: [
             Container(
+
               height: MediaQuery.of(context).size.height * .65,
               width: MediaQuery.of(context).size.height * .65,
 
