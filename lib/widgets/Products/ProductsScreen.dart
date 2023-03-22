@@ -225,6 +225,7 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
         tab:
         Row(
+
           children: [
             Container(
               height: MediaQuery.of(context).size.height * .65,
