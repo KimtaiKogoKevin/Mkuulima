@@ -18,6 +18,7 @@ import '../models/CartDeprecated.dart';
 import '../models/Product.dart';
 import '../models/ProductDepracated.dart';
 import '../repositories/database/database_service.dart';
+import '../responsive.dart';
 import '../widgets/Products/ProductsScreen.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/homeappbar.dart';
@@ -204,63 +205,68 @@ class _ItemPageState extends State<ItemPage> {
       //     ))
       //   ])
       // ]),
-      bottomNavigationBar: BottomAppBar(
-        //  color:  Color(0xFF4C53A5),
-        child: Container(
-          color: Colors.transparent,
-          height: 70,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.share,
-                  color: Colors.black,
-                )),
-            BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
-              if (state is WishlistLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
-                );
-              }
-              return IconButton(
-                  onPressed: () {
-                    const snackBar = SnackBar(
-                      content: Text('Added to Favourites!'),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    context
-                        .read<WishlistBloc>()
-                        .add(AddWishlistProduct(widget.product ));
-                    Navigator.pushNamed(context, '/wishlist');
-                  },
+      bottomNavigationBar: ResponsiveWidget(
+
+        mobile: BottomAppBar(
+          //  color:  Color(0xFF4C53A5),
+          child: Container(
+            color: Colors.transparent,
+            height: 70,
+            child:
+                Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              IconButton(
+                  onPressed: () {},
                   icon: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  ));
-            }),
-            BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+                    Icons.share,
+                    color: Colors.black,
+                  )),
+              BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
+                if (state is WishlistLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                  );
+                }
+                return IconButton(
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        content: Text('Added to Favourites!'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      context
+                          .read<WishlistBloc>()
+                          .add(AddWishlistProduct(widget.product ));
+                      Navigator.pushNamed(context, '/wishlist');
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ));
+              }),
+              BlocBuilder<CartBloc, CartState>(builder: (context, state) {
 
-              return ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4C53A5)),
-                onPressed: () {
-                  //saveData(widget.productBase);
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4C53A5)),
+                  onPressed: () {
+                    //saveData(widget.productBase);
 
 
-                  context.read<CartBloc>().add(AddProduct(widget.product));
-                  Navigator.pushNamed(context, '/cartPage');
-                },
-                child:  const Text('Add To Cart',
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-              );
-            })
-          ]),
+                    context.read<CartBloc>().add(AddProduct(widget.product));
+                    Navigator.pushNamed(context, '/cartPage');
+                  },
+                  child:  const Text('Add To Cart',
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                );
+              })
+            ]),
+          ),
         ),
+        tab:const SizedBox(width:0),
+        desktop:const SizedBox(width:0)
       ),
     );
   }

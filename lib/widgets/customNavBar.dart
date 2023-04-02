@@ -12,7 +12,7 @@ class CustomNavBar extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: const [
           // BlocBuilder<CheckoutBloc, CheckoutState>(
           //   builder: (context, state) {
           //     // if (state is CheckoutLoading) {

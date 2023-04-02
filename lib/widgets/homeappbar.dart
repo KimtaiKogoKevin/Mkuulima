@@ -124,7 +124,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                           .isEmpty
                           ? false
                           : true,
-                      badgeStyle: badges.BadgeStyle(
+                      badgeStyle: const badges.BadgeStyle(
                         badgeColor: Colors.red,
                       ),
                       badgeContent:

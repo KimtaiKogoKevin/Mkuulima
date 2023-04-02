@@ -23,6 +23,7 @@ import '../models/CartDeprecated.dart';
 import '../models/Product.dart';
 import '../models/ProductDepracated.dart';
 import '../repositories/database/database_service.dart';
+import '../responsive.dart';
 import '../widgets/Products/ProductsScreen.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/homeappbar.dart';
@@ -75,11 +76,11 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
 
 
   }
-  String uuid = Uuid().v4();
+  String uuid = const Uuid().v4();
 
   void _generateNewUuid() {
     setState(() {
-      uuid = Uuid().v4(); // Generate a new random UUID
+      uuid = const Uuid().v4(); // Generate a new random UUID
     });
   }
 
@@ -250,68 +251,73 @@ class _ItemPage_BaseState extends State<ItemPage_Base> {
       //     ))
       //   ])
       // ]),
-      bottomNavigationBar: BottomAppBar(
-        //  color:  Color(0xFF4C53A5),
-        child: Container(
-          color: Colors.transparent,
-          height: 70,
-          child:
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.share,
-                  color: Colors.black,
-                )),
-            BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
-              if (state is WishlistLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
-                );
-              }
-              return IconButton(
-                  onPressed: () {
-                    const snackBar = SnackBar(
-                      content: Text('Added to Favourites!'),
-                    );
-                    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    // context
-                    //     .read<WishlistBloc>()
-                    //     .add(AddWishlistProduct(widget.product ));
-                    Navigator.pushNamed(context, '/wishlist');
-                  },
+      bottomNavigationBar: ResponsiveWidget(
+        mobile: BottomAppBar(
+          //  color:  Color(0xFF4C53A5),
+          child: Container(
+            color: Colors.transparent,
+            height: 70,
+            child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              IconButton(
+                  onPressed: () {},
                   icon: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  ));
-            }),
-            BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+                    Icons.share,
+                    color: Colors.black,
+                  )),
+              BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
+                if (state is WishlistLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                  );
+                }
+                return IconButton(
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        content: Text('Added to Favourites!'),
+                      );
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      // context
+                      //     .read<WishlistBloc>()
+                      //     .add(AddWishlistProduct(widget.product ));
+                      Navigator.pushNamed(context, '/wishlist');
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ));
+              }),
+              BlocBuilder<CartBloc, CartState>(builder: (context, state) {
 
-              return ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
-                onPressed: () async{
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4C53A5)),
+                  onPressed: () async{
 
-                  if (firebase.user?.uid!=null) {
-                    await saveData(widget.product);
-                    //context.read<CartBloc>().add(AddProduct(widget.product));
-                    Navigator.pushNamed(context, '/cartscreen');
-                  }
-                  else {
-                    Navigator.pushNamed(context, '/register');
+                    if (firebase.user?.uid!=null) {
+                      await saveData(widget.product);
+                      //context.read<CartBloc>().add(AddProduct(widget.product));
 
-                  }
-                },
-                child:  const Text('Add To Cart',
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-              );
-            })
-          ]),
+                      Navigator.pushNamed(context, '/cartscreen');
+                    }
+                    else {
+                      Navigator.pushNamed(context, '/register');
+
+                    }
+                  },
+                  child:  const Text('Add To Carts',
+                      style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                );
+              })
+            ]),
+          ),
         ),
+        desktop:SizedBox(width:0),
+        tab:SizedBox(width: 0,)
       ),
     );
   }

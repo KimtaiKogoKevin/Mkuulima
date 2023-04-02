@@ -14,7 +14,7 @@ import 'SocialLogin.dart';
 
 class LoginPage extends StatelessWidget {
    LoginPage({Key? key}) : super(key: key);
-  static const String routeName = '/login';
+  static const String routeName = 'login';
   final TextEditingController emailController = TextEditingController();
    final TextEditingController passwordController = TextEditingController();
 
