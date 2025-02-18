@@ -1,6 +1,6 @@
 # mkuulima
 
-A new Flutter project.
+An ecommerce mobile application built using Flutter programming language and Firebase 
 
 ## Getting Started
 
